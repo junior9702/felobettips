@@ -32,20 +32,33 @@
 
 <div class="container">
     <h2>Today's Live Tips</h2>
-    <table id="tipsTable">
-        <thead>
-            <tr>
-                <th>Time</th>
-                <th>Match</th>
-                <th>Tip</th>
-                <th>Odds</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody">
-            </tbody>
-    </table>
-</div>
+    <table id="match-table">
+    <thead>
+        <tr><th>Match</th><th>Tip</th><th>Odds</th></tr>
+    </thead>
+    <tbody id="match-list">
+        </tbody>
+</table>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<script>
+  const firebaseConfig = { databaseURL: "https://console.firebase.google.com/project/felixtips-79988/database/felixtips-79988-default-rtdb/data/~2F" };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database().ref('matches');
+
+  // Listen for new matches from the bot
+  db.on('value', (snapshot) => {
+    const data = snapshot.val();
+    const list = document.getElementById('match-list');
+    list.innerHTML = ''; 
+    for (let id in data) {
+      const m = data[id];
+      list.innerHTML += `<tr><td>${m.names}</td><td>${m.tip}</td><td>${m.odds}</td></tr>`;
+    }
+  });
+</script>
 
 </table>
 
