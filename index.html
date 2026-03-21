@@ -68,29 +68,43 @@
       firebase.initializeApp(firebaseConfig);
   }
   
-  const db = firebase.database().ref('matches');
+  // Change this line to look at the ROOT if you don't see a "matches" folder
+const db = firebase.database().ref('/'); 
 
-  // Listen for data
-  db.on('value', (snapshot) => {
-    console.log("Data received from Firebase:", snapshot.val()); // Check your browser console!
-    
+db.on('value', (snapshot) => {
     const data = snapshot.val();
     const list = document.getElementById('match-list');
     
     if (!data) {
-        list.innerHTML = '<tr><td colspan="3">No games posted yet. Send a message to the bot!</td></tr>';
+        list.innerHTML = '<tr><td colspan="3">No games found in database.</td></tr>';
         return;
     }
 
     list.innerHTML = ''; 
+    // This loop handles both a folder or direct data
     for (let id in data) {
-      const m = data[id];
-      // Ensure the keys match what your Bot sends (names, tip, odds)
-      list.innerHTML += `<tr>
-          <td>${m.names || 'N/A'}</td>
-          <td>${m.tip || 'N/A'}</td>
-          <td style="color:gold; font-weight:bold;">${m.odds || 'N/A'}</td>
-      </tr>`;
+        const m = data[id];
+        // If your data is inside a 'matches' folder, we need to go one level deeper
+        if (id === 'matches') {
+            for (let matchId in m) {
+                const game = m[matchId];
+                renderRow(list, game);
+            }
+        } else {
+            renderRow(list, m);
+        }
+    }
+});
+
+function renderRow(list, m) {
+    if (m.names || m.tip) { // Only add if it's actual game data
+        list.innerHTML += `<tr>
+            <td>${m.names || 'N/A'}</td>
+            <td>${m.tip || 'N/A'}</td>
+            <td style="color:gold;">${m.odds || 'N/A'}</td>
+        </tr>`;
+    }
+}
     }
   }, (error) => {
       console.error("Firebase Error:", error);
