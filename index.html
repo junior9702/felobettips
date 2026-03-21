@@ -39,6 +39,42 @@
 <div class="container">
     <h2>Today's Live Tips</h2>
     <style>
+        .notification-bar {
+    background: var(--gold);
+    color: #000;
+    height: 35px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    font-size: 0.8rem;
+    font-weight: 900;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.marquee {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee 20s linear infinite;
+}
+
+.marquee span {
+    padding-right: 50px; /* Space between messages */
+}
+
+@keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Adjust the body padding so the bar doesn't cover your header */
+body {
+    padding-top: 50px !important;
+}
     #match-table {
         width: 100%;
         margin: 20px 0;
