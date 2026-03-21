@@ -58,44 +58,46 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
 <script>
-  // 1. YOUR CONFIG
+  // 1. Configuration
   const firebaseConfig = { 
       databaseURL: "https://felixtips-79988-default-rtdb.firebaseio.com" 
   };
 
-  // 2. INITIALIZE
+  // 2. Initialize Firebase
   if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
   }
   
-  // 3. POINT TO THE DATA
-  // If your folder in Firebase is named 'matches', use .ref('matches')
-  // If your data is just sitting at the top, use .ref('/')
+  // 3. Reference to your data folder
   const db = firebase.database().ref('matches');
 
+  // 4. Listen for data
   db.on('value', (snapshot) => {
-    const data = snapshot.val();
-    const list = document.getElementById('match-list');
-    
-    console.log("Website received:", data); // This shows in your browser 'Inspect' console
+      const data = snapshot.val();
+      const list = document.getElementById('match-list');
+      
+      // Clear the "Loading..." text
+      list.innerHTML = ''; 
 
-    if (!data) {
-        list.innerHTML = '<tr><td colspan="3" style="color:white;">No games found. Check back soon!</td></tr>';
-        return;
-    }
+      if (!data) {
+          list.innerHTML = '<tr><td colspan="3" style="color:white; padding:20px;">No games posted yet. Check back soon!</td></tr>';
+          return;
+      }
 
-    list.innerHTML = ''; 
-    for (let id in data) {
-      const m = data[id];
-      list.innerHTML += `
-        <tr>
-          <td style="color:white;">${m.names || 'Match Name'}</td>
-          <td style="color:white;">${m.tip || 'Prediction'}</td>
-          <td style="color:gold; font-weight:bold;">${m.odds || '0.00'}</td>
-        </tr>`;
-    }
+      // Loop through the games
+      for (let id in data) {
+          const m = data[id];
+          const row = `
+            <tr>
+              <td style="color:white;">${m.names || 'N/A'}</td>
+              <td style="color:white;">${m.tip || 'N/A'}</td>
+              <td style="color:gold; font-weight:bold;">${m.odds || 'N/A'}</td>
+            </tr>`;
+          list.innerHTML += row;
+      }
   }, (error) => {
-      console.error("Firebase Read Error:", error);
+      console.error("Firebase Error:", error);
+      document.getElementById('match-list').innerHTML = '<tr><td colspan="3" style="color:red;">Connection Error!</td></tr>';
   });
 </script>
 
