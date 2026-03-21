@@ -58,57 +58,44 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
 <script>
-  // Replace with your ACTUAL URL from Firebase Console
-  const firebaseConfig = {
-  databaseURL: "https://felixtips-79988-default-rtdb.firebaseio.com" 
-};
+  // 1. YOUR CONFIG
+  const firebaseConfig = { 
+      databaseURL: "https://felixtips-79988-default-rtdb.firebaseio.com" 
+  };
 
-  // Initialize
+  // 2. INITIALIZE
   if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
   }
   
-  // Change this line to look at the ROOT if you don't see a "matches" folder
-const db = firebase.database().ref('/'); 
+  // 3. POINT TO THE DATA
+  // If your folder in Firebase is named 'matches', use .ref('matches')
+  // If your data is just sitting at the top, use .ref('/')
+  const db = firebase.database().ref('matches');
 
-db.on('value', (snapshot) => {
+  db.on('value', (snapshot) => {
     const data = snapshot.val();
     const list = document.getElementById('match-list');
     
+    console.log("Website received:", data); // This shows in your browser 'Inspect' console
+
     if (!data) {
-        list.innerHTML = '<tr><td colspan="3">No games found in database.</td></tr>';
+        list.innerHTML = '<tr><td colspan="3" style="color:white;">No games found. Check back soon!</td></tr>';
         return;
     }
 
     list.innerHTML = ''; 
-    // This loop handles both a folder or direct data
     for (let id in data) {
-        const m = data[id];
-        // If your data is inside a 'matches' folder, we need to go one level deeper
-        if (id === 'matches') {
-            for (let matchId in m) {
-                const game = m[matchId];
-                renderRow(list, game);
-            }
-        } else {
-            renderRow(list, m);
-        }
-    }
-});
-
-function renderRow(list, m) {
-    if (m.names || m.tip) { // Only add if it's actual game data
-        list.innerHTML += `<tr>
-            <td>${m.names || 'N/A'}</td>
-            <td>${m.tip || 'N/A'}</td>
-            <td style="color:gold;">${m.odds || 'N/A'}</td>
+      const m = data[id];
+      list.innerHTML += `
+        <tr>
+          <td style="color:white;">${m.names || 'Match Name'}</td>
+          <td style="color:white;">${m.tip || 'Prediction'}</td>
+          <td style="color:gold; font-weight:bold;">${m.odds || '0.00'}</td>
         </tr>`;
     }
-}
-    }
   }, (error) => {
-      console.error("Firebase Error:", error);
-      alert("Database Error: " + error.message);
+      console.error("Firebase Read Error:", error);
   });
 </script>
 
