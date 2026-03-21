@@ -60,7 +60,7 @@
 <script>
   // Replace with your ACTUAL URL from Firebase Console
   const firebaseConfig = { 
-      databaseURL: "https://YOUR-PROJECT-ID-default-rtdb.firebaseio.com" 
+      databaseURL: "https://console.firebase.google.com/project/felixtips-79988/database/felixtips-79988-default-rtdb/data/~2F" 
   };
 
   // Initialize
@@ -95,27 +95,6 @@
   }, (error) => {
       console.error("Firebase Error:", error);
       alert("Database Error: " + error.message);
-  });
-</script>
-</table>
-
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-
-<script>
-  const firebaseConfig = { databaseURL: "https://console.firebase.google.com/project/felixtips-79988/database/felixtips-79988-default-rtdb/data/~2F" };
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.database().ref('matches');
-
-  // Listen for new matches from the bot
-  db.on('value', (snapshot) => {
-    const data = snapshot.val();
-    const list = document.getElementById('match-list');
-    list.innerHTML = ''; 
-    for (let id in data) {
-      const m = data[id];
-      list.innerHTML += `<tr><td>${m.names}</td><td>${m.tip}</td><td>${m.odds}</td></tr>`;
-    }
   });
 </script>
 
