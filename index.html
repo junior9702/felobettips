@@ -69,7 +69,7 @@
   }
   
   // 3. Reference to your data folder
-  const db = firebase.database().ref('/');
+    const db = firebase.database().ref('matches');
 
   // 4. Listen for data
   db.on('value', (snapshot) => {
