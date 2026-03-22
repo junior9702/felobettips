@@ -121,8 +121,8 @@ const db = firebase.database().ref('matches');
           const m = data[id];
           const row = `
             <tr>
-              <td style="color:white;">${m.names || 'N/A'}</td>
-              <td style="color:white;">${m.tip || 'N/A'}</td>
+              <td style="color:gold;">${m.names || 'N/A'}</td>
+              <td style="color:gold;">${m.tip || 'N/A'}</td>
               <td style="color:gold; font-weight:bold;">${m.odds || 'N/A'}</td>
             </tr>`;
           list.innerHTML += row;
