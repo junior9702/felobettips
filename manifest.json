@@ -1,0 +1,13 @@
+{
+  "background_color": "#070a14",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "apexprediction",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "apex",
+  "start_url": "/",
+  "theme_color": "#10b981",
+  "id": "/?source=pwa",
+  "description": "Professional football predictions, daily VIP tips, and expert match analysis"
+}
