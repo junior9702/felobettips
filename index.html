@@ -3,246 +3,1045 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Tips | Expert Predictions</title>
+    <title>ApexPredict | Professional Football Predictions & VIP Tips</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f4f7f6; color: #333; }
-        header { background: #1a2a6c; color: white; padding: 2rem; text-align: center; }
-        .container { max-width: 1000px; margin: auto; padding: 20px; }
-        
-        /* Table Styles */
-        table { width: 100%; border-collapse: collapse; margin-bottom: 30px; background: black; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        th { background: #1a2a6c; color: black; padding: 15px; }
-        td { padding: 12px; border-bottom: 1px solid #ddd; text-align: center; }
-        .win { color: green; font-weight: bold; }
-        .notification-bar {
-    background: var(--gold);
-    color: #000;
-    height: 35px;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    font-size: 0.8rem;
-    font-weight: 900;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-}
+        :root {
+            --bg-main: #070a14;
+            --bg-card: #0f172a;
+            --bg-card-hover: #1e293b;
+            --accent-green: #10b981;
+            --accent-green-hover: #059669;
+            --accent-gold: #f59e0b;
+            --accent-red: #ef4444;
+            --accent-whatsapp: #25d366;
+            --accent-telegram: #229ed9;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #1e293b;
+            --border-highlight: #334155;
+            --font: 'Inter', sans-serif;
+        }
 
-.marquee {
-    display: flex;
-    white-space: nowrap;
-    animation: marquee 20s linear infinite;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font);
+            -webkit-tap-highlight-color: transparent;
+        }
 
-.marquee span {
-    padding-right: 50px; /* Space between messages */
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-@keyframes marquee {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-}
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-/* Adjust the body padding so the bar doesn't cover your header */
-body {
-    padding-top: 50px !important;
-}
-        
-        /* VIP Section */
-        .vip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
-        .vip-card { background: linear-gradient(145deg, #fb8c00, #ffb300); padding: 20px; border-radius: 12px; text-align: center; color: white; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .btn-buy { background: #fff; color: #fb8c00; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block; margin-top: 10px; }
-        
-        .contact-info { background: #eee; padding: 20px; text-align: center; border-radius: 10px; margin-top: 40px; }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+        }
+
+        /* Navbar */
+        header {
+            background: rgba(7, 10, 20, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent-green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn-header {
+            background: var(--accent-green);
+            color: #000;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 0.85rem;
+        }
+
+        .btn-header:hover {
+            background: var(--accent-green-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-whatsapp-header {
+            background: var(--accent-whatsapp);
+            color: #fff;
+        }
+        .btn-whatsapp-header:hover {
+            background: #1ebc57;
+            color: #fff;
+        }
+
+        .btn-admin-toggle {
+            background: #1e293b;
+            color: var(--text-muted);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid var(--border-highlight);
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .btn-admin-toggle:hover {
+            color: #fff;
+            border-color: var(--accent-gold);
+        }
+
+        /* ADMIN PANEL STYLING */
+        #admin-panel {
+            display: none;
+            background: #0f172a;
+            border: 2px solid var(--accent-gold);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-highlight);
+            padding-bottom: 10px;
+        }
+
+        .admin-header h3 {
+            font-size: 1.1rem;
+        }
+
+        .admin-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+        }
+
+        .admin-form input, .admin-form select {
+            background: var(--bg-main);
+            border: 1px solid var(--border-highlight);
+            color: #fff;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            width: 100%;
+        }
+
+        .btn-add {
+            background: var(--accent-gold);
+            color: #000;
+            font-weight: 700;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            grid-column: 1 / -1;
+        }
+
+        @media (min-width: 768px) {
+            .btn-add {
+                grid-column: span 1;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 50px 0 35px;
+            text-align: center;
+            background: radial-gradient(circle at top center, rgba(16, 185, 129, 0.12) 0%, transparent 65%);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--accent-green);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: 2.1rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+        }
+
+        .hero h1 span {
+            color: var(--accent-green);
+        }
+
+        .hero p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            max-width: 580px;
+            margin: 0 auto 25px;
+        }
+
+        @media (min-width: 768px) {
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Trust Stats Bar */
+        .trust-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            max-width: 700px;
+            margin: 30px auto 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px 10px;
+        }
+
+        .stat-item h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-bottom: 2px;
+        }
+
+        @media (min-width: 768px) {
+            .stat-item h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        .stat-item p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        @media (min-width: 768px) {
+            .stat-item p {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Prediction Table */
+        .section-title {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .section-title h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+
+        @media (min-width: 768px) {
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .table-wrapper {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .prediction-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        @media (min-width: 768px) {
+            .prediction-table {
+                white-space: normal;
+            }
+        }
+
+        .prediction-table th, .prediction-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .prediction-table th {
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .league-tag {
+            font-size: 0.75rem;
+            background: #1e293b;
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: var(--text-muted);
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        .badge-won, .badge-pending, .badge-lost {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .badge-won { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+        .badge-pending { background: rgba(245, 158, 11, 0.15); color: var(--accent-gold); }
+        .badge-lost { background: rgba(239, 68, 68, 0.15); color: var(--accent-red); }
+
+        .odds {
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 6px;
+        }
+
+        .btn-action {
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .btn-act-won { background: var(--accent-green); color: #000; }
+        .btn-act-lost { background: var(--accent-red); color: #fff; }
+        .btn-act-del { background: #475569; color: #fff; }
+
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        @media (min-width: 640px) {
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .price-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: left;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.25s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-highlight);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .price-card.popular {
+            border: 2px solid var(--accent-green);
+            background: linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, var(--bg-card) 60%);
+        }
+
+        .price-card.elite {
+            border: 2px solid var(--accent-gold);
+            background: linear-gradient(180deg, rgba(245, 158, 11, 0.05) 0%, var(--bg-card) 60%);
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .popular-badge { background: var(--accent-green); color: #000; }
+        .elite-badge { background: var(--accent-gold); color: #000; }
+
+        .price-header h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .price-header p {
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            min-height: 32px;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin: 14px 0;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .price span {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .features-list li {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .features-list li i {
+            color: var(--accent-green);
+            font-size: 0.8rem;
+        }
+
+        .price-card.elite .features-list li i {
+            color: var(--accent-gold);
+        }
+
+        .btn-pricing-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .btn-pricing {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            width: 100%;
+            padding: 10px 0;
+            background: #1e293b;
+            color: #fff;
+            font-weight: 700;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            transition: opacity 0.2s;
+            border: 1px solid var(--border-highlight);
+            cursor: pointer;
+        }
+
+        .price-card.popular .btn-pricing-telegram {
+            background: var(--accent-green);
+            color: #000;
+            border: none;
+        }
+
+        .price-card.elite .btn-pricing-telegram {
+            background: var(--accent-gold);
+            color: #000;
+            border: none;
+        }
+
+        .btn-pricing-whatsapp {
+            background: rgba(37, 211, 102, 0.1);
+            color: var(--accent-whatsapp);
+            border-color: rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-pricing-whatsapp:hover {
+            background: var(--accent-whatsapp);
+            color: #fff;
+        }
+
+        .btn-pricing:hover {
+            opacity: 0.9;
+        }
+
+        /* Why Choose Us Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .feature-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-green);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            margin: 0 auto 15px;
+        }
+
+        .feature-box h4 {
+            font-size: 1rem;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .feature-box p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #04060b;
+            padding: 40px 0 20px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .footer-disclaimer {
+            max-width: 700px;
+            margin: 0 auto 15px;
+            line-height: 1.5;
+        }
     </style>
 </head>
 <body>
-<div class="notification-bar">
-    <div class="marquee">
-        <span>🔥 BIG WIN: Yesterday's Premium Accumulator hit 5.40 Odds! ✅</span>
-        <span>💎 JOIN OUR VIP TELEGRAM FOR MAX ACCURACY! 💎</span>
-        <span>⚽ New tips updated for today's matches! ⚽</span>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-trophy" style="color: var(--accent-green);"></i>
+                Apex<span>Predict</span>
+            </a>
+            <div class="nav-links">
+                <button class="btn-admin-toggle" onclick="toggleAdminPrompt()" title="Admin Mode">
+                    <i class="fa-solid fa-lock"></i>
+                </button>
+                <a href="https://wa.me/254736670026?text=Hi!%20I%20want%20to%20inquire%20about%20VIP%20plans" target="_blank" class="btn-header btn-whatsapp-header">
+                    <i class="fa-brands fa-whatsapp"></i> <span style="display: none; @media(min-width: 480px){display:inline;}">WhatsApp</span>
+                </a>
+                <a href="javascript:void(0);" onclick="openOneTimeTelegram('General Support')" class="btn-header">
+                    <i class="fa-brands fa-telegram"></i> <span style="display: none; @media(min-width: 480px){display:inline;}">Telegram</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- ADMIN CONTROL PANEL (Hidden by default) -->
+        <div id="admin-panel">
+            <div class="admin-header">
+                <h3><i class="fa-solid fa-sliders" style="color: var(--accent-gold);"></i> Admin Dashboard (Firebase Synced)</h3>
+                <button class="btn-action btn-act-lost" onclick="logoutAdmin()">Close</button>
+            </div>
+            <form class="admin-form" onsubmit="addPrediction(event)">
+                <input type="text" id="input-league" placeholder="League" required>
+                <input type="text" id="input-time" placeholder="Time (e.g. 20:00 UTC)" required>
+                <input type="text" id="input-match" placeholder="Match (Team A vs Team B)" required>
+                <input type="text" id="input-tip" placeholder="Prediction (e.g. Home Win)" required>
+                <input type="text" id="input-odds" placeholder="Odds (1.85)" required>
+                <select id="input-status">
+                    <option value="Pending">Pending</option>
+                    <option value="WON">WON</option>
+                    <option value="LOST">LOST</option>
+                </select>
+                <button type="submit" class="btn-add"><i class="fa-solid fa-plus"></i> Add Match Entry</button>
+            </form>
+        </div>
     </div>
-</div>
-<header>
-    <h1>ELITE TIPS PREDICTION</h1>
-    <p>Professional Analysis & High Odds</p>
-</header>
 
-<div class="container">
-    <h2>Today's Live Tips</h2>
-</style>
-
-<table id="match-table">
-    <thead>
-        <tr><th>Match</th><th>Tip</th><th>Odds</th></tr>
-    </thead>
-    <tbody id="match-list">
-        <tr><td colspan="3">Loading games...</td></tr>
-    </tbody>
-</table>
-
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-
-<script>
-  // 1. Configuration
-  const firebaseConfig = { 
-      databaseURL: "https://felixtips-79988-default-rtdb.firebaseio.com" 
-  };
-
-  // 2. Initialize Firebase
-  if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig);
-  }
-  
-  // 3. Reference to your data folder
-    // MUST MATCH THE SCRIPT FOLDER
-const db = firebase.database().ref('matches');
-
-  // 4. Listen for data
-  db.on('value', (snapshot) => {
-      const data = snapshot.val();
-      const list = document.getElementById('match-list');
-      
-      // Clear the "Loading..." text
-      list.innerHTML = ''; 
-
-      if (!data) {
-          list.innerHTML = '<tr><td colspan="3" style="color:black; padding:20px;">No games posted yet. Check back soon!</td></tr>';
-          return;
-      }
-
-      // Loop through the games
-      for (let id in data) {
-          const m = data[id];
-          const row = `
-            <tr>
-              <td style="color:gold; front-weight:bold;">${m.names || 'N/A'}</td>
-              <td style="color:red;">${m.tip || 'N/A'}</td>
-              <td style="color:green; font-weight:bold;">${m.odds || 'N/A'}</td>
-            </tr>`;
-          list.innerHTML += row;
-      }
-  }, (error) => {
-      console.error("Firebase Error:", error);
-      document.getElementById('match-list').innerHTML = '<tr><td colspan="3" style="color:red;">Connection Error!</td></tr>';
-  });
-</script>
-
-</table>
-
-    <h2 style="color: #d32f2f;">🔥 TODAY'S VIP PREMIUM SLIPS</h2>
-    <div class="vip-grid">
-        <div class="vip-card">
-            <h3>Bronze Plan</h3>
-            <p style="font-size: 24px;">5.00+ ODDS</p>
-            <p>Daily Access</p>
-            <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=felixjunior98765@gmail.com&item_name=Ultra+53+Odds&amount=3.00&currency_code=USD" class="btn-buy">Pay $3 via PayPal</a>
-            <a href="https://wa.me/254736670026?text=I%20want%20to%20buy%20the%205%20ODDS%20plan" style="color: #25d366; text-decoration: none; font-weight: bold; font-size: 14px;">Or Chat on WhatsApp →</a>
-            
-            <div class="vip-card" style="background: linear-gradient(145deg, #000, #434343); border: 2px solid #ffb300;">
-                <h3>💎 Bronze plan(5.00 ODDS)</h3>
-                
-                <div id="login-section">
-                    <p>This tip is for paid members only.</p>
-                    <input type="password" id="vip-pass" placeholder="Enter VIP Code" style="padding: 10px; border-radius: 5px; border: none; width: 80%;">
-                    <button onclick="checkAccess()" class="btn-buy" style="margin-top: 10px; width: 90%;">Unlock 5 Odds</button>
-                    <p style="font-size: 12px; margin-top: 10px;">Don't have a code? <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=felixjunior98765@gmail.com&item_name=5+Odds+VIP+Code&amount=3.00&currency_code=USD" style="color: #ffb300;">Pay $3 via PayPal to get it</a></p>
-                </div>
-
-                <div id="vip-content" style="display: none; background: #222; padding: 15px; border-radius: 10px; margin-top: 15px;">
-                    <h4 style="color: #4CAF50;">✅ ACCESS GRANTED</h4>
-                    <p id="vip-match-details" style="font-size: 18px; color: #fff;">
-                        Loading VIP matches...
-                    </p>
-                </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                <i class="fa-solid fa-circle-check"></i> Verified Accuracy Rate: 89.4%
             </div>
+            <h1>Smart Data-Driven <span>Football Predictions</span></h1>
+            <p>Access high-probability football analysis daily. Join our professional VIP communities on Telegram and WhatsApp for guaranteed daily winning tickets!</p>
+            <a href="#pricing" class="btn-header" style="padding: 12px 24px; font-size: 0.95rem; border-radius: 10px;">
+                <i class="fa-solid fa-bolt"></i> View VIP Packages
+            </a>
+
+            <!-- Trust Stats -->
+            <div class="trust-stats">
+                <div class="stat-item">
+                    <h3>14,200+</h3>
+                    <p>Active Punters</p>
                 </div>
-        <div class="vip-card">
-            <h3>Silver Plan</h3>
-            <p style="font-size: 24px;">10.00+ ODDS</p>
-            <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=felixjunior98765@gmail.com&item_name=Ultra+10+Odds&amount=5.00&currency_code=USD" class="btn-buy">Pay $5 via PayPal</a>
-            <a href="https://wa.me/254736670026?text=I%20want%20to%20buy%20the%2010%20ODDS%20plan" style="color: #25d366; text-decoration: none; font-weight: bold; font-size: 14px;">Or Chat on WhatsApp →</a>
-           
-            <div class="vip-card" style="background: linear-gradient(145deg, #000, #434343); border: 2px solid #ffb300;">
-                <h3>💎 silver plan (10.00 ODDS)</h3>
-                  <div id="login-section">
-                    <p>This tip is for paid members only.</p>
-                    <input type="password" id="vip-pass" placeholder="Enter VIP Code" style="padding: 10px; border-radius: 5px; border: none; width: 80%;">
-                    <button onclick="checkAccess()" class="btn-buy" style="margin-top: 10px; width: 90%;">Unlock 10 Odds</button>
-                    <p style="font-size: 12px; margin-top: 10px;">Don't have a code? <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=felixjunior98765@gmail.com&item_name=10+Odds+VIP+Code&amount=5.00&currency_code=USD" style="color: #ffb300;">Pay $5 via PayPal to get it</a></p>
+                <div class="stat-item">
+                    <h3>92.8%</h3>
+                    <p>VIP Win Rate</p>
                 </div>
-            
-                <div id="vip-content" style="display: none; background: #222; padding: 15px; border-radius: 10px; margin-top: 15px;">
-                    <h4 style="color: #4CAF50;">✅ ACCESS GRANTED</h4>
-                    <p id="vip-match-details" style="font-size: 18px; color: #fff;">
-                        Loading VIP matches...
-                    </p>
-                </div>
-            </div>
-            </div>
-        <div class="vip-card">
-            <h3>Gold Plan</h3>
-            <p style="font-size: 24px;">20.00+ ODDS</p>
-            <p>Weekend Special</p>
-            <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=felixjunior98765@gmail.com&item_name=Ultra+20+Odds&amount=9.00&currency_code=USD" class="btn-buy">Pay $9 via PayPal</a>
-            <a href="https://wa.me/254736670026?text=I%20want%20to%20buy%20the%2020%20ODDS%20plan" style="color: #25d366; text-decoration: none; font-weight: bold; font-size: 14px;">Or Chat on WhatsApp →</a>
-           
-            <div class="vip-card" style="background: linear-gradient(145deg, #000, #434343); border: 2px solid #ffb300;">
-                <h3>💎 GOLD PLAN (20.00 ODDS)</h3>
-                
-                <div id="login-section">
-                    <p>This tip is for paid members only.</p>
-                    <input type="password" id="vip-pass" placeholder="Enter VIP Code" style="padding: 3px; border-radius: 2px; border: none; width: 80%;">
-                    <button onclick="checkAccess()" class="btn-buy" style="margin-top: 10px; width: 90%;">Unlock 20 Odds</button>
-                    <p style="font-size: 12px; margin-top: 10px;">Don't have a code? <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=felixjunior98765@gmail.com&item_name=20+Odds+VIP+Code&amount=9.00&currency_code=USD" style="color: #ffb300;">Pay $9 via PayPal to get it</a></p>
-                </div>
-            
-                <div id="vip-content" style="display: none; background: #222; padding: 15px; border-radius: 10px; margin-top: 15px;">
-                    <h4 style="color: #4CAF50;">✅ ACCESS GRANTED</h4>
-                    <p id="vip-match-details" style="font-size: 18px; color: #fff;">
-                        Loading VIP matches...
-                    </p>
+                <div class="stat-item">
+                    <h3>24 / 7</h3>
+                    <p>Expert Support</p>
                 </div>
             </div>
         </div>
-        
-        <div class="vip-card" style="background: linear-gradient(145deg, #000, #434343);">
-            <h3>Ultra VIP</h3>
-            <p style="font-size: 24px;">53.00+ ODDS</p>
-            <p>Correct Scores</p>
-            <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=felixjunior98765@gmail.com&item_name=Ultra+53+Odds&amount=12.00&currency_code=USD" class="btn-buy">Pay $12 via PayPal</a>
-            <a href="https://wa.me/254736670026?text=I%20want%20to%20buy%20the%2053%20ODDS%20plan" style="color: #25d366; text-decoration: none; font-weight: bold; font-size: 14px;">Or Chat on WhatsApp →</a>
-<div class="vip-card" style="background: linear-gradient(145deg, #000, #434343); border: 2px solid #ffb300;">
-    <h3>💎 ULTRA VIP (53.00 ODDS)</h3>
-    
-    <div id="login-section">
-        <p>This tip is for paid members only.</p>
-        <input type="password" id="vip-pass" placeholder="Enter VIP Code" style="padding: 10px; border-radius: 5px; border: none; width: 80%;">
-        <button onclick="checkAccess()" class="btn-buy" style="margin-top: 10px; width: 90%;">Unlock 53 Odds</button>
-        <p style="font-size: 12px; margin-top: 10px;">Don't have a code? <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=felixjunior98765@gmail.com&item_name=53+Odds+VIP+Code&amount=40.00&currency_code=USD" style="color: #ffb300;">Pay $40 via PayPal to get it</a></p>
-    </div>
+    </section>
 
-    <div id="vip-content" style="display: none; background: #222; padding: 15px; border-radius: 10px; margin-top: 15px;">
-        <h4 style="color: #4CAF50;">✅ ACCESS GRANTED</h4>
-        <p id="vip-match-details" style="font-size: 18px; color: #fff;">
-            Loading VIP matches...
-        </p>
-    </div>
-</div>
-        </div>     
+    <!-- Free Predictions Table Section -->
+    <section class="container" style="margin-top: 40px;">
+        <div class="section-title">
+            <h2>Today's Free Match Tips</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Carefully researched by professional data sports analysts.</p>
+        </div>
 
-    <div class="contact-info">
-        <h3>How to Join VIP</h3>
-        <p>Send payment to <strong>felixjunior98765@gmail.com</strong> on PayPal.</p>
-        <p>After payment, send a screenshot to the same email to receive your tips immediately.</p>
-    </div>
+        <div class="table-wrapper">
+            <div class="table-responsive">
+                <table class="prediction-table">
+                    <thead>
+                        <tr>
+                            <th>Time / League</th>
+                            <th>Match</th>
+                            <th>Prediction Tip</th>
+                            <th>Odds</th>
+                            <th>Status</th>
+                            <th id="admin-col-header" style="display: none;">Controls</th>
+                        </tr>
+                    </thead>
+                    <tbody id="prediction-table-body">
+                        <!-- Predictions rendered dynamically via Firebase Realtime Database -->
+                        <tr><td colspan="6" style="text-align: center; color: var(--text-muted);">Loading predictions from database...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 
-</div>
+    <!-- Why Choose Us -->
+    <section class="container" style="margin-top: 55px;">
+        <div class="section-title">
+            <h2>Why ApexPredict?</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Engineered for consistent betting success.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <h4>Advanced Analytics</h4>
+                <p>We process thousands of historical team data points, form guides, and tactical matchups.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                <h4>Instant Delivery</h4>
+                <p>Receive your winning slips instantly through Telegram or WhatsApp right before kickoff.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h4>Bankroll Security</h4>
+                <p>Our risk-managed stake guidelines protect your capital while maximizing long-term returns.</p>
+            </div>
+        </div>
+    </section>
 
+    <!-- Pricing Section -->
+    <section id="pricing" class="container" style="margin-top: 60px;">
+        <div class="section-title">
+            <h2>VIP Subscription Plans</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Select your tier and unlock immediate access to high-yield betting tickets.</p>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Daily VIP Plan ($5) -->
+            <div class="price-card">
+                <div class="price-header">
+                    <h3>Daily VIP Pass</h3>
+                    <p>Single matchday ticket with high conversion rate</p>
+                </div>
+                <div class="price">$5 <span>/ day</span></div>
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-check"></i> 2 - 3 Sure Daily VIP Odds</li>
+                    <li><i class="fa-solid fa-check"></i> Instant Slip Delivery</li>
+                    <li><i class="fa-solid fa-check"></i> 24/7 Support Access</li>
+                </ul>
+                <div class="btn-pricing-group">
+                    <button onclick="openOneTimeTelegram('Daily VIP')" class="btn-pricing btn-pricing-telegram">
+                        <i class="fa-brands fa-telegram"></i> Telegram VIP
+                    </button>
+                    <a href="https://wa.me/254736670026?text=Hi!%20I%20want%20Daily%20VIP%20via%20WhatsApp" target="_blank" class="btn-pricing btn-pricing-whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp VIP
+                    </a>
+                </div>
+            </div>
+
+            <!-- Weekly VIP Plan -->
+            <div class="price-card">
+                <div class="price-header">
+                    <h3>Weekly Access</h3>
+                    <p>Consistent daily tips for steady bankroll growth</p>
+                </div>
+                <div class="price">$15 <span>/ week</span></div>
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-check"></i> 3-5 Daily VIP Tips</li>
+                    <li><i class="fa-solid fa-check"></i> Average Odds: 1.80 - 2.50</li>
+                    <li><i class="fa-solid fa-check"></i> Midweek Accumulators</li>
+                </ul>
+                <div class="btn-pricing-group">
+                    <button onclick="openOneTimeTelegram('Weekly VIP')" class="btn-pricing btn-pricing-telegram">
+                        <i class="fa-brands fa-telegram"></i> Telegram VIP
+                    </button>
+                    <a href="https://wa.me/254736670026?text=Hi!%20I%20want%20Weekly%20VIP%20via%20WhatsApp" target="_blank" class="btn-pricing btn-pricing-whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp VIP
+                    </a>
+                </div>
+            </div>
+
+            <!-- Monthly VIP Plan (Popular) -->
+            <div class="price-card popular">
+                <div class="plan-badge popular-badge">Best Value</div>
+                <div class="price-header">
+                    <h3>Monthly VIP Pass</h3>
+                    <p>Full package with weekend rollover specials</p>
+                </div>
+                <div class="price">$45 <span>/ month</span></div>
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-check"></i> Full Daily VIP Accumulators</li>
+                    <li><i class="fa-solid fa-check"></i> Weekend Special Rollovers</li>
+                    <li><i class="fa-solid fa-check"></i> Bankroll Management Guide</li>
+                </ul>
+                <div class="btn-pricing-group">
+                    <button onclick="openOneTimeTelegram('Monthly VIP')" class="btn-pricing btn-pricing-telegram">
+                        <i class="fa-brands fa-telegram"></i> Telegram VIP
+                    </button>
+                    <a href="https://wa.me/254736670026?text=Hi!%20I%20want%20Monthly%20VIP%20via%20WhatsApp" target="_blank" class="btn-pricing btn-pricing-whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp VIP
+                    </a>
+                </div>
+            </div>
+
+            <!-- Elite Season VIP Pass -->
+            <div class="price-card elite">
+                <div class="plan-badge elite-badge">Pro Tier</div>
+                <div class="price-header">
+                    <h3>Season VIP Pass</h3>
+                    <p>Unrestricted access for serious long-term punters</p>
+                </div>
+                <div class="price">$120 <span>/ quarter</span></div>
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-check"></i> All VIP Channels & Groups</li>
+                    <li><i class="fa-solid fa-check"></i> High-Odds Mega Jackpots</li>
+                    <li><i class="fa-solid fa-check"></i> Priority 1-on-1 Analyst Advice</li>
+                </ul>
+                <div class="btn-pricing-group">
+                    <button onclick="openOneTimeTelegram('Season VIP')" class="btn-pricing btn-pricing-telegram">
+                        <i class="fa-brands fa-telegram"></i> Telegram VIP
+                    </button>
+                    <a href="https://wa.me/254736670026?text=Hi!%20I%20want%20Season%20VIP%20via%20WhatsApp" target="_blank" class="btn-pricing btn-pricing-whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp VIP
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p class="footer-disclaimer">Disclaimer: Predictions are derived from comprehensive sports statistical modeling. Sports betting involves financial risk. Please gamble responsibly. Strictly restricted to individuals aged 18 and above.</p>
+            <p>&copy; 2026 ApexPredict. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- FIREBASE & INTERACTIVE LOGIC -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-analytics.js";
+        import { getDatabase, ref, set, push, onValue, remove, update } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDaaDG4JWCz0pArvnn3fkJSm4XRRc24ZwI",
+            authDomain: "felixtips-79988.firebaseapp.com",
+            databaseURL: "https://felixtips-79988-default-rtdb.firebaseio.com",
+            projectId: "felixtips-79988",
+            storageBucket: "felixtips-79988.firebasestorage.app",
+            messagingSenderId: "1004087296887",
+            appId: "1:1004087296887:web:3de9a6788e3c3d889d1772",
+            measurementId: "G-J1V75TT0BN"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getDatabase(app);
+
+        let predictions = [];
+        let isAdminLoggedIn = false;
+
+        // Reference to predictions in Realtime Database
+        const predictionsRef = ref(db, 'predictions');
+
+        // Listen for real-time changes from Firebase
+        onValue(predictionsRef, (snapshot) => {
+            const data = snapshot.val();
+            predictions = [];
+            if (data) {
+                Object.keys(data).forEach((key) => {
+                    predictions.push({
+                        id: key,
+                        ...data[key]
+                    });
+                });
+                predictions.reverse();
+            } else {
+                const initialPredictions = [
+                    { league: "Premier League", time: "20:00 UTC", match: "Arsenal vs Chelsea", tip: "Home Win (1)", odds: "1.85", status: "Pending" },
+                    { league: "La Liga", time: "18:30 UTC", match: "Real Madrid vs Valencia", tip: "Over 2.5 Goals", odds: "1.65", status: "WON" },
+                    { league: "Serie A", time: "19:45 UTC", match: "Inter Milan vs Juventus", tip: "Both Teams To Score", odds: "1.90", status: "Pending" }
+                ];
+                initialPredictions.forEach(game => {
+                    push(predictionsRef, game);
+                });
+                return;
+            }
+            renderPredictions();
+        });
+
+        // One-time Telegram invite link logic
+        window.openOneTimeTelegram = function(planName) {
+            const storageKey = `tg_link_used_${planName.replace(/\s+/g, '_').toLowerCase()}`;
+            const hasUsedLink = localStorage.getItem(storageKey);
+
+            if (hasUsedLink) {
+                alert("This one-time Telegram invite link has already been used on this device. Please contact admin via WhatsApp to request a new link.");
+                return;
+            }
+
+            // Mark as used so it cannot be reused
+            localStorage.setItem(storageKey, "true");
+
+            // Direct Telegram invite link provided by user
+            const telegramInviteUrl = "https://t.me/+uUQQwk3DUm81ZDdk";
+            
+            // Open the one-time invite link in a new tab
+            window.open(telegramInviteUrl, '_blank');
+        };
+
+        // Render predictions into the HTML table
+        window.renderPredictions = function() {
+            const tbody = document.getElementById('prediction-table-body');
+            tbody.innerHTML = '';
+
+            if (predictions.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No predictions available.</td></tr>`;
+                return;
+            }
+
+            predictions.forEach((item) => {
+                let badgeClass = 'badge-pending';
+                if (item.status === 'WON') badgeClass = 'badge-won';
+                if (item.status === 'LOST') badgeClass = 'badge-lost';
+
+                let adminControls = '';
+                if (isAdminLoggedIn) {
+                    adminControls = `
+                        <td>
+                            <div class="action-btns">
+                                <button class="btn-action btn-act-won" onclick="updateStatus('${item.id}', 'WON')">W</button>
+                                <button class="btn-action btn-act-lost" onclick="updateStatus('${item.id}', 'LOST')">L</button>
+                                <button class="btn-action btn-act-del" onclick="deleteGame('${item.id}')"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </td>
+                    `;
+                }
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>
+                        <div class="league-tag">${item.league}</div><br>
+                        <small style="color:var(--text-muted); font-size:0.7rem;">${item.time}</small>
+                    </td>
+                    <td><strong>${item.match}</strong></td>
+                    <td>${item.tip}</td>
+                    <td><span class="odds">${item.odds}</span></td>
+                    <td><span class="${badgeClass}">${item.status}</span></td>
+                    ${adminControls}
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Admin Toggle
+        window.toggleAdminPrompt = function() {
+            if (isAdminLoggedIn) {
+                logoutAdmin();
+                return;
+            }
+            const pwd = prompt("Enter Admin Password (Default: admin):");
+            if (pwd === "admin") {
+                isAdminLoggedIn = true;
+                document.getElementById('admin-panel').style.display = 'block';
+                document.getElementById('admin-col-header').style.display = 'table-cell';
+                renderPredictions();
+            } else if (pwd !== null) {
+                alert("Incorrect password!");
+            }
+        }
+
+        window.logoutAdmin = function() {
+            isAdminLoggedIn = false;
+            document.getElementById('admin-panel').style.display = 'none';
+            document.getElementById('admin-col-header').style.display = 'none';
+            renderPredictions();
+        }
+
+        // Add new match to Firebase
+        window.addPrediction = function(e) {
+            e.preventDefault();
+            const newGame = {
+                league: document.getElementById('input-league').value,
+                time: document.getElementById('input-time').value,
+                match: document.getElementById('input-match').value,
+                tip: document.getElementById('input-tip').value,
+                odds: document.getElementById('input-odds').value,
+                status: document.getElementById('input-status').value
+            };
+
+            push(predictionsRef, newGame)
+                .then(() => {
+                    e.target.reset();
+                })
+                .catch((error) => {
+                    alert("Error adding match: " + error.message);
+                });
+        }
+
+        // Update Status (WON/LOST) in Firebase
+        window.updateStatus = function(id, newStatus) {
+            const gameRef = ref(db, 'predictions/' + id);
+            update(gameRef, { status: newStatus }).catch((error) => {
+                alert("Error updating status: " + error.message);
+            });
+        }
+
+        // Delete Match from Firebase
+        window.deleteGame = function(id) {
+            if (confirm("Delete this match prediction?")) {
+                const gameRef = ref(db, 'predictions/' + id);
+                remove(gameRef).catch((error) => {
+                    alert("Error deleting match: " + error.message);
+                });
+            }
+        }
+    </script>
 </body>
 </html>
