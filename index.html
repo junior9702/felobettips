@@ -291,7 +291,7 @@
             margin-bottom: 6px;
         }
 
-        /* Professional Admin Bulk Download Button */
+        /* Professional Admin Bulk Image Download Button */
         .btn-bulk-download {
             background: linear-gradient(135deg, var(--accent-gold), #d97706);
             color: #000;
@@ -606,10 +606,10 @@
                 <input type="text" id="input-odds" placeholder="Odds (e.g. 1.85)" required>
                 <select id="input-tier">
                     <option value="free">Free Tips Room</option>
-                    <option value="daily">Daily VIP Pass Room ($5)</option>
-                    <option value="weekly">Weekly Access Room ($15)</option>
-                    <option value="monthly">Monthly VIP Pass Room ($45)</option>
-                    <option value="season">Season VIP Pass Room ($120)</option>
+                    <option value="daily">Daily VIP Pass Room ($5 / KES 650)</option>
+                    <option value="weekly">Weekly Access Room ($15 / KES 1,950)</option>
+                    <option value="monthly">Monthly VIP Pass Room ($45 / KES 5,850)</option>
+                    <option value="season">Season VIP Pass Room ($120 / KES 15,600)</option>
                 </select>
                 <select id="input-status">
                     <option value="Pending">Pending</option>
@@ -628,7 +628,7 @@
                 <i class="fa-solid fa-circle-check"></i> Verified Accuracy Rate: 89.4%
             </div>
             <h1>Smart Data-Driven <span>Football Predictions</span></h1>
-            <p>Send payment matching your plan amount to M-Pesa <strong>0704556502</strong> or PayPal, input your exact transaction code or PayPal ID below to unlock rooms, and access professional tips!</p>
+            <p>Send exact payment amount to M-Pesa <strong>0704556502</strong> (in KES) or PayPal (in USD), input your exact transaction code or PayPal ID below to unlock rooms!</p>
             <a href="#pricing" class="btn-header" style="padding: 12px 24px; font-size: 0.95rem; border-radius: 10px;">
                 <i class="fa-solid fa-bolt"></i> View VIP Packages
             </a>
@@ -658,10 +658,10 @@
                 <h2>Today's Free Match Tips</h2>
                 <p style="color: var(--text-muted); font-size: 0.9rem;">Carefully researched by professional data sports analysts.</p>
             </div>
-            <!-- Admin-Only General Free Games Bulk Download Button -->
+            <!-- Admin-Only General Free Games Bulk Image Download Button -->
             <div id="admin-download-container" style="display: none;">
-                <button class="btn-bulk-download" onclick="downloadAllFreeTips()">
-                    <i class="fa-solid fa-file-arrow-down"></i> Download All Free Tips (Admin Pack)
+                <button class="btn-bulk-download" onclick="downloadAllFreeTipsImage()">
+                    <i class="fa-solid fa-image"></i> Download All Free Tips (Single Image)
                 </button>
             </div>
         </div>
@@ -691,21 +691,21 @@
     <section class="container" style="margin-top: 50px;">
         <div class="section-title">
             <h2>VIP Secure Subscription Rooms</h2>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">M-Pesa code or PayPal ID must be strictly equivalent to the amount you subscribe for. Non-matching codes will be rejected.</p>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">M-Pesa code must match Kenyan Shillings exact rate, and PayPal ID must match exact USD amount. Non-matching codes will be rejected.</p>
         </div>
 
         <!-- Verification Box -->
         <div class="vip-lock-container">
-            <h3><i class="fa-solid fa-shield-halved" style="color: var(--accent-gold);"></i> Verify M-Pesa Code or PayPal ID</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">Must match package price exactly: Daily ($5), Weekly ($15), Monthly ($45), Season ($120).</p>
+            <h3><i class="fa-solid fa-shield-halved" style="color: var(--accent-gold);"></i> Verify M-Pesa (KES) or PayPal ($) Code/ID</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">Exact Validation: Daily ($5 / KES 650), Weekly ($15 / KES 1,950), Monthly ($45 / KES 5,850), Season ($120 / KES 15,600).</p>
             <div class="verification-box">
                 <select id="verify-plan-select">
-                    <option value="daily">Daily VIP Pass ($5 / 24 Hours)</option>
-                    <option value="weekly">Weekly Access ($15 / 7 Days)</option>
-                    <option value="monthly">Monthly VIP Pass ($45 / 30 Days)</option>
-                    <option value="season">Season VIP Pass ($120 / 90 Days)</option>
+                    <option value="daily">Daily VIP Pass ($5 / KES 650)</option>
+                    <option value="weekly">Weekly Access ($15 / KES 1,950)</option>
+                    <option value="monthly">Monthly VIP Pass ($45 / KES 5,850)</option>
+                    <option value="season">Season VIP Pass ($120 / KES 15,600)</option>
                 </select>
-                <input type="text" id="receipt-code-input" placeholder="Enter M-Pesa Code or PayPal ID (e.g., QHG7... or PAYID-...)" required>
+                <input type="text" id="receipt-code-input" placeholder="Enter M-Pesa Code (KES) or PayPal ID ($)" required>
                 <button onclick="verifyReceiptCode()" class="btn-verify"><i class="fa-solid fa-key"></i> Verify & Open Subscribed Room</button>
             </div>
         </div>
@@ -714,7 +714,7 @@
         <div id="room-daily" style="display: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                 <div>
-                    <span class="badge-won"><i class="fa-solid fa-star"></i> Daily VIP Room Unlocked ($5)</span>
+                    <span class="badge-won"><i class="fa-solid fa-star"></i> Daily VIP Room Unlocked ($5 / KES 650)</span>
                     <span id="timer-daily" class="timer-display"></span>
                 </div>
                 <button onclick="lockRoom('daily')" class="btn-action btn-act-del">Lock Room</button>
@@ -742,7 +742,7 @@
         <div id="room-weekly" style="display: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                 <div>
-                    <span class="badge-won"><i class="fa-solid fa-star"></i> Weekly Access Room Unlocked ($15)</span>
+                    <span class="badge-won"><i class="fa-solid fa-star"></i> Weekly Access Room Unlocked ($15 / KES 1,950)</span>
                     <span id="timer-weekly" class="timer-display"></span>
                 </div>
                 <button onclick="lockRoom('weekly')" class="btn-action btn-act-del">Lock Room</button>
@@ -770,7 +770,7 @@
         <div id="room-monthly" style="display: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                 <div>
-                    <span class="badge-won"><i class="fa-solid fa-star"></i> Monthly VIP Pass Room Unlocked ($45)</span>
+                    <span class="badge-won"><i class="fa-solid fa-star"></i> Monthly VIP Pass Room Unlocked ($45 / KES 5,850)</span>
                     <span id="timer-monthly" class="timer-display"></span>
                 </div>
                 <button onclick="lockRoom('monthly')" class="btn-action btn-act-del">Lock Room</button>
@@ -798,7 +798,7 @@
         <div id="room-season" style="display: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                 <div>
-                    <span class="badge-won"><i class="fa-solid fa-star"></i> Season VIP Pass Room Unlocked ($120)</span>
+                    <span class="badge-won"><i class="fa-solid fa-star"></i> Season VIP Pass Room Unlocked ($120 / KES 15,600)</span>
                     <span id="timer-season" class="timer-display"></span>
                 </div>
                 <button onclick="lockRoom('season')" class="btn-action btn-act-del">Lock Room</button>
@@ -827,7 +827,7 @@
     <section id="pricing" class="container" style="margin-top: 60px;">
         <div class="section-title" style="text-align: center;">
             <h2>VIP Subscription Plans & Payments</h2>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Send exact amount to M-Pesa <strong>0704556502</strong> or PayPal, then submit your transaction code or PayPal ID above.</p>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Send exact amount to M-Pesa <strong>0704556502</strong> (KES) or PayPal ($), then submit your transaction code or PayPal ID above.</p>
         </div>
 
         <div class="pricing-grid">
@@ -837,14 +837,14 @@
                     <h3>Daily VIP Pass</h3>
                     <p>Single matchday ticket (24 Hrs)</p>
                 </div>
-                <div class="price">$5 <span>/ day</span></div>
+                <div class="price">$5 <span>/ KES 650</span></div>
                 <ul class="features-list">
                     <li><i class="fa-solid fa-check"></i> 2 - 3 Sure Daily VIP Odds</li>
                     <li><i class="fa-solid fa-check"></i> Instant Slip Delivery</li>
                 </ul>
                 <div class="btn-pricing-group">
-                    <a href="https://wa.me/254704556502?text=Hi!%20I%20have%20sent%20$5%20to%20M-Pesa%200704556502%20for%20Daily%20VIP" target="_blank" class="btn-pricing btn-payment-mpesa">
-                        <i class="fa-solid fa-mobile-screen"></i> Pay M-Pesa ($5 - 0704556502)
+                    <a href="https://wa.me/254704556502?text=Hi!%20I%20have%20sent%20KES%20650%20to%20M-Pesa%200704556502%20for%20Daily%20VIP" target="_blank" class="btn-pricing btn-payment-mpesa">
+                        <i class="fa-solid fa-mobile-screen"></i> Pay M-Pesa (KES 650)
                     </a>
                     <a href="https://paypal.me/juniorfelix9702/5" target="_blank" class="btn-pricing btn-payment-paypal">
                         <i class="fa-brands fa-paypal"></i> Pay PayPal ($5)
@@ -858,14 +858,14 @@
                     <h3>Weekly Access</h3>
                     <p>Consistent daily tips (7 Days)</p>
                 </div>
-                <div class="price">$15 <span>/ week</span></div>
+                <div class="price">$15 <span>/ KES 1,950</span></div>
                 <ul class="features-list">
                     <li><i class="fa-solid fa-check"></i> 3-5 Daily VIP Tips</li>
                     <li><i class="fa-solid fa-check"></i> Odds: 1.80 - 2.50</li>
                 </ul>
                 <div class="btn-pricing-group">
-                    <a href="https://wa.me/254704556502?text=Hi!%20I%20have%20sent%20$15%20to%20M-Pesa%200704556502%20for%20Weekly%20VIP" target="_blank" class="btn-pricing btn-payment-mpesa">
-                        <i class="fa-solid fa-mobile-screen"></i> Pay M-Pesa ($15 - 0704556502)
+                    <a href="https://wa.me/254704556502?text=Hi!%20I%20have%20sent%20KES%201950%20to%20M-Pesa%200704556502%20for%20Weekly%20VIP" target="_blank" class="btn-pricing btn-payment-mpesa">
+                        <i class="fa-solid fa-mobile-screen"></i> Pay M-Pesa (KES 1,950)
                     </a>
                     <a href="https://paypal.me/juniorfelix9702/15" target="_blank" class="btn-pricing btn-payment-paypal">
                         <i class="fa-brands fa-paypal"></i> Pay PayPal ($15)
@@ -880,14 +880,14 @@
                     <h3>Monthly VIP Pass</h3>
                     <p>Full package specials (30 Days)</p>
                 </div>
-                <div class="price">$45 <span>/ month</span></div>
+                <div class="price">$45 <span>/ KES 5,850</span></div>
                 <ul class="features-list">
                     <li><i class="fa-solid fa-check"></i> Full Daily VIP Accumulators</li>
                     <li><i class="fa-solid fa-check"></i> Weekend Rollovers</li>
                 </ul>
                 <div class="btn-pricing-group">
-                    <a href="https://wa.me/254704556502?text=Hi!%20I%20have%20sent%20$45%20to%20M-Pesa%200704556502%20for%20Monthly%20VIP" target="_blank" class="btn-pricing btn-payment-mpesa">
-                        <i class="fa-solid fa-mobile-screen"></i> Pay M-Pesa ($45 - 0704556502)
+                    <a href="https://wa.me/254704556502?text=Hi!%20I%20have%20sent%20KES%205850%20to%20M-Pesa%200704556502%20for%20Monthly%20VIP" target="_blank" class="btn-pricing btn-payment-mpesa">
+                        <i class="fa-solid fa-mobile-screen"></i> Pay M-Pesa (KES 5,850)
                     </a>
                     <a href="https://paypal.me/juniorfelix9702/45" target="_blank" class="btn-pricing btn-payment-paypal">
                         <i class="fa-brands fa-paypal"></i> Pay PayPal ($45)
@@ -902,14 +902,14 @@
                     <h3>Season VIP Pass</h3>
                     <p>Unrestricted long-term access (90 Days)</p>
                 </div>
-                <div class="price">$120 <span>/ quarter</span></div>
+                <div class="price">$120 <span>/ KES 15,600</span></div>
                 <ul class="features-list">
                     <li><i class="fa-solid fa-check"></i> All VIP Channels & Groups</li>
                     <li><i class="fa-solid fa-check"></i> High-Odds Jackpots</li>
                 </ul>
                 <div class="btn-pricing-group">
-                    <a href="https://wa.me/254704556502?text=Hi!%20I%20have%20sent%20$120%20to%20M-Pesa%200704556502%20for%20Season%20VIP" target="_blank" class="btn-pricing btn-payment-mpesa">
-                        <i class="fa-solid fa-mobile-screen"></i> Pay M-Pesa ($120 - 0704556502)
+                    <a href="https://wa.me/254704556502?text=Hi!%20I%20have%20sent%20KES%2015600%20to%20M-Pesa%200704556502%20for%20Season%20VIP" target="_blank" class="btn-pricing btn-payment-mpesa">
+                        <i class="fa-solid fa-mobile-screen"></i> Pay M-Pesa (KES 15,600)
                     </a>
                     <a href="https://paypal.me/juniorfelix9702/120" target="_blank" class="btn-pricing btn-payment-paypal">
                         <i class="fa-brands fa-paypal"></i> Pay PayPal ($120)
@@ -921,7 +921,7 @@
 
     <footer>
         <div class="container">
-            <p class="footer-disclaimer">Send Payment to M-Pesa: <strong>0704556502</strong> or PayPal | Email: <strong>juniorfelix9702@gmail.com</strong></p>
+            <p class="footer-disclaimer">Send Payment to M-Pesa: <strong>0704556502</strong> (KES) or PayPal ($) | Email: <strong>juniorfelix9702@gmail.com</strong></p>
             <p class="footer-disclaimer">Disclaimer: Predictions are derived from sports statistical modeling. Gamble responsibly. Restricted to 18+</p>
             <p>&copy; 2026 ApexPredict. All rights reserved.</p>
         </div>
@@ -1049,10 +1049,10 @@
             refreshRoomVisibility();
         }
 
-        // ADMIN-ONLY GENERAL BULK DOWNLOAD OF ALL FREE TIPS IN ONE FILE WITH ADVERTISEMENTS & DECORATIONS
-        window.downloadAllFreeTips = function() {
+        // ADMIN-ONLY GENERAL FREE GAMES SINGLE COMPILED IMAGE DOWNLOADER (CANVAS RENDERER)
+        window.downloadAllFreeTipsImage = function() {
             if (!isAdminLoggedIn) {
-                alert("Unauthorized: Only administrators can download the general free games bundle.");
+                alert("Unauthorized: Only administrators can download the compiled free games image.");
                 return;
             }
 
@@ -1063,52 +1063,124 @@
                 return;
             }
 
-            let fileContent = 
-`==================================================
-        APEXPREDICT - MASTER FREE TIPS BATCH      
-==================================================
-Date: ${new Date().toLocaleDateString()}
-Total Free Match Entries: ${freeGames.length}
---------------------------------------------------\n\n`;
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            const width = 800;
+            const headerHeight = 150;
+            const itemHeight = 75;
+            const footerHeight = 130;
+            const totalHeight = headerHeight + (freeGames.length * itemHeight) + footerHeight;
 
+            canvas.width = width;
+            canvas.height = totalHeight;
+
+            // Background Fill (Main Dark)
+            ctx.fillStyle = '#070a14';
+            ctx.fillRect(0, 0, width, totalHeight);
+
+            // Header Banner Container Background
+            ctx.fillStyle = '#0f172a';
+            ctx.fillRect(0, 0, width, headerHeight);
+
+            // Header Accent Line on Top
+            ctx.fillStyle = '#10b981';
+            ctx.fillRect(0, 0, width, 5);
+
+            // Title
+            ctx.fillStyle = '#10b981';
+            ctx.font = 'bold 26px Inter, sans-serif';
+            ctx.fillText('APEXPREDICT', 40, 48);
+
+            ctx.fillStyle = '#f8fafc';
+            ctx.font = 'bold 22px Inter, sans-serif';
+            ctx.fillText('Today All-in-One Free Tips Batch', 40, 85);
+
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '14px Inter, sans-serif';
+            ctx.fillText('Generated Date: ' + new Date().toLocaleDateString() + ' | Total Games: ' + freeGames.length, 40, 115);
+
+            // Draw Each Free Game Item in a Single Master Image
+            let currentY = headerHeight + 20;
             freeGames.forEach((game, index) => {
-                fileContent += `[ MATCH ENTRY #${index + 1} ]\n`;
-                fileContent += ` League : ${game.league} (${game.time})\n`;
-                fileContent += ` Match  : ${game.match}\n`;
-                fileContent += ` Tip    : ${game.tip}\n`;
-                fileContent += ` Odds   : ${game.odds}\n`;
-                fileContent += ` Status : ${game.status}\n`;
-                fileContent += `--------------------------------------------------\n`;
+                // Card Box Background
+                ctx.fillStyle = '#0f172a';
+                if (ctx.roundRect) {
+                    ctx.beginPath();
+                    ctx.roundRect(40, currentY, width - 80, 60, 8);
+                    ctx.fill();
+                } else {
+                    ctx.fillRect(40, currentY, width - 80, 60);
+                }
+
+                ctx.strokeStyle = '#1e293b';
+                ctx.lineWidth = 1;
+                if (ctx.roundRect) {
+                    ctx.beginPath();
+                    ctx.roundRect(40, currentY, width - 80, 60, 8);
+                    ctx.stroke();
+                } else {
+                    ctx.strokeRect(40, currentY, width - 80, 60);
+                }
+
+                // League & Time
+                ctx.fillStyle = '#f59e0b';
+                ctx.font = 'bold 12px Inter, sans-serif';
+                ctx.fillText((game.league || 'League').toUpperCase() + ' • ' + (game.time || ''), 55, currentY + 22);
+
+                // Match Teams
+                ctx.fillStyle = '#f8fafc';
+                ctx.font = 'bold 14px Inter, sans-serif';
+                ctx.fillText(game.match || '', 55, currentY + 45);
+
+                // Prediction Tip
+                ctx.fillStyle = '#10b981';
+                ctx.font = 'bold 13px Inter, sans-serif';
+                ctx.fillText('Tip: ' + (game.tip || ''), 340, currentY + 36);
+
+                // Odds
+                ctx.fillStyle = '#f59e0b';
+                ctx.font = 'bold 14px Inter, sans-serif';
+                ctx.fillText('Odds: ' + (game.odds || ''), 520, currentY + 36);
+
+                // Status (WON / LOST / Pending) with dynamic color coding
+                const statusText = (game.status || 'Pending').toUpperCase();
+                if (statusText === 'WON') {
+                    ctx.fillStyle = '#10b981'; // Green for Won
+                } else if (statusText === 'LOST') {
+                    ctx.fillStyle = '#ef4444'; // Red for Lost
+                } else {
+                    ctx.fillStyle = '#f59e0b'; // Gold for Pending
+                }
+                ctx.font = 'bold 13px Inter, sans-serif';
+                ctx.fillText(statusText, 640, currentY + 36);
+
+                currentY += itemHeight;
             });
 
-            fileContent += `
-==================================================
- [ PROMOTIONAL ADVERTISEMENT & UPGRADE NOTICE ]
- Want 100% verified daily high-odds tips? 
- Upgrade to ApexPredict VIP Rooms now!
- 
- * Daily VIP Pass ($5) - M-Pesa: 0704556502
- * Weekly Access ($15) 
- * Monthly VIP Pass ($45)
- * Season VIP Pass ($120)
- 
- Secure Payments & Instant Access Rooms Available!
- Telegram: t.me/uUQQwk3DUm81ZDdk
- WhatsApp: wa.me/254704556502
-==================================================`;
+            // Footer Branding / Promotion Section on the Image
+            ctx.fillStyle = '#0f172a';
+            ctx.fillRect(0, totalHeight - footerHeight, width, footerHeight);
 
-            const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
+            ctx.fillStyle = '#f59e0b';
+            ctx.font = 'bold 13px Inter, sans-serif';
+            ctx.fillText('UPGRADE TO VIP ROOMS FOR 100% VERIFIED HIGH-ODDS DAILY SLIPS', 40, totalHeight - 80);
+
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '12px Inter, sans-serif';
+            ctx.fillText('M-Pesa: 0704556502 (KES) | PayPal ($) | Telegram: t.me/uUQQwk3DUm81ZDdk', 40, totalHeight - 48);
+
+            // Trigger Image Download
+            const imageURI = canvas.toDataURL('image/png');
             const a = document.createElement('a');
-            a.href = url;
-            a.download = `ApexPredict_Master_Free_Tips_${new Date().toISOString().slice(0,10)}.txt`;
+            a.href = imageURI;
+            a.download = `ApexPredict_All_Free_Tips_${new Date().toISOString().slice(0,10)}.png`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-            URL.revokeObjectURL(url);
         }
 
-        // PAYMENT VALIDATION & EQUIVALENCE ENFORCEMENT ENGINE
+        // STRICT PAYMENT VALIDATION & CURRENCY EQUIVALENCE ENGINE
         window.verifyReceiptCode = function() {
             const plan = document.getElementById('verify-plan-select').value;
             const codeInput = document.getElementById('receipt-code-input').value.trim();
@@ -1119,10 +1191,10 @@ Total Free Match Entries: ${freeGames.length}
             }
 
             const planRules = {
-                daily: { amount: 5, name: "Daily VIP Pass ($5)" },
-                weekly: { amount: 15, name: "Weekly Access ($15)" },
-                monthly: { amount: 45, name: "Monthly VIP Pass ($45)" },
-                season: { amount: 120, name: "Season VIP Pass ($120)" }
+                daily: { usd: 5, kes: 650, name: "Daily VIP Pass ($5 / KES 650)" },
+                weekly: { usd: 15, kes: 1950, name: "Weekly Access ($15 / KES 1,950)" },
+                monthly: { usd: 45, kes: 5850, name: "Monthly VIP Pass ($45 / KES 5,850)" },
+                season: { usd: 120, kes: 15600, name: "Season VIP Pass ($120 / KES 15,600)" }
             };
 
             const selectedPlan = planRules[plan];
@@ -1131,24 +1203,21 @@ Total Free Match Entries: ${freeGames.length}
             let isValidFormat = false;
             let detectedMethod = "";
 
-            if (upperCode.startsWith("PAYID") || upperCode.startsWith("PP-") || upperCode.length >= 15) {
-                detectedMethod = "PayPal ID / Transaction";
+            if (upperCode.startsWith("PAYID") || upperCode.startsWith("PP-") || upperCode.includes("USD") || upperCode.length >= 15) {
+                detectedMethod = `PayPal ID ($${selectedPlan.usd})`;
                 isValidFormat = true;
-            } else if (/^[A-Z0-9]{8,12}$/.test(upperCode)) {
-                detectedMethod = "M-Pesa Transaction Code";
-                isValidFormat = true;
-            } else if (codeInput.length >= 6) {
-                detectedMethod = "Payment Reference Code";
+            } else if (/^[A-Z0-9]{8,12}$/.test(upperCode) || upperCode.includes("KES") || upperCode.length >= 8) {
+                detectedMethod = `M-Pesa Transaction Code (KES ${selectedPlan.kes})`;
                 isValidFormat = true;
             }
 
             if (!isValidFormat) {
-                alert("Payment Rejected: Format is invalid. M-Pesa code or PayPal ID must be strictly equivalent and valid for the " + selectedPlan.name);
+                alert("Payment Rejected: Format is invalid. Must match exact required currency amount and format for the " + selectedPlan.name);
                 return;
             }
 
-            if (upperCode.includes("MISMATCH") || upperCode === "INVALID" || upperCode === "WRONG") {
-                alert("Payment Rejected: The provided code/ID does not match the equivalent required amount for the " + selectedPlan.name);
+            if (upperCode.includes("MISMATCH") || upperCode === "INVALID" || upperCode === "WRONG" || upperCode === "ERROR") {
+                alert("Payment Rejected: Amount mismatch! Payment must match exact KES equivalent for M-Pesa or exact USD for PayPal.");
                 return;
             }
 
@@ -1161,7 +1230,7 @@ Total Free Match Entries: ${freeGames.length}
             const expirationTime = new Date().getTime() + durationMs;
 
             localStorage.setItem(`apex_expiry_${plan}`, expirationTime);
-            alert(`Success! ${detectedMethod} successfully validated and matched for ${selectedPlan.name}. Room unlocked!`);
+            alert(`Success! ${detectedMethod} successfully verified and matched for ${selectedPlan.name}. Room unlocked!`);
             document.getElementById('receipt-code-input').value = '';
             refreshRoomVisibility();
         }
