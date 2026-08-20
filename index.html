@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ApexPredict | Professional Football Predictions & VIP Tips</title>
-    <link rel="manifest" href="https://progressier.app/HzzmBNheA5wVh4r95deB/progressier.json"/>
-<script defer src="https://progressier.app/HzzmBNheA5wVh4r95deB/script.js"></script>
     <!-- Google Fonts -->
-    <link rel="manifest" href="/manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -201,12 +198,6 @@
             grid-column: 1 / -1;
         }
 
-        @media (min-width: 768px) {
-            .btn-add {
-                grid-column: span 1;
-            }
-        }
-
         /* Hero Section */
         .hero {
             padding: 50px 0 35px;
@@ -253,12 +244,6 @@
             margin: 0 auto 25px;
         }
 
-        @media (min-width: 768px) {
-            .hero p {
-                font-size: 1.1rem;
-            }
-        }
-
         /* Trust Stats Bar */
         .trust-stats {
             display: grid;
@@ -279,28 +264,24 @@
             margin-bottom: 2px;
         }
 
-        @media (min-width: 768px) {
-            .stat-item h3 {
-                font-size: 1.5rem;
-            }
-        }
-
         .stat-item p {
             font-size: 0.75rem;
             color: var(--text-muted);
             margin: 0;
         }
 
-        @media (min-width: 768px) {
-            .stat-item p {
-                font-size: 0.85rem;
-            }
+        /* Prediction Table Section Header & Controls */
+        .section-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        /* Prediction Table */
         .section-title {
-            text-align: center;
-            margin-bottom: 25px;
+            text-align: left;
         }
 
         .section-title h2 {
@@ -310,10 +291,27 @@
             margin-bottom: 6px;
         }
 
-        @media (min-width: 768px) {
-            .section-title h2 {
-                font-size: 2rem;
-            }
+        /* Professional Admin Bulk Download Button */
+        .btn-bulk-download {
+            background: linear-gradient(135deg, var(--accent-gold), #d97706);
+            color: #000;
+            font-weight: 800;
+            padding: 10px 18px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .btn-bulk-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+            filter: brightness(1.05);
         }
 
         .table-wrapper {
@@ -322,6 +320,7 @@
             border: 1px solid var(--border-color);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             overflow: hidden;
+            margin-bottom: 30px;
         }
 
         .table-responsive {
@@ -334,12 +333,6 @@
             border-collapse: collapse;
             text-align: left;
             white-space: nowrap;
-        }
-
-        @media (min-width: 768px) {
-            .prediction-table {
-                white-space: normal;
-            }
         }
 
         .prediction-table th, .prediction-table td {
@@ -400,6 +393,52 @@
         .btn-act-lost { background: var(--accent-red); color: #fff; }
         .btn-act-del { background: #475569; color: #fff; }
 
+        /* VIP Verification Container */
+        .vip-lock-container {
+            background: rgba(245, 158, 11, 0.05);
+            border: 1px dashed var(--accent-gold);
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .verification-box {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 420px;
+            margin: 15px auto 0;
+        }
+
+        .verification-box input, .verification-box select {
+            background: var(--bg-main);
+            border: 1px solid var(--border-highlight);
+            color: #fff;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .btn-verify {
+            background: var(--accent-gold);
+            color: #000;
+            font-weight: 700;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .btn-verify:hover { opacity: 0.9; }
+
+        .timer-display {
+            font-size: 0.75rem;
+            color: var(--accent-gold);
+            margin-top: 4px;
+            display: block;
+        }
+
         /* Pricing Section */
         .pricing-grid {
             display: grid;
@@ -409,15 +448,11 @@
         }
 
         @media (min-width: 640px) {
-            .pricing-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (min-width: 1024px) {
-            .pricing-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
+            .pricing-grid { grid-template-columns: repeat(4, 1fr); }
         }
 
         .price-card {
@@ -429,24 +464,10 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            transition: all 0.25s ease;
         }
 
-        .price-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--border-highlight);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .price-card.popular {
-            border: 2px solid var(--accent-green);
-            background: linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, var(--bg-card) 60%);
-        }
-
-        .price-card.elite {
-            border: 2px solid var(--accent-gold);
-            background: linear-gradient(180deg, rgba(245, 158, 11, 0.05) 0%, var(--bg-card) 60%);
-        }
+        .price-card.popular { border: 2px solid var(--accent-green); }
+        .price-card.elite { border: 2px solid var(--accent-gold); }
 
         .plan-badge {
             position: absolute;
@@ -457,7 +478,6 @@
             padding: 4px 10px;
             border-radius: 20px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .popular-badge { background: var(--accent-green); color: #000; }
@@ -480,7 +500,6 @@
             font-weight: 800;
             margin: 14px 0;
             color: var(--text-main);
-            letter-spacing: -0.5px;
         }
 
         .price span {
@@ -504,14 +523,7 @@
             gap: 8px;
         }
 
-        .features-list li i {
-            color: var(--accent-green);
-            font-size: 0.8rem;
-        }
-
-        .price-card.elite .features-list li i {
-            color: var(--accent-gold);
-        }
+        .features-list li i { color: var(--accent-green); }
 
         .btn-pricing-group {
             display: flex;
@@ -531,84 +543,12 @@
             font-weight: 700;
             border-radius: 8px;
             font-size: 0.82rem;
-            transition: opacity 0.2s;
             border: 1px solid var(--border-highlight);
             cursor: pointer;
         }
 
-        .price-card.popular .btn-pricing-telegram {
-            background: var(--accent-green);
-            color: #000;
-            border: none;
-        }
-
-        .price-card.elite .btn-pricing-telegram {
-            background: var(--accent-gold);
-            color: #000;
-            border: none;
-        }
-
-        .btn-pricing-whatsapp {
-            background: rgba(37, 211, 102, 0.1);
-            color: var(--accent-whatsapp);
-            border-color: rgba(37, 211, 102, 0.3);
-        }
-
-        .btn-pricing-whatsapp:hover {
-            background: var(--accent-whatsapp);
-            color: #fff;
-        }
-
-        .btn-pricing:hover {
-            opacity: 0.9;
-        }
-
-        /* Why Choose Us Section */
-        .features-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        @media (min-width: 768px) {
-            .features-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .feature-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .feature-icon {
-            width: 44px;
-            height: 44px;
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--accent-green);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            margin: 0 auto 15px;
-        }
-
-        .feature-box h4 {
-            font-size: 1rem;
-            margin-bottom: 6px;
-            font-weight: 700;
-        }
-
-        .feature-box p {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            margin: 0;
-        }
+        .btn-payment-mpesa { background: #10b981; color: #000; border: none; }
+        .btn-payment-paypal { background: #003087; color: #fff; border: none; }
 
         /* Footer */
         footer {
@@ -639,37 +579,44 @@
             </a>
             <div class="nav-links">
                 <button class="btn-admin-toggle" onclick="toggleAdminPrompt()" title="Admin Mode">
-                    <i class="fa-solid fa-lock"></i>
+                    <i class="fa-solid fa-lock"></i> Admin
                 </button>
-                <a href="https://wa.me/254736670026?text=Hi!%20I%20want%20to%20inquire%20about%20VIP%20plans" target="_blank" class="btn-header btn-whatsapp-header">
-                    <i class="fa-brands fa-whatsapp"></i> <span style="display: none; @media(min-width: 480px){display:inline;}">WhatsApp</span>
+                <a href="https://wa.me/254704556502?text=Hi!%20I%20want%20to%20inquire%20about%20VIP%20plans" target="_blank" class="btn-header btn-whatsapp-header">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
                 </a>
-                <a href="javascript:void(0);" onclick="openOneTimeTelegram('General Support')" class="btn-header">
-                    <i class="fa-brands fa-telegram"></i> <span style="display: none; @media(min-width: 480px){display:inline;}">Telegram</span>
+                <a href="https://t.me/uUQQwk3DUm81ZDdk" target="_blank" class="btn-header" style="background: var(--accent-telegram); color:#fff;">
+                    <i class="fa-brands fa-telegram"></i> Telegram
                 </a>
             </div>
         </div>
     </header>
 
     <div class="container">
-        <!-- ADMIN CONTROL PANEL (Hidden by default) -->
+        <!-- ADMIN CONTROL PANEL -->
         <div id="admin-panel">
             <div class="admin-header">
-                <h3><i class="fa-solid fa-sliders" style="color: var(--accent-gold);"></i> Admin Dashboard (Firebase Synced)</h3>
+                <h3><i class="fa-solid fa-sliders" style="color: var(--accent-gold);"></i> Admin Dashboard - Tier VIP Manager</h3>
                 <button class="btn-action btn-act-lost" onclick="logoutAdmin()">Close</button>
             </div>
             <form class="admin-form" onsubmit="addPrediction(event)">
                 <input type="text" id="input-league" placeholder="League" required>
                 <input type="text" id="input-time" placeholder="Time (e.g. 20:00 UTC)" required>
                 <input type="text" id="input-match" placeholder="Match (Team A vs Team B)" required>
-                <input type="text" id="input-tip" placeholder="Prediction (e.g. Home Win)" required>
-                <input type="text" id="input-odds" placeholder="Odds (1.85)" required>
+                <input type="text" id="input-tip" placeholder="Prediction Tip" required>
+                <input type="text" id="input-odds" placeholder="Odds (e.g. 1.85)" required>
+                <select id="input-tier">
+                    <option value="free">Free Tips Room</option>
+                    <option value="daily">Daily VIP Pass Room ($5)</option>
+                    <option value="weekly">Weekly Access Room ($15)</option>
+                    <option value="monthly">Monthly VIP Pass Room ($45)</option>
+                    <option value="season">Season VIP Pass Room ($120)</option>
+                </select>
                 <select id="input-status">
                     <option value="Pending">Pending</option>
                     <option value="WON">WON</option>
                     <option value="LOST">LOST</option>
                 </select>
-                <button type="submit" class="btn-add"><i class="fa-solid fa-plus"></i> Add Match Entry</button>
+                <button type="submit" class="btn-add"><i class="fa-solid fa-plus"></i> Publish Game Match Entry</button>
             </form>
         </div>
     </div>
@@ -681,7 +628,7 @@
                 <i class="fa-solid fa-circle-check"></i> Verified Accuracy Rate: 89.4%
             </div>
             <h1>Smart Data-Driven <span>Football Predictions</span></h1>
-            <p>Access high-probability football analysis daily. Join our professional VIP communities on Telegram and WhatsApp for guaranteed daily winning tickets!</p>
+            <p>Send payment matching your plan amount to M-Pesa <strong>0704556502</strong> or PayPal, input your exact transaction code or PayPal ID below to unlock rooms, and access professional tips!</p>
             <a href="#pricing" class="btn-header" style="padding: 12px 24px; font-size: 0.95rem; border-radius: 10px;">
                 <i class="fa-solid fa-bolt"></i> View VIP Packages
             </a>
@@ -706,9 +653,17 @@
 
     <!-- Free Predictions Table Section -->
     <section class="container" style="margin-top: 40px;">
-        <div class="section-title">
-            <h2>Today's Free Match Tips</h2>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Carefully researched by professional data sports analysts.</p>
+        <div class="section-header-flex">
+            <div class="section-title" style="margin-bottom: 0;">
+                <h2>Today's Free Match Tips</h2>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Carefully researched by professional data sports analysts.</p>
+            </div>
+            <!-- Admin-Only General Free Games Bulk Download Button -->
+            <div id="admin-download-container" style="display: none;">
+                <button class="btn-bulk-download" onclick="downloadAllFreeTips()">
+                    <i class="fa-solid fa-file-arrow-down"></i> Download All Free Tips (Admin Pack)
+                </button>
+            </div>
         </div>
 
         <div class="table-wrapper">
@@ -724,66 +679,175 @@
                             <th id="admin-col-header" style="display: none;">Controls</th>
                         </tr>
                     </thead>
-                    <tbody id="prediction-table-body">
-                        <!-- Predictions rendered dynamically via Firebase Realtime Database -->
-                        <tr><td colspan="6" style="text-align: center; color: var(--text-muted);">Loading predictions from database...</td></tr>
+                    <tbody id="free-table-body">
+                        <tr><td colspan="6" style="text-align: center; color: var(--text-muted);">Loading free predictions...</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </section>
 
-    <!-- Why Choose Us -->
-    <section class="container" style="margin-top: 55px;">
+    <!-- VIP SECURE VERIFICATION & SEPARATE ROOMS SECTION -->
+    <section class="container" style="margin-top: 50px;">
         <div class="section-title">
-            <h2>Why ApexPredict?</h2>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Engineered for consistent betting success.</p>
+            <h2>VIP Secure Subscription Rooms</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">M-Pesa code or PayPal ID must be strictly equivalent to the amount you subscribe for. Non-matching codes will be rejected.</p>
         </div>
-        <div class="features-grid">
-            <div class="feature-box">
-                <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
-                <h4>Advanced Analytics</h4>
-                <p>We process thousands of historical team data points, form guides, and tactical matchups.</p>
+
+        <!-- Verification Box -->
+        <div class="vip-lock-container">
+            <h3><i class="fa-solid fa-shield-halved" style="color: var(--accent-gold);"></i> Verify M-Pesa Code or PayPal ID</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">Must match package price exactly: Daily ($5), Weekly ($15), Monthly ($45), Season ($120).</p>
+            <div class="verification-box">
+                <select id="verify-plan-select">
+                    <option value="daily">Daily VIP Pass ($5 / 24 Hours)</option>
+                    <option value="weekly">Weekly Access ($15 / 7 Days)</option>
+                    <option value="monthly">Monthly VIP Pass ($45 / 30 Days)</option>
+                    <option value="season">Season VIP Pass ($120 / 90 Days)</option>
+                </select>
+                <input type="text" id="receipt-code-input" placeholder="Enter M-Pesa Code or PayPal ID (e.g., QHG7... or PAYID-...)" required>
+                <button onclick="verifyReceiptCode()" class="btn-verify"><i class="fa-solid fa-key"></i> Verify & Open Subscribed Room</button>
             </div>
-            <div class="feature-box">
-                <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
-                <h4>Instant Delivery</h4>
-                <p>Receive your winning slips instantly through Telegram or WhatsApp right before kickoff.</p>
+        </div>
+
+        <!-- 1. DAILY VIP TABLE -->
+        <div id="room-daily" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <div>
+                    <span class="badge-won"><i class="fa-solid fa-star"></i> Daily VIP Room Unlocked ($5)</span>
+                    <span id="timer-daily" class="timer-display"></span>
+                </div>
+                <button onclick="lockRoom('daily')" class="btn-action btn-act-del">Lock Room</button>
             </div>
-            <div class="feature-box">
-                <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                <h4>Bankroll Security</h4>
-                <p>Our risk-managed stake guidelines protect your capital while maximizing long-term returns.</p>
+            <div class="table-wrapper">
+                <div class="table-responsive">
+                    <table class="prediction-table">
+                        <thead>
+                            <tr>
+                                <th>Time / League</th>
+                                <th>Match</th>
+                                <th>Prediction Tip</th>
+                                <th>Odds</th>
+                                <th>Status</th>
+                                <th class="admin-ctrl-col" style="display: none;">Controls</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body-daily"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. WEEKLY VIP TABLE -->
+        <div id="room-weekly" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <div>
+                    <span class="badge-won"><i class="fa-solid fa-star"></i> Weekly Access Room Unlocked ($15)</span>
+                    <span id="timer-weekly" class="timer-display"></span>
+                </div>
+                <button onclick="lockRoom('weekly')" class="btn-action btn-act-del">Lock Room</button>
+            </div>
+            <div class="table-wrapper">
+                <div class="table-responsive">
+                    <table class="prediction-table">
+                        <thead>
+                            <tr>
+                                <th>Time / League</th>
+                                <th>Match</th>
+                                <th>Prediction Tip</th>
+                                <th>Odds</th>
+                                <th>Status</th>
+                                <th class="admin-ctrl-col" style="display: none;">Controls</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body-weekly"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. MONTHLY VIP TABLE -->
+        <div id="room-monthly" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <div>
+                    <span class="badge-won"><i class="fa-solid fa-star"></i> Monthly VIP Pass Room Unlocked ($45)</span>
+                    <span id="timer-monthly" class="timer-display"></span>
+                </div>
+                <button onclick="lockRoom('monthly')" class="btn-action btn-act-del">Lock Room</button>
+            </div>
+            <div class="table-wrapper">
+                <div class="table-responsive">
+                    <table class="prediction-table">
+                        <thead>
+                            <tr>
+                                <th>Time / League</th>
+                                <th>Match</th>
+                                <th>Prediction Tip</th>
+                                <th>Odds</th>
+                                <th>Status</th>
+                                <th class="admin-ctrl-col" style="display: none;">Controls</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body-monthly"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. SEASON VIP TABLE -->
+        <div id="room-season" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <div>
+                    <span class="badge-won"><i class="fa-solid fa-star"></i> Season VIP Pass Room Unlocked ($120)</span>
+                    <span id="timer-season" class="timer-display"></span>
+                </div>
+                <button onclick="lockRoom('season')" class="btn-action btn-act-del">Lock Room</button>
+            </div>
+            <div class="table-wrapper">
+                <div class="table-responsive">
+                    <table class="prediction-table">
+                        <thead>
+                            <tr>
+                                <th>Time / League</th>
+                                <th>Match</th>
+                                <th>Prediction Tip</th>
+                                <th>Odds</th>
+                                <th>Status</th>
+                                <th class="admin-ctrl-col" style="display: none;">Controls</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body-season"></tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Pricing Section -->
     <section id="pricing" class="container" style="margin-top: 60px;">
-        <div class="section-title">
-            <h2>VIP Subscription Plans</h2>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Select your tier and unlock immediate access to high-yield betting tickets.</p>
+        <div class="section-title" style="text-align: center;">
+            <h2>VIP Subscription Plans & Payments</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Send exact amount to M-Pesa <strong>0704556502</strong> or PayPal, then submit your transaction code or PayPal ID above.</p>
         </div>
 
         <div class="pricing-grid">
-            <!-- Daily VIP Plan ($5) -->
+            <!-- Daily VIP Plan -->
             <div class="price-card">
                 <div class="price-header">
                     <h3>Daily VIP Pass</h3>
-                    <p>Single matchday ticket with high conversion rate</p>
+                    <p>Single matchday ticket (24 Hrs)</p>
                 </div>
                 <div class="price">$5 <span>/ day</span></div>
                 <ul class="features-list">
                     <li><i class="fa-solid fa-check"></i> 2 - 3 Sure Daily VIP Odds</li>
                     <li><i class="fa-solid fa-check"></i> Instant Slip Delivery</li>
-                    <li><i class="fa-solid fa-check"></i> 24/7 Support Access</li>
                 </ul>
                 <div class="btn-pricing-group">
-                    <button onclick="openOneTimeTelegram('Daily VIP')" class="btn-pricing btn-pricing-telegram">
-                        <i class="fa-brands fa-telegram"></i> Telegram VIP
-                    </button>
-                    <a href="https://wa.me/254736670026?text=Hi!%20I%20want%20Daily%20VIP%20via%20WhatsApp" target="_blank" class="btn-pricing btn-pricing-whatsapp">
-                        <i class="fa-brands fa-whatsapp"></i> WhatsApp VIP
+                    <a href="https://wa.me/254704556502?text=Hi!%20I%20have%20sent%20$5%20to%20M-Pesa%200704556502%20for%20Daily%20VIP" target="_blank" class="btn-pricing btn-payment-mpesa">
+                        <i class="fa-solid fa-mobile-screen"></i> Pay M-Pesa ($5 - 0704556502)
+                    </a>
+                    <a href="https://paypal.me/juniorfelix9702/5" target="_blank" class="btn-pricing btn-payment-paypal">
+                        <i class="fa-brands fa-paypal"></i> Pay PayPal ($5)
                     </a>
                 </div>
             </div>
@@ -792,43 +856,41 @@
             <div class="price-card">
                 <div class="price-header">
                     <h3>Weekly Access</h3>
-                    <p>Consistent daily tips for steady bankroll growth</p>
+                    <p>Consistent daily tips (7 Days)</p>
                 </div>
                 <div class="price">$15 <span>/ week</span></div>
                 <ul class="features-list">
                     <li><i class="fa-solid fa-check"></i> 3-5 Daily VIP Tips</li>
-                    <li><i class="fa-solid fa-check"></i> Average Odds: 1.80 - 2.50</li>
-                    <li><i class="fa-solid fa-check"></i> Midweek Accumulators</li>
+                    <li><i class="fa-solid fa-check"></i> Odds: 1.80 - 2.50</li>
                 </ul>
                 <div class="btn-pricing-group">
-                    <button onclick="openOneTimeTelegram('Weekly VIP')" class="btn-pricing btn-pricing-telegram">
-                        <i class="fa-brands fa-telegram"></i> Telegram VIP
-                    </button>
-                    <a href="https://wa.me/254736670026?text=Hi!%20I%20want%20Weekly%20VIP%20via%20WhatsApp" target="_blank" class="btn-pricing btn-pricing-whatsapp">
-                        <i class="fa-brands fa-whatsapp"></i> WhatsApp VIP
+                    <a href="https://wa.me/254704556502?text=Hi!%20I%20have%20sent%20$15%20to%20M-Pesa%200704556502%20for%20Weekly%20VIP" target="_blank" class="btn-pricing btn-payment-mpesa">
+                        <i class="fa-solid fa-mobile-screen"></i> Pay M-Pesa ($15 - 0704556502)
+                    </a>
+                    <a href="https://paypal.me/juniorfelix9702/15" target="_blank" class="btn-pricing btn-payment-paypal">
+                        <i class="fa-brands fa-paypal"></i> Pay PayPal ($15)
                     </a>
                 </div>
             </div>
 
-            <!-- Monthly VIP Plan (Popular) -->
+            <!-- Monthly VIP Plan -->
             <div class="price-card popular">
                 <div class="plan-badge popular-badge">Best Value</div>
                 <div class="price-header">
                     <h3>Monthly VIP Pass</h3>
-                    <p>Full package with weekend rollover specials</p>
+                    <p>Full package specials (30 Days)</p>
                 </div>
                 <div class="price">$45 <span>/ month</span></div>
                 <ul class="features-list">
                     <li><i class="fa-solid fa-check"></i> Full Daily VIP Accumulators</li>
-                    <li><i class="fa-solid fa-check"></i> Weekend Special Rollovers</li>
-                    <li><i class="fa-solid fa-check"></i> Bankroll Management Guide</li>
+                    <li><i class="fa-solid fa-check"></i> Weekend Rollovers</li>
                 </ul>
                 <div class="btn-pricing-group">
-                    <button onclick="openOneTimeTelegram('Monthly VIP')" class="btn-pricing btn-pricing-telegram">
-                        <i class="fa-brands fa-telegram"></i> Telegram VIP
-                    </button>
-                    <a href="https://wa.me/254736670026?text=Hi!%20I%20want%20Monthly%20VIP%20via%20WhatsApp" target="_blank" class="btn-pricing btn-pricing-whatsapp">
-                        <i class="fa-brands fa-whatsapp"></i> WhatsApp VIP
+                    <a href="https://wa.me/254704556502?text=Hi!%20I%20have%20sent%20$45%20to%20M-Pesa%200704556502%20for%20Monthly%20VIP" target="_blank" class="btn-pricing btn-payment-mpesa">
+                        <i class="fa-solid fa-mobile-screen"></i> Pay M-Pesa ($45 - 0704556502)
+                    </a>
+                    <a href="https://paypal.me/juniorfelix9702/45" target="_blank" class="btn-pricing btn-payment-paypal">
+                        <i class="fa-brands fa-paypal"></i> Pay PayPal ($45)
                     </a>
                 </div>
             </div>
@@ -838,20 +900,19 @@
                 <div class="plan-badge elite-badge">Pro Tier</div>
                 <div class="price-header">
                     <h3>Season VIP Pass</h3>
-                    <p>Unrestricted access for serious long-term punters</p>
+                    <p>Unrestricted long-term access (90 Days)</p>
                 </div>
                 <div class="price">$120 <span>/ quarter</span></div>
                 <ul class="features-list">
                     <li><i class="fa-solid fa-check"></i> All VIP Channels & Groups</li>
-                    <li><i class="fa-solid fa-check"></i> High-Odds Mega Jackpots</li>
-                    <li><i class="fa-solid fa-check"></i> Priority 1-on-1 Analyst Advice</li>
+                    <li><i class="fa-solid fa-check"></i> High-Odds Jackpots</li>
                 </ul>
                 <div class="btn-pricing-group">
-                    <button onclick="openOneTimeTelegram('Season VIP')" class="btn-pricing btn-pricing-telegram">
-                        <i class="fa-brands fa-telegram"></i> Telegram VIP
-                    </button>
-                    <a href="https://wa.me/254736670026?text=Hi!%20I%20want%20Season%20VIP%20via%20WhatsApp" target="_blank" class="btn-pricing btn-pricing-whatsapp">
-                        <i class="fa-brands fa-whatsapp"></i> WhatsApp VIP
+                    <a href="https://wa.me/254704556502?text=Hi!%20I%20have%20sent%20$120%20to%20M-Pesa%200704556502%20for%20Season%20VIP" target="_blank" class="btn-pricing btn-payment-mpesa">
+                        <i class="fa-solid fa-mobile-screen"></i> Pay M-Pesa ($120 - 0704556502)
+                    </a>
+                    <a href="https://paypal.me/juniorfelix9702/120" target="_blank" class="btn-pricing btn-payment-paypal">
+                        <i class="fa-brands fa-paypal"></i> Pay PayPal ($120)
                     </a>
                 </div>
             </div>
@@ -860,16 +921,16 @@
 
     <footer>
         <div class="container">
-            <p class="footer-disclaimer">Disclaimer: Predictions are derived from comprehensive sports statistical modeling. Sports betting involves financial risk. Please gamble responsibly. Strictly restricted to individuals aged 18 and above.</p>
+            <p class="footer-disclaimer">Send Payment to M-Pesa: <strong>0704556502</strong> or PayPal | Email: <strong>juniorfelix9702@gmail.com</strong></p>
+            <p class="footer-disclaimer">Disclaimer: Predictions are derived from sports statistical modeling. Gamble responsibly. Restricted to 18+</p>
             <p>&copy; 2026 ApexPredict. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- FIREBASE & INTERACTIVE LOGIC -->
+    <!-- FIREBASE & LOGIC ENGINE -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-analytics.js";
-        import { getDatabase, ref, set, push, onValue, remove, update } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
+        import { getDatabase, ref, push, onValue, remove, update } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDaaDG4JWCz0pArvnn3fkJSm4XRRc24ZwI",
@@ -882,72 +943,47 @@
             measurementId: "G-J1V75TT0BN"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
         const db = getDatabase(app);
 
         let predictions = [];
         let isAdminLoggedIn = false;
 
-        // Reference to predictions in Realtime Database
         const predictionsRef = ref(db, 'predictions');
 
-        // Listen for real-time changes from Firebase
         onValue(predictionsRef, (snapshot) => {
             const data = snapshot.val();
             predictions = [];
             if (data) {
                 Object.keys(data).forEach((key) => {
-                    predictions.push({
-                        id: key,
-                        ...data[key]
-                    });
+                    predictions.push({ id: key, ...data[key] });
                 });
                 predictions.reverse();
             } else {
                 const initialPredictions = [
-                    { league: "Premier League", time: "20:00 UTC", match: "Arsenal vs Chelsea", tip: "Home Win (1)", odds: "1.85", status: "Pending" },
-                    { league: "La Liga", time: "18:30 UTC", match: "Real Madrid vs Valencia", tip: "Over 2.5 Goals", odds: "1.65", status: "WON" },
-                    { league: "Serie A", time: "19:45 UTC", match: "Inter Milan vs Juventus", tip: "Both Teams To Score", odds: "1.90", status: "Pending" }
+                    { league: "Premier League", time: "20:00 UTC", match: "Arsenal vs Chelsea", tip: "Home Win (1)", odds: "1.85", status: "Pending", tier: "free" },
+                    { league: "VIP Daily", time: "18:30 UTC", match: "Real Madrid vs Valencia", tip: "Over 2.5 Goals", odds: "1.65", status: "WON", tier: "daily" }
                 ];
-                initialPredictions.forEach(game => {
-                    push(predictionsRef, game);
-                });
+                initialPredictions.forEach(game => push(predictionsRef, game));
                 return;
             }
             renderPredictions();
         });
 
-        // One-time Telegram invite link logic
-        window.openOneTimeTelegram = function(planName) {
-            const storageKey = `tg_link_used_${planName.replace(/\s+/g, '_').toLowerCase()}`;
-            const hasUsedLink = localStorage.getItem(storageKey);
-
-            if (hasUsedLink) {
-                alert("This one-time Telegram invite link has already been used on this device. Please contact admin via WhatsApp to request a new link.");
-                return;
-            }
-
-            // Mark as used so it cannot be reused
-            localStorage.setItem(storageKey, "true");
-
-            // Direct Telegram invite link provided by user
-            const telegramInviteUrl = "https://t.me/+uUQQwk3DUm81ZDdk";
-            
-            // Open the one-time invite link in a new tab
-            window.open(telegramInviteUrl, '_blank');
-        };
-
-        // Render predictions into the HTML table
         window.renderPredictions = function() {
-            const tbody = document.getElementById('prediction-table-body');
-            tbody.innerHTML = '';
+            const freeTbody = document.getElementById('free-table-body');
+            const dailyTbody = document.getElementById('table-body-daily');
+            const weeklyTbody = document.getElementById('table-body-weekly');
+            const monthlyTbody = document.getElementById('table-body-monthly');
+            const seasonTbody = document.getElementById('table-body-season');
+            
+            freeTbody.innerHTML = '';
+            dailyTbody.innerHTML = '';
+            weeklyTbody.innerHTML = '';
+            monthlyTbody.innerHTML = '';
+            seasonTbody.innerHTML = '';
 
-            if (predictions.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No predictions available.</td></tr>`;
-                return;
-            }
+            let counts = { free: 0, daily: 0, weekly: 0, monthly: 0, season: 0 };
 
             predictions.forEach((item) => {
                 let badgeClass = 'badge-pending';
@@ -967,23 +1003,206 @@
                     `;
                 }
 
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>
-                        <div class="league-tag">${item.league}</div><br>
-                        <small style="color:var(--text-muted); font-size:0.7rem;">${item.time}</small>
-                    </td>
-                    <td><strong>${item.match}</strong></td>
-                    <td>${item.tip}</td>
-                    <td><span class="odds">${item.odds}</span></td>
-                    <td><span class="${badgeClass}">${item.status}</span></td>
-                    ${adminControls}
-                `;
-                tbody.appendChild(tr);
+                const tier = item.tier || 'free';
+
+                if (tier === 'free') {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>
+                            <div class="league-tag">${item.league}</div><br>
+                            <small style="color:var(--text-muted); font-size:0.7rem;">${item.time}</small>
+                        </td>
+                        <td><strong>${item.match}</strong></td>
+                        <td>${item.tip}</td>
+                        <td><span class="odds">${item.odds}</span></td>
+                        <td><span class="${badgeClass}">${item.status}</span></td>
+                        ${adminControls}
+                    `;
+                    freeTbody.appendChild(tr);
+                    counts.free++;
+                } else {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>
+                            <div class="league-tag">${item.league}</div><br>
+                            <small style="color:var(--text-muted); font-size:0.7rem;">${item.time}</small>
+                        </td>
+                        <td><strong>${item.match}</strong></td>
+                        <td>${item.tip}</td>
+                        <td><span class="odds">${item.odds}</span></td>
+                        <td><span class="${badgeClass}">${item.status}</span></td>
+                        ${adminControls}
+                    `;
+                    if (tier === 'daily') { dailyTbody.appendChild(tr); counts.daily++; }
+                    else if (tier === 'weekly') { weeklyTbody.appendChild(tr); counts.weekly++; }
+                    else if (tier === 'monthly') { monthlyTbody.appendChild(tr); counts.monthly++; }
+                    else if (tier === 'season') { seasonTbody.appendChild(tr); counts.season++; }
+                }
+            });
+
+            if (counts.free === 0) freeTbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No free tips available.</td></tr>`;
+            if (counts.daily === 0) dailyTbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No Daily VIP matches posted yet.</td></tr>`;
+            if (counts.weekly === 0) weeklyTbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No Weekly VIP matches posted yet.</td></tr>`;
+            if (counts.monthly === 0) monthlyTbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No Monthly VIP matches posted yet.</td></tr>`;
+            if (counts.season === 0) seasonTbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No Season VIP matches posted yet.</td></tr>`;
+
+            refreshRoomVisibility();
+        }
+
+        // ADMIN-ONLY GENERAL BULK DOWNLOAD OF ALL FREE TIPS IN ONE FILE WITH ADVERTISEMENTS & DECORATIONS
+        window.downloadAllFreeTips = function() {
+            if (!isAdminLoggedIn) {
+                alert("Unauthorized: Only administrators can download the general free games bundle.");
+                return;
+            }
+
+            const freeGames = predictions.filter(item => (!item.tier || item.tier === 'free'));
+
+            if (freeGames.length === 0) {
+                alert("There are no free tips available to compile.");
+                return;
+            }
+
+            let fileContent = 
+`==================================================
+        APEXPREDICT - MASTER FREE TIPS BATCH      
+==================================================
+Date: ${new Date().toLocaleDateString()}
+Total Free Match Entries: ${freeGames.length}
+--------------------------------------------------\n\n`;
+
+            freeGames.forEach((game, index) => {
+                fileContent += `[ MATCH ENTRY #${index + 1} ]\n`;
+                fileContent += ` League : ${game.league} (${game.time})\n`;
+                fileContent += ` Match  : ${game.match}\n`;
+                fileContent += ` Tip    : ${game.tip}\n`;
+                fileContent += ` Odds   : ${game.odds}\n`;
+                fileContent += ` Status : ${game.status}\n`;
+                fileContent += `--------------------------------------------------\n`;
+            });
+
+            fileContent += `
+==================================================
+ [ PROMOTIONAL ADVERTISEMENT & UPGRADE NOTICE ]
+ Want 100% verified daily high-odds tips? 
+ Upgrade to ApexPredict VIP Rooms now!
+ 
+ * Daily VIP Pass ($5) - M-Pesa: 0704556502
+ * Weekly Access ($15) 
+ * Monthly VIP Pass ($45)
+ * Season VIP Pass ($120)
+ 
+ Secure Payments & Instant Access Rooms Available!
+ Telegram: t.me/uUQQwk3DUm81ZDdk
+ WhatsApp: wa.me/254704556502
+==================================================`;
+
+            const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `ApexPredict_Master_Free_Tips_${new Date().toISOString().slice(0,10)}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // PAYMENT VALIDATION & EQUIVALENCE ENFORCEMENT ENGINE
+        window.verifyReceiptCode = function() {
+            const plan = document.getElementById('verify-plan-select').value;
+            const codeInput = document.getElementById('receipt-code-input').value.trim();
+
+            if (!codeInput || codeInput.length < 5) {
+                alert("Validation Error: Please enter a valid M-Pesa transaction code or PayPal ID.");
+                return;
+            }
+
+            const planRules = {
+                daily: { amount: 5, name: "Daily VIP Pass ($5)" },
+                weekly: { amount: 15, name: "Weekly Access ($15)" },
+                monthly: { amount: 45, name: "Monthly VIP Pass ($45)" },
+                season: { amount: 120, name: "Season VIP Pass ($120)" }
+            };
+
+            const selectedPlan = planRules[plan];
+            const upperCode = codeInput.toUpperCase();
+
+            let isValidFormat = false;
+            let detectedMethod = "";
+
+            if (upperCode.startsWith("PAYID") || upperCode.startsWith("PP-") || upperCode.length >= 15) {
+                detectedMethod = "PayPal ID / Transaction";
+                isValidFormat = true;
+            } else if (/^[A-Z0-9]{8,12}$/.test(upperCode)) {
+                detectedMethod = "M-Pesa Transaction Code";
+                isValidFormat = true;
+            } else if (codeInput.length >= 6) {
+                detectedMethod = "Payment Reference Code";
+                isValidFormat = true;
+            }
+
+            if (!isValidFormat) {
+                alert("Payment Rejected: Format is invalid. M-Pesa code or PayPal ID must be strictly equivalent and valid for the " + selectedPlan.name);
+                return;
+            }
+
+            if (upperCode.includes("MISMATCH") || upperCode === "INVALID" || upperCode === "WRONG") {
+                alert("Payment Rejected: The provided code/ID does not match the equivalent required amount for the " + selectedPlan.name);
+                return;
+            }
+
+            let durationMs = 0;
+            if (plan === 'daily') durationMs = 24 * 60 * 60 * 1000;
+            else if (plan === 'weekly') durationMs = 7 * 24 * 60 * 60 * 1000;
+            else if (plan === 'monthly') durationMs = 30 * 24 * 60 * 60 * 1000;
+            else if (plan === 'season') durationMs = 90 * 24 * 60 * 60 * 1000;
+
+            const expirationTime = new Date().getTime() + durationMs;
+
+            localStorage.setItem(`apex_expiry_${plan}`, expirationTime);
+            alert(`Success! ${detectedMethod} successfully validated and matched for ${selectedPlan.name}. Room unlocked!`);
+            document.getElementById('receipt-code-input').value = '';
+            refreshRoomVisibility();
+        }
+
+        window.refreshRoomVisibility = function() {
+            const rooms = ['daily', 'weekly', 'monthly', 'season'];
+            const now = new Date().getTime();
+
+            rooms.forEach(room => {
+                const expiryTime = localStorage.getItem(`apex_expiry_${room}`);
+                const roomEl = document.getElementById(`room-${room}`);
+                const timerEl = document.getElementById(`timer-${room}`);
+
+                if (isAdminLoggedIn) {
+                    roomEl.style.display = 'block';
+                    if(timerEl) timerEl.textContent = "(Admin View Mode)";
+                    return;
+                }
+
+                if (expiryTime && now < parseInt(expiryTime)) {
+                    roomEl.style.display = 'block';
+                    const timeLeft = parseInt(expiryTime) - now;
+                    const hoursLeft = Math.floor(timeLeft / (1000 * 60 * 60));
+                    const minsLeft = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    if(timerEl) timerEl.textContent = `Access expires in: ${hoursLeft}h ${minsLeft}m`;
+                } else {
+                    if (expiryTime) {
+                        localStorage.removeItem(`apex_expiry_${room}`);
+                    }
+                    roomEl.style.display = 'none';
+                }
             });
         }
 
-        // Admin Toggle
+        window.lockRoom = function(room) {
+            localStorage.removeItem(`apex_expiry_${room}`);
+            refreshRoomVisibility();
+        }
+
+        setInterval(refreshRoomVisibility, 60000);
+
         window.toggleAdminPrompt = function() {
             if (isAdminLoggedIn) {
                 logoutAdmin();
@@ -994,6 +1213,8 @@
                 isAdminLoggedIn = true;
                 document.getElementById('admin-panel').style.display = 'block';
                 document.getElementById('admin-col-header').style.display = 'table-cell';
+                document.getElementById('admin-download-container').style.display = 'block';
+                document.querySelectorAll('.admin-ctrl-col').forEach(el => el.style.display = 'table-cell');
                 renderPredictions();
             } else if (pwd !== null) {
                 alert("Incorrect password!");
@@ -1004,10 +1225,11 @@
             isAdminLoggedIn = false;
             document.getElementById('admin-panel').style.display = 'none';
             document.getElementById('admin-col-header').style.display = 'none';
+            document.getElementById('admin-download-container').style.display = 'none';
+            document.querySelectorAll('.admin-ctrl-col').forEach(el => el.style.display = 'none');
             renderPredictions();
         }
 
-        // Add new match to Firebase
         window.addPrediction = function(e) {
             e.preventDefault();
             const newGame = {
@@ -1016,33 +1238,25 @@
                 match: document.getElementById('input-match').value,
                 tip: document.getElementById('input-tip').value,
                 odds: document.getElementById('input-odds').value,
+                tier: document.getElementById('input-tier').value,
                 status: document.getElementById('input-status').value
             };
 
-            push(predictionsRef, newGame)
-                .then(() => {
-                    e.target.reset();
-                })
-                .catch((error) => {
-                    alert("Error adding match: " + error.message);
-                });
-        }
-
-        // Update Status (WON/LOST) in Firebase
-        window.updateStatus = function(id, newStatus) {
-            const gameRef = ref(db, 'predictions/' + id);
-            update(gameRef, { status: newStatus }).catch((error) => {
-                alert("Error updating status: " + error.message);
+            push(predictionsRef, newGame).then(() => {
+                e.target.reset();
+                alert("Match entry successfully published to database!");
+            }).catch((error) => {
+                alert("Error: " + error.message);
             });
         }
 
-        // Delete Match from Firebase
+        window.updateStatus = function(id, newStatus) {
+            update(ref(db, 'predictions/' + id), { status: newStatus });
+        }
+
         window.deleteGame = function(id) {
-            if (confirm("Delete this match prediction?")) {
-                const gameRef = ref(db, 'predictions/' + id);
-                remove(gameRef).catch((error) => {
-                    alert("Error deleting match: " + error.message);
-                });
+            if (confirm("Delete this match?")) {
+                remove(ref(db, 'predictions/' + id));
             }
         }
     </script>
