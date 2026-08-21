@@ -9,6 +9,9 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Global Google AdSense Script[cite: 6] -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6529754094557773" crossorigin="anonymous"></script>
+
     <style>
         :root {
             --bg-main: #070a14;
@@ -268,6 +271,30 @@
             font-size: 0.75rem;
             color: var(--text-muted);
             margin: 0;
+        }
+
+        /* AD CONTAINER STYLING */
+        .ad-container {
+            width: 100%;
+            margin: 25px 0;
+            text-align: center;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px dashed var(--border-highlight);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+        }
+
+        .ad-label {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
         }
 
         /* Prediction Table Section Header & Controls */
@@ -651,8 +678,25 @@
         </div>
     </section>
 
+    <!-- ADSTERRA / BANNER ADVERTISEMENT SLOT -->
+    <div class="container">
+        <div class="ad-container">
+            <span class="ad-label"><i class="fa-solid fa-rectangle-ad"></i> Advertisement</span>
+            <!-- GOOGLE ADSENSE DISPLAY AD UNIT[cite: 6] -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6529754094557773"
+                 data-ad-slot="YOUR_AD_SLOT_ID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+
     <!-- Free Predictions Table Section -->
-    <section class="container" style="margin-top: 40px;">
+    <section class="container" style="margin-top: 20px;">
         <div class="section-header-flex">
             <div class="section-title" style="margin-bottom: 0;">
                 <h2>Today's Free Match Tips</h2>
