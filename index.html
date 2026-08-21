@@ -273,20 +273,20 @@
             margin: 0;
         }
 
-        /* AD CONTAINER STYLING */
+        /* AD CONTAINER STYLING - UPDATED WITH MIN-WIDTH/HEIGHT */
         .ad-container {
             width: 100%;
-            margin: 25px 0;
-            text-align: center;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px dashed var(--border-highlight);
-            border-radius: 12px;
-            padding: 15px;
+            min-width: 250px;
+            min-height: 90px;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            min-height: 100px;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 15px;
         }
 
         .ad-label {
@@ -678,14 +678,12 @@
         </div>
     </section>
 
-    <!-- ADSTERRA / BANNER ADVERTISEMENT SLOT -->
+    <!-- GOOGLE ADSENSE BANNER ADVERTISEMENT SLOT -->
     <div class="container">
         <div class="ad-container">
             <span class="ad-label"><i class="fa-solid fa-rectangle-ad"></i> Advertisement</span>
-            <!-- GOOGLE ADSENSE DISPLAY AD UNIT -->
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6529754094557773"
                  crossorigin="anonymous"></script>
-            <!-- wonderful -->
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-6529754094557773"
@@ -1150,7 +1148,6 @@
             // Draw Each Free Game Item in a Single Master Image
             let currentY = headerHeight + 20;
             freeGames.forEach((game, index) => {
-                // Card Box Background
                 ctx.fillStyle = '#0f172a';
                 if (ctx.roundRect) {
                     ctx.beginPath();
@@ -1190,14 +1187,14 @@
                 ctx.font = 'bold 14px Inter, sans-serif';
                 ctx.fillText('Odds: ' + (game.odds || ''), 520, currentY + 36);
 
-                // Status (WON / LOST / Pending) with dynamic color coding
+                // Status
                 const statusText = (game.status || 'Pending').toUpperCase();
                 if (statusText === 'WON') {
-                    ctx.fillStyle = '#10b981'; // Green for Won
+                    ctx.fillStyle = '#10b981';
                 } else if (statusText === 'LOST') {
-                    ctx.fillStyle = '#ef4444'; // Red for Lost
+                    ctx.fillStyle = '#ef4444';
                 } else {
-                    ctx.fillStyle = '#f59e0b'; // Gold for Pending
+                    ctx.fillStyle = '#f59e0b';
                 }
                 ctx.font = 'bold 13px Inter, sans-serif';
                 ctx.fillText(statusText, 640, currentY + 36);
@@ -1205,7 +1202,7 @@
                 currentY += itemHeight;
             });
 
-            // Footer Branding / Promotion Section on the Image
+            // Footer Branding
             ctx.fillStyle = '#0f172a';
             ctx.fillRect(0, totalHeight - footerHeight, width, footerHeight);
 
@@ -1217,7 +1214,6 @@
             ctx.font = '12px Inter, sans-serif';
             ctx.fillText('M-Pesa: 0704556502 (KES) | PayPal ($) | Telegram: t.me/uUQQwk3DUm81ZDdk', 40, totalHeight - 48);
 
-            // Trigger Image Download
             const imageURI = canvas.toDataURL('image/png');
             const a = document.createElement('a');
             a.href = imageURI;
@@ -1260,11 +1256,6 @@
 
             if (!isValidFormat) {
                 alert("Payment Rejected: Format is invalid. Must match exact required currency amount and format for the " + selectedPlan.name);
-                return;
-            }
-
-            if (upperCode.includes("MISMATCH") || upperCode === "INVALID" || upperCode === "WRONG" || upperCode === "ERROR") {
-                alert("Payment Rejected: Amount mismatch! Payment must match exact KES equivalent for M-Pesa or exact USD for PayPal.");
                 return;
             }
 
