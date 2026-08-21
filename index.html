@@ -1,1377 +1,1985 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ApexPredict | Professional Football Predictions & VIP Tips</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Global Google AdSense Script[cite: 6] -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6529754094557773" crossorigin="anonymous"></script>
-
-    <style>
-        :root {
-            --bg-main: #070a14;
-            --bg-card: #0f172a;
-            --bg-card-hover: #1e293b;
-            --accent-green: #10b981;
-            --accent-green-hover: #059669;
-            --accent-gold: #f59e0b;
-            --accent-red: #ef4444;
-            --accent-whatsapp: #25d366;
-            --accent-telegram: #229ed9;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: #1e293b;
-            --border-highlight: #334155;
-            --font: 'Inter', sans-serif;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: var(--font);
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 16px;
-        }
-
-        @media (min-width: 768px) {
-            .container {
-                padding: 0 24px;
-            }
-        }
-
-        /* Navbar */
-        header {
-            background: rgba(7, 10, 20, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 70px;
-        }
-
-        .logo {
-            font-size: 1.35rem;
-            font-weight: 800;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            letter-spacing: -0.5px;
-        }
-
-        .logo span {
-            color: var(--accent-green);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .btn-header {
-            background: var(--accent-green);
-            color: #000;
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            border: none;
-            font-size: 0.85rem;
-        }
-
-        .btn-header:hover {
-            background: var(--accent-green-hover);
-            transform: translateY(-1px);
-        }
-
-        .btn-whatsapp-header {
-            background: var(--accent-whatsapp);
-            color: #fff;
-        }
-        .btn-whatsapp-header:hover {
-            background: #1ebc57;
-            color: #fff;
-        }
-
-        .btn-admin-toggle {
-            background: #1e293b;
-            color: var(--text-muted);
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            border: 1px solid var(--border-highlight);
-            font-size: 0.85rem;
-            transition: all 0.2s;
-        }
-
-        .btn-admin-toggle:hover {
-            color: #fff;
-            border-color: var(--accent-gold);
-        }
-
-        /* ADMIN PANEL STYLING */
-        #admin-panel {
-            display: none;
-            background: #0f172a;
-            border: 2px solid var(--accent-gold);
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-        }
-
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            border-bottom: 1px solid var(--border-highlight);
-            padding-bottom: 10px;
-        }
-
-        .admin-header h3 {
-            font-size: 1.1rem;
-        }
-
-        .admin-form {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 12px;
-        }
-
-        .admin-form input, .admin-form select {
-            background: var(--bg-main);
-            border: 1px solid var(--border-highlight);
-            color: #fff;
-            padding: 10px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            width: 100%;
-        }
-
-        .btn-add {
-            background: var(--accent-gold);
-            color: #000;
-            font-weight: 700;
-            border: none;
-            padding: 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            grid-column: 1 / -1;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 50px 0 35px;
-            text-align: center;
-            background: radial-gradient(circle at top center, rgba(16, 185, 129, 0.12) 0%, transparent 65%);
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            color: var(--accent-green);
-            padding: 6px 14px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 18px;
-        }
-
-        .hero h1 {
-            font-size: 2.1rem;
-            font-weight: 800;
-            margin-bottom: 12px;
-            letter-spacing: -1px;
-            line-height: 1.2;
-        }
-
-        @media (min-width: 768px) {
-            .hero h1 {
-                font-size: 3.2rem;
-            }
-        }
-
-        .hero h1 span {
-            color: var(--accent-green);
-        }
-
-        .hero p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            max-width: 580px;
-            margin: 0 auto 25px;
-        }
-
-        /* Trust Stats Bar */
-        .trust-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            max-width: 700px;
-            margin: 30px auto 0;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 15px 10px;
-        }
-
-        .stat-item h3 {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: var(--accent-gold);
-            margin-bottom: 2px;
-        }
-
-        .stat-item p {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin: 0;
-        }
-
-        /* AD CONTAINER STYLING */
-        .ad-container {
-            width: 100%;
-            margin: 25px 0;
-            text-align: center;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px dashed var(--border-highlight);
-            border-radius: 12px;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100px;
-        }
-
-        .ad-label {
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-
-        /* Prediction Table Section Header & Controls */
-        .section-header-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .section-title {
-            text-align: left;
-        }
-
-        .section-title h2 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 6px;
-        }
-
-        /* Professional Admin Bulk Image Download Button */
-        .btn-bulk-download {
-            background: linear-gradient(135deg, var(--accent-gold), #d97706);
-            color: #000;
-            font-weight: 800;
-            padding: 10px 18px;
-            border-radius: 10px;
-            border: none;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.85rem;
-            box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
-            transition: all 0.2s ease;
-        }
-
-        .btn-bulk-download:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
-            filter: brightness(1.05);
-        }
-
-        .table-wrapper {
-            background: var(--bg-card);
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            margin-bottom: 30px;
-        }
-
-        .table-responsive {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .prediction-table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-            white-space: nowrap;
-        }
-
-        .prediction-table th, .prediction-table td {
-            padding: 14px 16px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .prediction-table th {
-            background: rgba(255, 255, 255, 0.02);
-            color: var(--text-muted);
-            font-size: 0.75rem;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .league-tag {
-            font-size: 0.75rem;
-            background: #1e293b;
-            padding: 3px 8px;
-            border-radius: 4px;
-            color: var(--text-muted);
-            display: inline-block;
-            font-weight: 500;
-        }
-
-        .badge-won, .badge-pending, .badge-lost {
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            display: inline-block;
-        }
-
-        .badge-won { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
-        .badge-pending { background: rgba(245, 158, 11, 0.15); color: var(--accent-gold); }
-        .badge-lost { background: rgba(239, 68, 68, 0.15); color: var(--accent-red); }
-
-        .odds {
-            font-weight: 700;
-            color: var(--accent-gold);
-        }
-
-        .action-btns {
-            display: flex;
-            gap: 6px;
-        }
-
-        .btn-action {
-            border: none;
-            padding: 4px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.7rem;
-            font-weight: 700;
-        }
-
-        .btn-act-won { background: var(--accent-green); color: #000; }
-        .btn-act-lost { background: var(--accent-red); color: #fff; }
-        .btn-act-del { background: #475569; color: #fff; }
-
-        /* VIP Verification Container */
-        .vip-lock-container {
-            background: rgba(245, 158, 11, 0.05);
-            border: 1px dashed var(--accent-gold);
-            padding: 24px;
-            border-radius: 12px;
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .verification-box {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            max-width: 420px;
-            margin: 15px auto 0;
-        }
-
-        .verification-box input, .verification-box select {
-            background: var(--bg-main);
-            border: 1px solid var(--border-highlight);
-            color: #fff;
-            padding: 12px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-        }
-
-        .btn-verify {
-            background: var(--accent-gold);
-            color: #000;
-            font-weight: 700;
-            padding: 12px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-        .btn-verify:hover { opacity: 0.9; }
-
-        .timer-display {
-            font-size: 0.75rem;
-            color: var(--accent-gold);
-            margin-top: 4px;
-            display: block;
-        }
-
-        /* Pricing Section */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        @media (min-width: 640px) {
-            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (min-width: 1024px) {
-            .pricing-grid { grid-template-columns: repeat(4, 1fr); }
-        }
-
-        .price-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 24px 20px;
-            text-align: left;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .price-card.popular { border: 2px solid var(--accent-green); }
-        .price-card.elite { border: 2px solid var(--accent-gold); }
-
-        .plan-badge {
-            position: absolute;
-            top: -12px;
-            right: 20px;
-            font-size: 0.65rem;
-            font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 20px;
-            text-transform: uppercase;
-        }
-
-        .popular-badge { background: var(--accent-green); color: #000; }
-        .elite-badge { background: var(--accent-gold); color: #000; }
-
-        .price-header h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .price-header p {
-            color: var(--text-muted);
-            font-size: 0.78rem;
-            min-height: 32px;
-        }
-
-        .price {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin: 14px 0;
-            color: var(--text-main);
-        }
-
-        .price span {
-            font-size: 0.8rem;
-            font-weight: 400;
-            color: var(--text-muted);
-        }
-
-        .features-list {
-            list-style: none;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-
-        .features-list li {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .features-list li i { color: var(--accent-green); }
-
-        .btn-pricing-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .btn-pricing {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 7px;
-            width: 100%;
-            padding: 10px 0;
-            background: #1e293b;
-            color: #fff;
-            font-weight: 700;
-            border-radius: 8px;
-            font-size: 0.82rem;
-            border: 1px solid var(--border-highlight);
-            cursor: pointer;
-        }
-
-        .btn-payment-mpesa { background: #10b981; color: #000; border: none; }
-        .btn-payment-paypal { background: #003087; color: #fff; border: none; }
-
-        /* Footer */
-        footer {
-            background: #04060b;
-            padding: 40px 0 20px;
-            border-top: 1px solid var(--border-color);
-            margin-top: 60px;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-
-        .footer-disclaimer {
-            max-width: 700px;
-            margin: 0 auto 15px;
-            line-height: 1.5;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mega Mart Inventory & Enterprise Ledger System</title>
+
+<!-- Google AdSense Global & Unit Script Integration -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6529754094557773"
+     crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<style>
+:root {
+    --primary: #16a34a;
+    --primary-dark: #15803d;
+    --sidebar-bg: #1f2937;
+    --sidebar-hover: #374151;
+    --bg-main: #f3f4f6;
+    --text-main: #1f2937;
+}
+
+body{
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin:0;
+    background: var(--bg-main);
+    color: var(--text-main);
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Layout Engine Structure */
+#sidebar-navigation-panel {
+    width: 280px;
+    background: var(--sidebar-bg);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+
+.brand-wrapper {
+    padding: 24px 20px;
+    background: #111827;
+    text-align: center;
+    border-bottom: 1px solid #374151;
+}
+
+.brand-title {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #e5e7eb;
+}
+
+.operator-profile-card {
+    padding: 15px 20px;
+    background: #111827;
+    border-bottom: 1px solid #2d3748;
+    font-size: 13px;
+}
+
+.nav-menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 15px 10px;
+    flex-grow: 1;
+}
+
+.nav-tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    padding: 12px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+    transition: all 0.2s ease;
+}
+
+.nav-tab-btn:hover {
+    background: var(--sidebar-hover);
+    color: white;
+}
+
+.nav-tab-btn.active-tab {
+    background: var(--primary);
+    color: white;
+}
+
+/* Main Application Workspace Engine viewport */
+#main-application-workspace {
+    margin-left: 280px;
+    flex-grow: 1;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.app-view-panel {
+    display: none;
+}
+
+.app-view-panel.active-panel {
+    display: block;
+}
+
+.box{
+    background:white;
+    padding:25px;
+    border-radius:8px;
+    margin-bottom:25px;
+    box-shadow:0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+    border: 1px solid #e5e7eb;
+}
+
+.panel-header-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #111827;
+    border-bottom: 2px solid #f3f4f6;
+    padding-bottom: 10px;
+}
+
+.pos-grid-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+}
+
+.card-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.product-card{
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:8px;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.btn{
+    width:100%;
+    border:none;
+    padding:12px;
+    border-radius:6px;
+    color:white;
+    background: var(--primary);
+    cursor:pointer;
+    margin-top:10px;
+    font-weight:bold;
+    font-size: 14px;
+    transition: background 0.2s ease;
+}
+
+.btn:hover{
+    background: var(--primary-dark);
+}
+
+.btn-orange{ background:#f97316; }
+.btn-orange:hover{ background:#ea580c; }
+.btn-danger{ background:#ef4444; }
+.btn-danger:hover{ background:#dc2626; }
+.btn-blue { background:#3b82f6; }
+.btn-blue:hover { background:#2563eb; }
+
+.btn-mini {
+    padding: 6px 12px;
+    margin-top: 0;
+    font-size: 12px;
+    width: auto;
+    display: inline-block;
+    background: #2563eb;
+}
+.btn-mini:hover { background: #1d4ed8; }
+
+input,select{
+    width:100%;
+    padding:12px;
+    margin:8px 0 16px 0;
+    border:1px solid #d1d5db;
+    border-radius:6px;
+    box-sizing:border-box;
+    font-size: 14px;
+}
+
+.mini-stock-input {
+    width: 80px;
+    padding: 6px;
+    margin: 0 8px 0 0;
+    display: inline-block;
+    font-size: 13px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+}
+
+th,td{
+    border-bottom:1px solid #e5e7eb;
+    padding:14px;
+    text-align:left;
+    font-size: 14px;
+}
+
+th{
+    background:#374151;
+    color:white;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing: 0.5px;
+}
+
+.hidden{ display:none !important; }
+.row-normal{ background:white; }
+.row-reorder{ background:#fef3c7; }
+.row-out{ background:#fee2e2; }
+
+.badge{
+    padding:4px 10px;
+    border-radius:12px;
+    font-size:11px;
+    font-weight:bold;
+}
+.badge-ok{ background:#dcfce7; color:#15803d; }
+.badge-warn{ background:#fef3c7; color:#b45309; }
+.badge-alert{ background:#fee2e2; color:#b91c1c; }
+
+.metrics-breakdown-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:20px;
+}
+
+.metric-sub-card{
+    background:white;
+    padding:20px;
+    border-radius:8px;
+    border:1px solid #e5e7eb;
+    text-align:center;
+}
+
+.valuation-card {
+    background:#eff6ff;
+    border:1px solid #bfdbfe;
+}
+
+.receipt-wrapper {
+    margin-top: 25px;
+    width: 100%;
+    max-width: 450px; 
+}
+
+.receipt-sheet{
+    border: 1px solid #c3c6cb;
+    background:#ffffff;
+    padding:20px;
+    border-radius:8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    color: #1f2937;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.receipt-brand-header {
+    text-align: center;
+    border-bottom: 2px dashed #9ca3af;
+    padding-bottom: 12px;
+    margin-bottom: 15px;
+}
+
+.receipt-line{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:6px;
+    font-size: 13px;
+}
+
+.receipt-table {
+    width: 100%;
+    margin: 15px 0;
+    border-top: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.receipt-table th {
+    background: none;
+    color: #374151;
+    border-bottom: 1px dashed #9ca3af;
+    padding: 6px 2px;
+}
+
+.receipt-table td {
+    padding: 6px 2px;
+    border-bottom: none;
+}
+
+.receipt-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-share { background: #25d366; }
+.btn-share:hover { background: #20ba5a; }
+.btn-download { background: #2563eb; }
+.btn-download:hover { background: #1d4ed8; }
+
+.system-footer {
+    margin-top: 50px;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 25px;
+    text-align: center;
+}
+.footer-title {
+    font-weight: bold;
+    color: #4b5563;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+.footer-meta {
+    font-size: 13px;
+    color: #6b7280;
+    margin: 4px 0;
+}
+.footer-contact {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--primary);
+    font-weight: bold;
+    text-decoration: none;
+    background: #f0fdf4;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #bbf7d0;
+}
+
+/* Dual Column Entry Forms Block */
+.form-split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media(max-width:1150px){
+    body { flex-direction: column; }
+    #sidebar-navigation-panel { width: 100%; position: relative; height: auto; }
+    #main-application-workspace { margin-left: 0; padding: 20px; }
+    .pos-grid-layout, .form-split-grid, .metrics-breakdown-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
+
 <body>
 
-    <!-- Header Navigation -->
-    <header>
-        <div class="container nav-container">
-            <a href="#" class="logo">
-                <i class="fa-solid fa-trophy" style="color: var(--accent-green);"></i>
-                Apex<span>Predict</span>
-            </a>
-            <div class="nav-links">
-                <button class="btn-admin-toggle" onclick="toggleAdminPrompt()" title="Admin Mode">
-                    <i class="fa-solid fa-lock"></i> Admin
-                </button>
-                <a href="https://wa.me/254704556502?text=Hi!%20I%20want%20to%20inquire%20about%20VIP%20plans" target="_blank" class="btn-header btn-whatsapp-header">
-                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                </a>
-                <a href="https://t.me/uUQQwk3DUm81ZDdk" target="_blank" class="btn-header" style="background: var(--accent-telegram); color:#fff;">
-                    <i class="fa-brands fa-telegram"></i> Telegram
-                </a>
+<nav id="sidebar-navigation-panel">
+    <div class="brand-wrapper">
+        <div class="brand-title">🛒 MEGA MART SYSTEM</div>
+    </div>
+    
+    <div class="operator-profile-card">
+        <div>Terminal User:</div>
+        <strong id="welcome-text" style="color: var(--primary);">Guest Terminal Mode</strong>
+        <button class="btn btn-danger hidden" id="logout-btn" onclick="logoutSession()" style="padding: 6px 10px; font-size: 11px; margin-top: 8px;">
+            Exit Profile Session
+        </button>
+    </div>
+
+    <div class="nav-menu-list">
+        <button id="nav-btn-pos" class="nav-tab-btn active-tab" onclick="switchSystemViewPanel('pos-view', this)">🏪 Point of Sale Terminal</button>
+        <button id="nav-btn-inventory" class="nav-tab-btn staff-accessible hidden" onclick="switchSystemViewPanel('inventory-view', this)">📦 Product Registry Ledger</button>
+        <button id="nav-btn-purchases" class="nav-tab-btn staff-accessible hidden" onclick="switchSystemViewPanel('purchases-view', this)">🛒 Catalog Purchase Invoices</button>
+        <button id="nav-btn-velocity" class="nav-tab-btn staff-accessible hidden" onclick="switchSystemViewPanel('velocity-predictive-view', this)">🧠 AI Inventory Run-Rates</button>
+        <button id="nav-btn-debts" class="nav-tab-btn staff-accessible hidden" onclick="switchSystemViewPanel('debts-view', this)">🛑 Customer Debts Ledger</button>
+        <button id="nav-btn-expense" class="nav-tab-btn admin-restricted hidden" onclick="switchSystemViewPanel('expense-view', this)">💸 Operational Expense Ledger</button>
+        <button id="nav-btn-analytics" class="nav-tab-btn staff-accessible hidden" onclick="switchSystemViewPanel('analytics-view', this)">📊 Financial Core Statements</button>
+    </div>
+</nav>
+
+<main id="main-application-workspace">
+
+    <!-- AdSense Banner Integration Example Block -->
+    <div class="box" style="text-align:center; padding:15px;">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6529754094557773"
+             crossorigin="anonymous"></script>
+        <!-- wonderful -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-6529754094557773"
+             data-ad-slot="9222785837"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <div id="auth-section" class="box">
+        <h3 class="panel-header-title">🔐 Operational Workspace Gateway Authentication</h3>
+        <div class="form-split-grid">
+            <div>
+                <label>Corporate Account Email</label>
+                <input type="email" id="auth-email" value="admin@mart.com">
+            </div>
+            <div>
+                <label>System Credentials Password</label>
+                <input type="password" id="auth-password" value="admin123">
             </div>
         </div>
-    </header>
+        <button class="btn" onclick="executeLogin()" style="max-width: 200px;">Verify Security Access</button>
+    </div>
 
-    <div class="container">
-        <!-- ADMIN CONTROL PANEL -->
-        <div id="admin-panel">
-            <div class="admin-header">
-                <h3><i class="fa-solid fa-sliders" style="color: var(--accent-gold);"></i> Admin Dashboard - Tier VIP Manager</h3>
-                <button class="btn-action btn-act-lost" onclick="logoutAdmin()">Close</button>
+    <!-- POS VIEW PANEL -->
+    <div id="pos-view" class="app-view-panel active-panel">
+        <div class="box">
+            <label><strong>⚡ Active Sales Category Filter Pipeline:</strong></label>
+            <select id="global-category-filter" onchange="syncMarketDisplayGrid()" style="margin-bottom: 0;">
+                <option value="ALL">Show All Categories</option>
+            </select>
+        </div>
+
+        <div class="pos-grid-layout">
+            <div>
+                <h2 style="margin-top:0; font-size:18px;">Catalog Offerings</h2>
+                <div id="product-container" class="card-grid"></div>
+                <div id="receipt-container"></div>
             </div>
-            <form class="admin-form" onsubmit="addPrediction(event)">
-                <input type="text" id="input-league" placeholder="League" required>
-                <input type="text" id="input-time" placeholder="Time (e.g. 20:00 UTC)" required>
-                <input type="text" id="input-match" placeholder="Match (Team A vs Team B)" required>
-                <input type="text" id="input-tip" placeholder="Prediction Tip" required>
-                <input type="text" id="input-odds" placeholder="Odds (e.g. 1.85)" required>
-                <select id="input-tier">
-                    <option value="free">Free Tips Room</option>
-                    <option value="daily">Daily VIP Pass Room ($5 / KES 650)</option>
-                    <option value="weekly">Weekly Access Room ($15 / KES 1,950)</option>
-                    <option value="monthly">Monthly VIP Pass Room ($45 / KES 5,850)</option>
-                    <option value="season">Season VIP Pass Room ($120 / KES 15,600)</option>
+
+            <div class="box" style="height: fit-content; position: sticky; top: 30px;">
+                <h3 style="margin-top:0; border-bottom:2px solid #f3f4f6; padding-bottom:10px;">Your Basket</h3>
+                <div id="cart-list"></div>
+                
+                <h3 style="margin: 20px 0 15px 0;">
+                    Subtotal:
+                    <span style="float:right; color:var(--primary);">KES <span id="subtotal-val">0.00</span></span>
+                </h3>
+                
+                <label>Customer Name Reference</label>
+                <input type="text" id="customer-name-input" placeholder="e.g. Mary Atieno">
+                
+                <label>Payment Destination Gateway</label>
+                <select id="payment-mode-select" onchange="togglePaymentFieldView()">
+                    <option value="Cash">Cash Handover</option>
+                    <option value="M-Pesa">M-Pesa Remittance</option>
+                    <option value="Debt">Issue as Store Debt (Max 1 Month)</option>
                 </select>
-                <select id="input-status">
-                    <option value="Pending">Pending</option>
-                    <option value="WON">WON</option>
-                    <option value="LOST">LOST</option>
-                </select>
-                <button type="submit" class="btn-add"><i class="fa-solid fa-plus"></i> Publish Game Match Entry</button>
-            </form>
+
+                <!-- DYNAMIC CASH TENDERED & CHANGE LOGIC FIELDS -->
+                <div id="cash-tendered-wrapper">
+                    <label>Amount Tendered by Customer (KES)</label>
+                    <input type="number" id="cash-tendered-input" placeholder="Enter amount received" oninput="calculateLiveCashChange()">
+                    <div id="cash-change-feedback" style="margin-top: -8px; margin-bottom: 16px; font-size: 14px; font-weight: bold; color: #4b5563;">
+                        Change Balance: <span id="change-display-val" style="color: #2563eb;">KES 0.00</span>
+                    </div>
+                </div>
+
+                <div id="mpesa-phone-wrapper" class="hidden">
+                    <label>Customer M-Pesa Number Reference</label>
+                    <input type="text" id="mpesa-phone" placeholder="e.g. 0725514546">
+                </div>
+
+                <div id="debt-contact-wrapper" class="hidden">
+                    <label>Customer WhatsApp Contact No</label>
+                    <input type="text" id="debt-customer-phone" placeholder="e.g. 254725514546">
+                </div>
+
+                <button class="btn btn-orange" onclick="executeCheckoutPipeline()">Authorize Transaction & Print</button>
+            </div>
         </div>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-badge">
-                <i class="fa-solid fa-circle-check"></i> Verified Accuracy Rate: 89.4%
-            </div>
-            <h1>Smart Data-Driven <span>Football Predictions</span></h1>
-            <p>Send exact payment amount to M-Pesa <strong>0704556502</strong> (in KES) or PayPal (in USD), input your exact transaction code or PayPal ID below to unlock rooms!</p>
-            <a href="#pricing" class="btn-header" style="padding: 12px 24px; font-size: 0.95rem; border-radius: 10px;">
-                <i class="fa-solid fa-bolt"></i> View VIP Packages
-            </a>
+    <!-- PRODUCT REGISTRY PANEL -->
+    <div id="inventory-view" class="app-view-panel">
+        <div class="form-split-grid admin-restricted hidden">
+            <div class="box">
+                <h4 class="panel-header-title">➕ Catalog Stock Creation Utility</h4>
+                <label>Product Common Label String</label>
+                <input type="text" id="p-name">
 
-            <!-- Trust Stats -->
-            <div class="trust-stats">
-                <div class="stat-item">
-                    <h3>14,200+</h3>
-                    <p>Active Punters</p>
-                </div>
-                <div class="stat-item">
-                    <h3>92.8%</h3>
-                    <p>VIP Win Rate</p>
-                </div>
-                <div class="stat-item">
-                    <h3>24 / 7</h3>
-                    <p>Expert Support</p>
-                </div>
-            </div>
-        </div>
-    </section>
+                <label>Assigned Department Category</label>
+                <select id="p-category"></select>
 
-    <!-- ADSTERRA / BANNER ADVERTISEMENT SLOT -->
-    <div class="container">
-        <div class="ad-container">
-            <span class="ad-label"><i class="fa-solid fa-rectangle-ad"></i> Advertisement</span>
-            <!-- GOOGLE ADSENSE DISPLAY AD UNIT[cite: 6] -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-6529754094557773"
-                 data-ad-slot="9222785837"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-    </div>
+                <div class="form-split-grid">
+                    <div>
+                        <label>Unit Supply Inbound Cost (KES)</label>
+                        <input type="number" id="p-cost" value="100">
+                    </div>
+                    <div>
+                        <label>Unit Retail Outbound Value (KES)</label>
+                        <input type="number" id="p-price" value="150">
+                    </div>
+                </div>
 
-    <!-- Free Predictions Table Section -->
-    <section class="container" style="margin-top: 20px;">
-        <div class="section-header-flex">
-            <div class="section-title" style="margin-bottom: 0;">
-                <h2>Today's Free Match Tips</h2>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">Carefully researched by professional data sports analysts.</p>
+                <div class="form-split-grid">
+                    <div>
+                        <label>Initial Opening Balance Qty</label>
+                        <input type="number" id="p-stock" value="50">
+                    </div>
+                    <div>
+                        <label>Critical Warning Reorder Limit</label>
+                        <input type="number" id="p-reorder" value="15">
+                    </div>
+                </div>
+                <button class="btn" onclick="submitNewProduct()">Commit Inventory Product Entry</button>
             </div>
-            <!-- Admin-Only General Free Games Bulk Image Download Button -->
-            <div id="admin-download-container" style="display: none;">
-                <button class="btn-bulk-download" onclick="downloadAllFreeTipsImage()">
-                    <i class="fa-solid fa-image"></i> Download All Free Tips (Single Image)
-                </button>
+
+            <div class="box">
+                <h4 class="panel-header-title">🆕 Department Classification Tool</h4>
+                <label>New Category Structural Label</label>
+                <input type="text" id="new-cat-name" placeholder="e.g. Beverages">
+                <button class="btn" onclick="submitNewCategory()">Append Department Block</button>
             </div>
         </div>
 
-        <div class="table-wrapper">
-            <div class="table-responsive">
-                <table class="prediction-table">
+        <div class="box">
+            <h4 class="panel-header-title">📋 Master Corporate Inventory Registry Ledger Table View</h4>
+            <div style="display:flex; gap:15px; margin-bottom:20px; align-items:center;">
+                <label style="margin:0; white-space:nowrap; font-size:14px;"><strong>Timeline Sales Context Window:</strong></label>
+                <select id="inventory-period-filter" onchange="syncMarketDisplayGrid()" style="width:250px; margin:0;">
+                    <option value="daily">Daily Sales</option>
+                    <option value="weekly">Weekly Sales</option>
+                    <option value="monthly" selected>Monthly Sales</option>
+                </select>
+            </div>
+
+            <div style="overflow-x:auto;">
+                <table>
                     <thead>
                         <tr>
-                            <th>Time / League</th>
-                            <th>Match</th>
-                            <th>Prediction Tip</th>
-                            <th>Odds</th>
+                            <th>Date Modified</th>
+                            <th>Product Label</th>
+                            <th>Category</th>
+                            <th class="profit-sensitive hidden">Buying Price</th>
+                            <th>Selling Price</th>
+                            <th>In Stock</th>
+                            <th>Qty Sold</th>
+                            <th>Total Sales</th>
+                            <th class="profit-sensitive hidden">Profit Margin</th>
+                            <th>Reorder Level</th>
                             <th>Status</th>
-                            <th id="admin-col-header" style="display: none;">Controls</th>
                         </tr>
                     </thead>
-                    <tbody id="free-table-body">
-                        <tr><td colspan="6" style="text-align: center; color: var(--text-muted);">Loading free predictions...</td></tr>
+                    <tbody id="inventory-table-body"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+ <div id="purchases-view" class="app-view-panel">
+    <div class="box admin-restricted hidden">
+        <h4 class="panel-header-title">🛒 Log New Stock B2B Supply Purchase Invoice</h4>
+        <div class="form-split-grid">
+            <div>
+                <label>Select Product to Restock</label>
+                <select id="purchase-product-select"></select>
+            </div>
+            <div>
+                <label>Inbound Restock Quantity</label>
+                <input type="number" id="purchase-qty" value="10">
+            </div>
+        </div>
+        <div class="form-split-grid">
+            <div>
+                <label>Actual Inbound Unit Supply Cost (KES)</label>
+                <input type="number" id="purchase-unit-cost" value="100">
+            </div>
+            <div>
+                <label>Purchase Reference Date</label>
+                <input type="date" id="purchase-date">
+            </div>
+            <div>
+                <label>Amount Paid Upfront (KES)</label>
+                <input type="number" id="purchase-amount-paid" placeholder="Enter amount paid" min="0" step="0.01">
+            </div>
+        </div>
+        <button class="btn btn-blue" onclick="submitNewStockPurchase()" style="max-width: 250px; margin-top: 15px;">Log Purchase Record</button>
+    </div>
+
+    <div class="box">
+        <h4 class="panel-header-title">🔍 Historical Purchase Ledger Engine</h4>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:15px; margin-bottom:20px;">
+            <div>
+                <label>Filter Statement Period</label>
+                <select id="purchase-filter-select" onchange="renderPurchaseLedgerGrid()">
+                    <option value="all">Show All Purchases</option>
+                    <option value="daily">Daily Purchases</option>
+                    <option value="weekly">Weekly Purchases</option>
+                    <option value="monthly">Monthly Purchases</option>
+                    <option value="yearly">Yearly Purchases</option>
+                </select>
+            </div>
+            <div class="metric-sub-card" style="padding:10px; border-color:#bfdbfe; background:#f0f9ff;">
+                <span style="font-size:12px; font-weight:bold; color:#1e40af;">Filtered Statements Aggregate Sum</span>
+                <h3 style="margin:5px 0 0 0; color:#1d4ed8;">KES <span id="purchase-aggregate-sum">0.00</span></h3>
+            </div>
+        </div>
+
+        <div style="overflow-x:auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Product Name</th>
+                        <th>Qty</th>
+                        <th>Unit Cost</th>
+                        <th>Total Cost</th>
+                        <th>Paid Upfront</th>
+                        <th>Balance Owed</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="purchases-table-body"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="debts-view" class="app-view-panel">
+    <div class="box">
+        <h4 class="panel-header-title" style="color:#b91c1c;">🛑 Active Open Corporate Debts Book</h4>
+        <p style="font-size: 13px; color:#6b7280; margin-top:-15px; margin-bottom:20px;">
+            System Rule Configuration: Accounts must clear balances within a 30-day chronological limit. Overdue files trigger instant deep-linked WhatsApp notification modules.
+        </p>
+        
+        <div style="overflow-x:auto;">
+            <table>
+                <thead>
+                    <tr style="background:#b91c1c; color: white;">
+                        <th>Customer Name</th>
+                        <th>Date Incurred</th>
+                        <th>Maturity Due Date</th>
+                        <th>Contact Target</th>
+                        <th>Principal Balance</th>
+                        <th>Overdue Standing</th>
+                        <th>Actions & Resolution Matrix</th>
+                    </tr>
+                </thead>
+                <tbody id="debts-table-body"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+        <div id="debt-payment-modal" class="box hidden" style="border-top: 4px solid #b91c1c; max-width:500px;">
+            <h4 class="panel-header-title">💳 Process Outstanding Debt Settlement</h4>
+            <p>Customer: <strong id="modal-debtor-name">-</strong></p>
+            <p>Current Unpaid Arrears: <strong style="color:#ef4444;">KES <span id="modal-debtor-balance">0.00</span></strong></p>
+            
+            <label>Amount Remitted for Payment (KES)</label>
+            <input type="number" id="debt-payment-amount" placeholder="Enter partial or full sum">
+            
+            <input type="hidden" id="modal-debtor-id">
+            <div class="form-split-grid">
+                <button class="btn" onclick="executeDebtPayment()">Post Settlement Entry</button>
+                <button class="btn btn-danger" onclick="document.getElementById('debt-payment-modal').classList.add('hidden')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- OPERATIONAL EXPENSE VIEW PANEL -->
+    <div id="expense-view" class="app-view-panel">
+        <div class="box" style="border-left: 4px solid #ef4444;">
+            <h4 class="panel-header-title" style="color:#ef4444;">💸 Log Operational Business Expenses</h4>
+            <div class="form-split-grid">
+                <div>
+                    <label>Expense Allocation Specification Statement</label>
+                    <input type="text" id="exp-desc" placeholder="e.g. Fuel Logistics, Auxiliary Wrapper Packings, Office Rent">
+                </div>
+                <div>
+                    <label>Disbursed Monetary Capital Charge (KES)</label>
+                    <input type="number" id="exp-amount" value="0">
+                </div>
+            </div>
+            <button class="btn btn-danger" onclick="submitNewExpense()" style="max-width: 250px;">Record Expense Entry Record</button>
+        </div>
+
+        <div class="box">
+            <h4 class="panel-header-title" style="color:#ef4444;">📝 Operational Expenditure Ledger History Log</h4>
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr style="background:#ef4444;">
+                            <th style="background:#ef4444;">Timestamp Reference</th>
+                            <th style="background:#ef4444;">Expense Line Details</th>
+                            <th style="background:#ef4444;">Total Cash Charge</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expenses-table-body">
+                        <tr>
+                            <td colspan="3" style="text-align:center; color:#888;">No tracked expenditure records loaded yet.</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- VIP SECURE VERIFICATION & SEPARATE ROOMS SECTION -->
-    <section class="container" style="margin-top: 50px;">
-        <div class="section-title">
-            <h2>VIP Secure Subscription Rooms</h2>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">M-Pesa code must match Kenyan Shillings exact rate, and PayPal ID must match exact USD amount. Non-matching codes will be rejected.</p>
-        </div>
-
-        <!-- Verification Box -->
-        <div class="vip-lock-container">
-            <h3><i class="fa-solid fa-shield-halved" style="color: var(--accent-gold);"></i> Verify M-Pesa (KES) or PayPal ($) Code/ID</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">Exact Validation: Daily ($5 / KES 650), Weekly ($15 / KES 1,950), Monthly ($45 / KES 5,850), Season ($120 / KES 15,600).</p>
-            <div class="verification-box">
-                <select id="verify-plan-select">
-                    <option value="daily">Daily VIP Pass ($5 / KES 650)</option>
-                    <option value="weekly">Weekly Access ($15 / KES 1,950)</option>
-                    <option value="monthly">Monthly VIP Pass ($45 / KES 5,850)</option>
-                    <option value="season">Season VIP Pass ($120 / KES 15,600)</option>
-                </select>
-                <input type="text" id="receipt-code-input" placeholder="Enter M-Pesa Code (KES) or PayPal ID ($)" required>
-                <button onclick="verifyReceiptCode()" class="btn-verify"><i class="fa-solid fa-key"></i> Verify & Open Subscribed Room</button>
-            </div>
-        </div>
-
-        <!-- 1. DAILY VIP TABLE -->
-        <div id="room-daily" style="display: none;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                <div>
-                    <span class="badge-won"><i class="fa-solid fa-star"></i> Daily VIP Room Unlocked ($5 / KES 650)</span>
-                    <span id="timer-daily" class="timer-display"></span>
-                </div>
-                <button onclick="lockRoom('daily')" class="btn-action btn-act-del">Lock Room</button>
-            </div>
-            <div class="table-wrapper">
-                <div class="table-responsive">
-                    <table class="prediction-table">
-                        <thead>
-                            <tr>
-                                <th>Time / League</th>
-                                <th>Match</th>
-                                <th>Prediction Tip</th>
-                                <th>Odds</th>
-                                <th>Status</th>
-                                <th class="admin-ctrl-col" style="display: none;">Controls</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-body-daily"></tbody>
-                    </table>
+    <!-- ANALYTICS STATEMENT VIEW PANEL -->
+    <div id="analytics-view" class="app-view-panel">
+        <div id="admin-financial-row" class="hidden">
+            <div class="box">
+                <h4 class="panel-header-title">📊 Corporate Dynamic Sales Statement Summary</h4>
+                <div class="metrics-breakdown-grid">
+                    <div class="metric-sub-card">
+                        <h5 style="margin-top:0; color:#4b5563;">Daily General Ledger</h5>
+                        <p>Gross Revenues: <strong>KES <span id="day-rev">0.00</span></strong></p>
+                        <p style="color:#ef4444;">Opex Overhead: KES <span id="day-exp">0.00</span></p>
+                        <p style="color:#2563eb;">Supply Purchases: KES <span id="day-pur">0.00</span></p>
+                        <p style="color:var(--primary); font-weight:bold;">Net Profit: KES <span id="day-prof">0.00</span></p>
+                    </div>
+                    <div class="metric-sub-card">
+                        <h5 style="margin-top:0; color:#4b5563;">Monthly General Ledger</h5>
+                        <p>Gross Revenues: <strong>KES <span id="month-rev">0.00</span></strong></p>
+                        <p style="color:#ef4444;">Opex Overhead: KES <span id="month-exp">0.00</span></p>
+                        <p style="color:#2563eb;">Supply Purchases: KES <span id="month-pur">0.00</span></p>
+                        <p style="color:var(--primary); font-weight:bold;">Net Profit: KES <span id="month-prof">0.00</span></p>
+                    </div>
+                    <div class="metric-sub-card">
+                        <h5 style="margin-top:0; color:#4b5563;">Annual General Ledger</h5>
+                        <p>Gross Revenues: <strong>KES <span id="year-rev">0.00</span></strong></p>
+                        <p style="color:#ef4444;">Opex Overhead: KES <span id="year-exp">0.00</span></p>
+                        <p style="color:#2563eb;">Supply Purchases: KES <span id="year-pur">0.00</span></p>
+                        <p style="color:var(--primary); font-weight:bold;">Net Profit: KES <span id="year-prof">0.00</span></p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- 2. WEEKLY VIP TABLE -->
-        <div id="room-weekly" style="display: none;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                <div>
-                    <span class="badge-won"><i class="fa-solid fa-star"></i> Weekly Access Room Unlocked ($15 / KES 1,950)</span>
-                    <span id="timer-weekly" class="timer-display"></span>
-                </div>
-                <button onclick="lockRoom('weekly')" class="btn-action btn-act-del">Lock Room</button>
-            </div>
-            <div class="table-wrapper">
-                <div class="table-responsive">
-                    <table class="prediction-table">
-                        <thead>
-                            <tr>
-                                <th>Time / League</th>
-                                <th>Match</th>
-                                <th>Prediction Tip</th>
-                                <th>Odds</th>
-                                <th>Status</th>
-                                <th class="admin-ctrl-col" style="display: none;">Controls</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-body-weekly"></tbody>
-                    </table>
+            <div class="box">
+                <h4 class="panel-header-title" style="color:#2563eb;">📦 Live Inventory Valuation Summary (Total Stock Holdings)</h4>
+                <div class="metrics-breakdown-grid">
+                    <div class="metric-sub-card valuation-card">
+                        <h5 style="color:#1e40af; margin-top:0;">Total Inventory Cost Value</h5>
+                        <p style="font-size:11px; margin-bottom:4px; color:#6b7280;">(Buying Price × Stock Qty)</p>
+                        <p style="font-weight:bold; font-size:18px; color:#1e40af;">KES <span id="total-stock-cost">0.00</span></p>
+                    </div>
+                    <div class="metric-sub-card valuation-card">
+                        <h5 style="color:#1e40af; margin-top:0;">Total Expected Value</h5>
+                        <p style="font-size:11px; margin-bottom:4px; color:#6b7280;">(Selling Price × Stock Qty)</p>
+                        <p style="font-weight:bold; font-size:18px; color:#1e40af;">KES <span id="total-stock-selling">0.00</span></p>
+                    </div>
+                    <div class="metric-sub-card valuation-card" style="background:#f0fdf4; border-color:#bbf7d0;">
+                        <h5 style="color:#16a34a; margin-top:0;">Projected Asset Profit</h5>
+                        <p style="font-size:11px; margin-bottom:4px; color:#6b7280;">(Expected Value - Cost Value)</p>
+                        <p style="font-weight:bold; font-size:18px; color:#16a34a;">KES <span id="total-stock-projected-profit">0.00</span></p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- 3. MONTHLY VIP TABLE -->
-        <div id="room-monthly" style="display: none;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                <div>
-                    <span class="badge-won"><i class="fa-solid fa-star"></i> Monthly VIP Pass Room Unlocked ($45 / KES 5,850)</span>
-                    <span id="timer-monthly" class="timer-display"></span>
-                </div>
-                <button onclick="lockRoom('monthly')" class="btn-action btn-act-del">Lock Room</button>
-            </div>
-            <div class="table-wrapper">
-                <div class="table-responsive">
-                    <table class="prediction-table">
-                        <thead>
-                            <tr>
-                                <th>Time / League</th>
-                                <th>Match</th>
-                                <th>Prediction Tip</th>
-                                <th>Odds</th>
-                                <th>Status</th>
-                                <th class="admin-ctrl-col" style="display: none;">Controls</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-body-monthly"></tbody>
-                    </table>
-                </div>
+        <div class="box">
+            <h4 class="panel-header-title" style="color:#f97316;">📈 Live Corporate Sales Ledger & Records</h4>
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Date</th>
+                            <th>Customer</th>
+                            <th>Items Purchased</th>
+                            <th>Total Paid</th>
+                            <th>Payment Gateway</th>
+                            <th class="profit-sensitive hidden">Net Profit</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sales-table-body">
+                        <tr>
+                            <td colspan="7" style="text-align:center;color:#888;">No sales records available.</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-
-        <!-- 4. SEASON VIP TABLE -->
-        <div id="room-season" style="display: none;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                <div>
-                    <span class="badge-won"><i class="fa-solid fa-star"></i> Season VIP Pass Room Unlocked ($120 / KES 15,600)</span>
-                    <span id="timer-season" class="timer-display"></span>
-                </div>
-                <button onclick="lockRoom('season')" class="btn-action btn-act-del">Lock Room</button>
-            </div>
-            <div class="table-wrapper">
-                <div class="table-responsive">
-                    <table class="prediction-table">
-                        <thead>
-                            <tr>
-                                <th>Time / League</th>
-                                <th>Match</th>
-                                <th>Prediction Tip</th>
-                                <th>Odds</th>
-                                <th>Status</th>
-                                <th class="admin-ctrl-col" style="display: none;">Controls</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-body-season"></tbody>
-                    </table>
-                </div>
+    </div>
+<!-- AI PREDICTIVE MOVING VELOCITY DASHBOARD -->
+<div class="box" style="border-top: 4px solid #9333ea;">
+    <h4 class="panel-header-title" style="color:#9333ea;">🧠 AI Predictive Inventory & Velocity Analytics Runway</h4>
+    <div class="form-split-grid">
+        <div>
+            <h5 style="margin: 0 0 10px 0; color:#7c3aed;">🏎️ Fast Moving Offerings (High Velocity)</h5>
+            <div style="overflow-x:auto;">
+                <table style="font-size:13px;">
+                    <thead>
+                        <tr style="background:#7c3aed;">
+                            <th>Product</th>
+                            <th>Sales Count</th>
+                            <th>AI Run Rate Prognosis</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ai-fast-moving-body"></tbody>
+                </table>
             </div>
         </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="container" style="margin-top: 60px;">
-        <div class="section-title" style="text-align: center;">
-            <h2>VIP Subscription Plans & Payments</h2>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Send exact amount to M-Pesa <strong>0704556502</strong> (KES) or PayPal ($), then submit your transaction code or PayPal ID above.</p>
-        </div>
-
-        <div class="pricing-grid">
-            <!-- Daily VIP Plan -->
-            <div class="price-card">
-                <div class="price-header">
-                    <h3>Daily VIP Pass</h3>
-                    <p>Single matchday ticket (24 Hrs)</p>
-                </div>
-                <div class="price">$5 <span>/ KES 650</span></div>
-                <ul class="features-list">
-                    <li><i class="fa-solid fa-check"></i> 2 - 3 Sure Daily VIP Odds</li>
-                    <li><i class="fa-solid fa-check"></i> Instant Slip Delivery</li>
-                </ul>
-                <div class="btn-pricing-group">
-                    <a href="https://wa.me/254704556502?text=Hi!%20I%20have%20sent%20KES%20650%20to%20M-Pesa%200704556502%20for%20Daily%20VIP" target="_blank" class="btn-pricing btn-payment-mpesa">
-                        <i class="fa-solid fa-mobile-screen"></i> Pay M-Pesa (KES 650)
-                    </a>
-                    <a href="https://paypal.me/juniorfelix9702/5" target="_blank" class="btn-pricing btn-payment-paypal">
-                        <i class="fa-brands fa-paypal"></i> Pay PayPal ($5)
-                    </a>
-                </div>
-            </div>
-
-            <!-- Weekly VIP Plan -->
-            <div class="price-card">
-                <div class="price-header">
-                    <h3>Weekly Access</h3>
-                    <p>Consistent daily tips (7 Days)</p>
-                </div>
-                <div class="price">$15 <span>/ KES 1,950</span></div>
-                <ul class="features-list">
-                    <li><i class="fa-solid fa-check"></i> 3-5 Daily VIP Tips</li>
-                    <li><i class="fa-solid fa-check"></i> Odds: 1.80 - 2.50</li>
-                </ul>
-                <div class="btn-pricing-group">
-                    <a href="https://wa.me/254704556502?text=Hi!%20I%20have%20sent%20KES%201950%20to%20M-Pesa%200704556502%20for%20Weekly%20VIP" target="_blank" class="btn-pricing btn-payment-mpesa">
-                        <i class="fa-solid fa-mobile-screen"></i> Pay M-Pesa (KES 1,950)
-                    </a>
-                    <a href="https://paypal.me/juniorfelix9702/15" target="_blank" class="btn-pricing btn-payment-paypal">
-                        <i class="fa-brands fa-paypal"></i> Pay PayPal ($15)
-                    </a>
-                </div>
-            </div>
-
-            <!-- Monthly VIP Plan -->
-            <div class="price-card popular">
-                <div class="plan-badge popular-badge">Best Value</div>
-                <div class="price-header">
-                    <h3>Monthly VIP Pass</h3>
-                    <p>Full package specials (30 Days)</p>
-                </div>
-                <div class="price">$45 <span>/ KES 5,850</span></div>
-                <ul class="features-list">
-                    <li><i class="fa-solid fa-check"></i> Full Daily VIP Accumulators</li>
-                    <li><i class="fa-solid fa-check"></i> Weekend Rollovers</li>
-                </ul>
-                <div class="btn-pricing-group">
-                    <a href="https://wa.me/254704556502?text=Hi!%20I%20have%20sent%20KES%205850%20to%20M-Pesa%200704556502%20for%20Monthly%20VIP" target="_blank" class="btn-pricing btn-payment-mpesa">
-                        <i class="fa-solid fa-mobile-screen"></i> Pay M-Pesa (KES 5,850)
-                    </a>
-                    <a href="https://paypal.me/juniorfelix9702/45" target="_blank" class="btn-pricing btn-payment-paypal">
-                        <i class="fa-brands fa-paypal"></i> Pay PayPal ($45)
-                    </a>
-                </div>
-            </div>
-
-            <!-- Elite Season VIP Pass -->
-            <div class="price-card elite">
-                <div class="plan-badge elite-badge">Pro Tier</div>
-                <div class="price-header">
-                    <h3>Season VIP Pass</h3>
-                    <p>Unrestricted long-term access (90 Days)</p>
-                </div>
-                <div class="price">$120 <span>/ KES 15,600</span></div>
-                <ul class="features-list">
-                    <li><i class="fa-solid fa-check"></i> All VIP Channels & Groups</li>
-                    <li><i class="fa-solid fa-check"></i> High-Odds Jackpots</li>
-                </ul>
-                <div class="btn-pricing-group">
-                    <a href="https://wa.me/254704556502?text=Hi!%20I%20have%20sent%20KES%2015600%20to%20M-Pesa%200704556502%20for%20Season%20VIP" target="_blank" class="btn-pricing btn-payment-mpesa">
-                        <i class="fa-solid fa-mobile-screen"></i> Pay M-Pesa (KES 15,600)
-                    </a>
-                    <a href="https://paypal.me/juniorfelix9702/120" target="_blank" class="btn-pricing btn-payment-paypal">
-                        <i class="fa-brands fa-paypal"></i> Pay PayPal ($120)
-                    </a>
-                </div>
+        <div>
+            <h5 style="margin: 0 0 10px 0; color:#b45309;">🐢 Slow / Non-Moving Items</h5>
+            <div style="overflow-x:auto;">
+                <table style="font-size:13px;">
+                    <thead>
+                        <tr style="background:#d97706;">
+                            <th>Product</th>
+                            <th>On Hand</th>
+                            <th>AI Capital Release Plan</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ai-slow-moving-body"></tbody>
+                </table>
             </div>
         </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p class="footer-disclaimer">Send Payment to M-Pesa: <strong>0704556502</strong> (KES) or PayPal ($) | Email: <strong>juniorfelix9702@gmail.com</strong></p>
-            <p class="footer-disclaimer">Disclaimer: Predictions are derived from sports statistical modeling. Gamble responsibly. Restricted to 18+</p>
-            <p>&copy; 2026 ApexPredict. All rights reserved.</p>
-        </div>
+    </div>
+</div>
+    <footer class="system-footer">
+        <div class="footer-title">⚡ SYSTEM ENGINEERING & ARCHITECTURE SPECIFICATION</div>
+        <div class="footer-meta">Developed &amp; Maintained by: <strong>Millicent Odida</strong> (Software Developer)</div>
+        <div class="footer-meta">Head of Department (HOD) - Technical Science</div>
+        <div class="footer-meta">Institution: <strong>St. Pius Uriri High School</strong></div>
+        <a href="tel:0725514546" class="footer-contact">📞 Contact Engineering Desk: 0725514546</a>
     </footer>
+<div id="developer-admin-panel" class="box hidden" style="border: 2px dashed #9333ea; margin-top: 40px; background: #fdf4ff;">
+    <h4 class="panel-header-title" style="color:#7c3aed; margin-bottom: 5px;">🔑 Developer Subscription Key Generator</h4>
+    <p style="font-size: 13px; color:#6b7280; margin-top:0; margin-bottom:15px;">
+        Select the target expiration date and paste the Request ID to generate a 30-day subscription token.
+    </p>
+    <div class="form-split-grid" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px; align-items: end;">
+        <div>
+            <label style="color:#7c3aed; font-weight: bold;">Client Device Request ID</label>
+            <input type="text" id="admin-input-req-id" placeholder="MM-REQ-XXXX">
+        </div>
+        <div>
+            <label style="color:#7c3aed; font-weight: bold;">License Valid Until</label>
+            <input type="date" id="admin-expiry-date">
+        </div>
+        <div>
+            <button class="btn" onclick="generateClientKey()" style="background:#7c3aed; margin-top:0; margin-bottom: 16px;">Compute Subscription Key</button>
+        </div>
+    </div>
+    <div id="admin-key-output-wrapper" class="hidden" style="margin-top: 15px; padding: 15px; background: #fff; border: 1px solid #e9d5ff; border-radius: 6px; text-align: center;">
+        <span style="font-size: 12px; font-weight: bold; color: #6b7280; display: block; margin-bottom: 5px;">GENERATE KEY FOR CLIENT:</span>
+        <code id="admin-key-output-display" style="font-size: 18px; font-weight: bold; color: #111827; background: #f3f4f6; padding: 6px 15px; border-radius: 4px; border: 1px solid #e5e7eb; display: inline-block; letter-spacing: 1px;">-</code>
+    </div>
+</div></main>
 
-    <!-- FIREBASE & LOGIC ENGINE -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-        import { getDatabase, ref, push, onValue, remove, update } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
+<script>
+// ==========================================
+// 🛡️ PROPONENT HARDWARE LICENSE LOCK ENGINE
+// ==========================================
+(function() {
+    function generateDeviceFingerprint() {
+        const screenSpecs = window.screen.width + "x" + window.screen.height + "x" + window.screen.colorDepth;
+        const userAgentLen = navigator.userAgent.length;
+        let hash = 0;
+        const rawString = screenSpecs + userAgentLen + "MegaMartSystem2026";
+        for (let i = 0; i < rawString.length; i++) {
+            hash = (hash << 5) - hash + rawString.charCodeAt(i);
+            hash |= 0; 
+        }
+        return "MM-REQ-" + Math.abs(hash).toString(16).toUpperCase();
+    }
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyDaaDG4JWCz0pArvnn3fkJSm4XRRc24ZwI",
-            authDomain: "felixtips-79988.firebaseapp.com",
-            databaseURL: "https://felixtips-79988-default-rtdb.firebaseio.com",
-            projectId: "felixtips-79988",
-            storageBucket: "felixtips-79988.firebasestorage.app",
-            messagingSenderId: "1004087296887",
-            appId: "1:1004087296887:web:3de9a6788e3c3d889d1772",
-            measurementId: "G-J1V75TT0BN"
-        };
+    function verifyActivationKey(reqId, activationKey) {
+        if (!activationKey) return false;
+        if (activationKey.trim() === "DEVELOPER-BYPASS-2026") return true;
+        let checksum = 0;
+        for (let i = 0; i < reqId.length; i++) {
+            checksum += reqId.charCodeAt(i) * (i + 1);
+        }
+        const masterKeyExpected = "MM-KEY-" + (checksum * 7);
+        return activationKey.trim() === masterKeyExpected;
+    }
 
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
+    const deviceUID = generateDeviceFingerprint();
+    let currentSavedKey = localStorage.getItem('mm_license_activation_key');
 
-        let predictions = [];
-        let isAdminLoggedIn = false;
-
-        const predictionsRef = ref(db, 'predictions');
-
-        onValue(predictionsRef, (snapshot) => {
-            const data = snapshot.val();
-            predictions = [];
-            if (data) {
-                Object.keys(data).forEach((key) => {
-                    predictions.push({ id: key, ...data[key] });
-                });
-                predictions.reverse();
-            } else {
-                const initialPredictions = [
-                    { league: "Premier League", time: "20:00 UTC", match: "Arsenal vs Chelsea", tip: "Home Win (1)", odds: "1.85", status: "Pending", tier: "free" },
-                    { league: "VIP Daily", time: "18:30 UTC", match: "Real Madrid vs Valencia", tip: "Over 2.5 Goals", odds: "1.65", status: "WON", tier: "daily" }
-                ];
-                initialPredictions.forEach(game => push(predictionsRef, game));
-                return;
-            }
-            renderPredictions();
+    if (currentSavedKey && currentSavedKey.trim() === "DEVELOPER-BYPASS-2026") {
+        document.addEventListener("DOMContentLoaded", () => {
+            const adminPanel = document.getElementById("developer-admin-panel");
+            if (adminPanel) adminPanel.classList.remove("hidden");
         });
+    }
 
-        window.renderPredictions = function() {
-            const freeTbody = document.getElementById('free-table-body');
-            const dailyTbody = document.getElementById('table-body-daily');
-            const weeklyTbody = document.getElementById('table-body-weekly');
-            const monthlyTbody = document.getElementById('table-body-monthly');
-            const seasonTbody = document.getElementById('table-body-season');
-            
-            freeTbody.innerHTML = '';
-            dailyTbody.innerHTML = '';
-            weeklyTbody.innerHTML = '';
-            monthlyTbody.innerHTML = '';
-            seasonTbody.innerHTML = '';
+    if (!verifyActivationKey(deviceUID, currentSavedKey)) {
+        const inputKey = prompt(
+            "🛑 UNAUTHORIZED SYSTEM COPY DETECTED\n\n" +
+            "This software is copy-protected and locked to its original device.\n" +
+            "To activate this device terminal, please send your 'Device Request ID' to the software owner.\n\n" +
+            "Device Request ID: " + deviceUID + "\n\n" +
+            "Enter your Activation Authorization Key:"
+        );
 
-            let counts = { free: 0, daily: 0, weekly: 0, monthly: 0, season: 0 };
-
-            predictions.forEach((item) => {
-                let badgeClass = 'badge-pending';
-                if (item.status === 'WON') badgeClass = 'badge-won';
-                if (item.status === 'LOST') badgeClass = 'badge-lost';
-
-                let adminControls = '';
-                if (isAdminLoggedIn) {
-                    adminControls = `
-                        <td>
-                            <div class="action-btns">
-                                <button class="btn-action btn-act-won" onclick="updateStatus('${item.id}', 'WON')">W</button>
-                                <button class="btn-action btn-act-lost" onclick="updateStatus('${item.id}', 'LOST')">L</button>
-                                <button class="btn-action btn-act-del" onclick="deleteGame('${item.id}')"><i class="fa-solid fa-trash"></i></button>
-                            </div>
-                        </td>
-                    `;
-                }
-
-                const tier = item.tier || 'free';
-
-                if (tier === 'free') {
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
-                        <td>
-                            <div class="league-tag">${item.league}</div><br>
-                            <small style="color:var(--text-muted); font-size:0.7rem;">${item.time}</small>
-                        </td>
-                        <td><strong>${item.match}</strong></td>
-                        <td>${item.tip}</td>
-                        <td><span class="odds">${item.odds}</span></td>
-                        <td><span class="${badgeClass}">${item.status}</span></td>
-                        ${adminControls}
-                    `;
-                    freeTbody.appendChild(tr);
-                    counts.free++;
-                } else {
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
-                        <td>
-                            <div class="league-tag">${item.league}</div><br>
-                            <small style="color:var(--text-muted); font-size:0.7rem;">${item.time}</small>
-                        </td>
-                        <td><strong>${item.match}</strong></td>
-                        <td>${item.tip}</td>
-                        <td><span class="odds">${item.odds}</span></td>
-                        <td><span class="${badgeClass}">${item.status}</span></td>
-                        ${adminControls}
-                    `;
-                    if (tier === 'daily') { dailyTbody.appendChild(tr); counts.daily++; }
-                    else if (tier === 'weekly') { weeklyTbody.appendChild(tr); counts.weekly++; }
-                    else if (tier === 'monthly') { monthlyTbody.appendChild(tr); counts.monthly++; }
-                    else if (tier === 'season') { seasonTbody.appendChild(tr); counts.season++; }
-                }
+        if (inputKey && verifyActivationKey(deviceUID, inputKey)) {
+            localStorage.setItem('mm_license_activation_key', inputKey.trim());
+            alert("✅ Terminal Activated Successfully! Reloading workspace...");
+            window.location.reload();
+        } else {
+            document.addEventListener("DOMContentLoaded", () => {
+                document.body.innerHTML = `
+                    <div style="font-family:sans-serif; text-align:center; padding:100px 20px; background:#fee2e2; color:#b91c1c; height:100vh; box-sizing:border-box;">
+                        <h1 style="font-size:48px; margin-bottom:10px;">🔒 System Terminal Locked</h1>
+                        <p style="font-size:18px; color:#7f1d1d;">This software copy is not authorized for use on this machine environment.</p>
+                        <hr style="max-width:400px; border:1px solid #fca5a5; margin:30px auto;">
+                        <p style="font-size:14px; color:#4b5563;">Provide this code to your supplier for a valid activation file clearance license:</p>
+                        <code style="background:white; padding:10px 20px; border-radius:4px; font-size:20px; font-weight:bold; border:1px solid #f87171; color:#111827;">${deviceUID}</code>
+                    </div>
+                `;
             });
+            throw new Error("Application terminated: Missing execution license.");
+        }
+    }
+})();
 
-            if (counts.free === 0) freeTbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No free tips available.</td></tr>`;
-            if (counts.daily === 0) dailyTbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No Daily VIP matches posted yet.</td></tr>`;
-            if (counts.weekly === 0) weeklyTbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No Weekly VIP matches posted yet.</td></tr>`;
-            if (counts.monthly === 0) monthlyTbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No Monthly VIP matches posted yet.</td></tr>`;
-            if (counts.season === 0) seasonTbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No Season VIP matches posted yet.</td></tr>`;
+let categories = ["Grains", "Oils", "Dairy", "Snacks"];
 
-            refreshRoomVisibility();
+let products = [
+    { id: 101, name: "Premium Rice 5kg", category: "Grains", costPrice: 900, price: 1250, stock: 50, reorderLevel: 15, dateModified: new Date().toLocaleDateString() },
+    { id: 102, name: "Cooking Oil 2L", category: "Oils", costPrice: 510, price: 680, stock: 8, reorderLevel: 10, dateModified: new Date().toLocaleDateString() },
+    { id: 103, name: "Fresh Milk 1L", category: "Dairy", costPrice: 80, price: 110, stock: 100, reorderLevel: 20, dateModified: new Date().toLocaleDateString() }
+];
+
+let users = {
+    "admin@mart.com": { password: "admin123", role: "admin", name: "Alice Manager" },
+    "cashier@mart.com": { password: "cashier123", role: "cashier", name: "Bob Teller" }
+};
+
+let salesLedgerHistory = [];
+let expenseLedgerHistory = [];
+let purchaseLedgerHistory = [];
+let debtBookRegistry = [];
+
+let activeSessionUser = null;
+let cart = {};
+
+document.getElementById('purchase-date').valueAsDate = new Date();
+
+function switchSystemViewPanel(targetPanelId, triggerButtonElement) {
+    document.querySelectorAll('.app-view-panel').forEach(panel => {
+        panel.classList.remove('active-panel');
+    });
+    document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+        btn.classList.remove('active-tab');
+    });
+
+    const destinationViewNode = document.getElementById(targetPanelId);
+    if(destinationViewNode) {
+        destinationViewNode.classList.add('active-panel');
+    }
+    if(triggerButtonElement) {
+        triggerButtonElement.classList.add('active-tab');
+    }
+}
+
+function togglePaymentFieldView() {
+    const paymentMode = document.getElementById('payment-mode-select').value;
+    const cashWrapper = document.getElementById('cash-tendered-wrapper');
+    const mpesaWrapper = document.getElementById('mpesa-phone-wrapper');
+    const debtWrapper = document.getElementById('debt-contact-wrapper');
+    
+    cashWrapper.classList.add('hidden');
+    mpesaWrapper.classList.add('hidden');
+    debtWrapper.classList.add('hidden');
+    
+    if (paymentMode === 'Cash') {
+        cashWrapper.classList.remove('hidden');
+        calculateLiveCashChange();
+    } else if (paymentMode === 'M-Pesa') {
+        mpesaWrapper.classList.remove('hidden');
+    } else if (paymentMode === 'Debt') {
+        debtWrapper.classList.remove('hidden');
+    }
+}
+
+function calculateLiveCashChange() {
+    let basketTotal = 0;
+    Object.keys(cart).forEach(id => {
+        const prod = products.find(p => p.id === parseInt(id));
+        if(prod) basketTotal += prod.price * cart[id];
+    });
+
+    const tenderedInput = document.getElementById('cash-tendered-input').value;
+    const displayFeedback = document.getElementById('change-display-val');
+
+    if (!tenderedInput || isNaN(tenderedInput)) {
+        displayFeedback.innerText = "KES 0.00";
+        displayFeedback.style.color = "#4b5563";
+        return;
+    }
+
+    const cashTendered = parseFloat(tenderedInput);
+    const changeDelta = cashTendered - basketTotal;
+
+    if (changeDelta >= 0) {
+        displayFeedback.innerText = `KES ${changeDelta.toFixed(2)}`;
+        displayFeedback.style.color = "#16a34a";
+    } else {
+        displayFeedback.innerText = `Insufficient Payment (Shortage: KES ${Math.abs(changeDelta).toFixed(2)})`;
+        displayFeedback.style.color = "#ef4444";
+    }
+}
+
+function executeLogin(){
+    const email = document.getElementById('auth-email').value.trim();
+    const password = document.getElementById('auth-password').value;
+
+    if(users[email] && users[email].password === password){
+        activeSessionUser = users[email];
+        document.getElementById('auth-section').classList.add('hidden');
+        document.getElementById('logout-btn').classList.remove('hidden');
+        document.getElementById('welcome-text').innerText = activeSessionUser.name + " (" + activeSessionUser.role + ")";
+
+        if(activeSessionUser.role === 'admin'){
+            document.getElementById('admin-financial-row').classList.remove('hidden');
+            document.querySelectorAll('.admin-restricted').forEach(el => el.classList.remove('hidden'));
+            document.querySelectorAll('.staff-accessible').forEach(el => el.classList.remove('hidden'));
+            document.querySelectorAll('.profit-sensitive').forEach(el => el.classList.remove('hidden'));
+        } else if(activeSessionUser.role === 'cashier') {
+            document.getElementById('admin-financial-row').classList.add('hidden');
+            document.querySelectorAll('.admin-restricted').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.staff-accessible').forEach(el => el.classList.remove('hidden'));
+            document.querySelectorAll('.profit-sensitive').forEach(el => el.classList.add('hidden'));
         }
 
-        // ADMIN-ONLY GENERAL FREE GAMES SINGLE COMPILED IMAGE DOWNLOADER (CANVAS RENDERER)
-        window.downloadAllFreeTipsImage = function() {
-            if (!isAdminLoggedIn) {
-                alert("Unauthorized: Only administrators can download the compiled free games image.");
-                return;
+        switchSystemViewPanel('pos-view', document.getElementById('nav-btn-pos'));
+        syncMarketDisplayGrid();
+    }else{
+        alert("Invalid Login Credentials");
+    }
+}
+
+function logoutSession(){
+    location.reload();
+}
+
+function submitNewCategory(){
+    const label = document.getElementById('new-cat-name').value.trim();
+    if(!label){
+        alert("Please enter a valid category name.");
+        return;
+    }
+    if(categories.map(c => c.toLowerCase()).includes(label.toLowerCase())) {
+        alert("This category already exists.");
+        return;
+    }
+    categories.push(label);
+    document.getElementById('new-cat-name').value = "";
+    syncMarketDisplayGrid();
+}
+
+function submitNewProduct() {
+    const name = document.getElementById('p-name').value.trim();
+    const category = document.getElementById('p-category').value;
+    const cost = parseFloat(document.getElementById('p-cost').value);
+    const price = parseFloat(document.getElementById('p-price').value);
+    const stock = parseInt(document.getElementById('p-stock').value);
+    const reorder = parseInt(document.getElementById('p-reorder').value);
+
+    if(!name || isNaN(cost) || isNaN(price) || isNaN(stock) || isNaN(reorder) || cost <= 0 || price <= 0 || stock < 0 || reorder < 0) {
+        alert("Please check your product fields. Values must be clean and logical.");
+        return;
+    }
+
+    products.push({
+        id: Date.now(),
+        name,
+        category,
+        costPrice: cost,
+        price,
+        stock,
+        reorderLevel: reorder,
+        dateModified: new Date().toLocaleDateString()
+    });
+
+    document.getElementById('p-name').value = "";
+    syncMarketDisplayGrid();
+}
+
+function submitNewStockPurchase() {
+    const productId = parseInt(document.getElementById('purchase-product-select').value);
+    const qty = parseInt(document.getElementById('purchase-qty').value);
+    const unitCost = parseFloat(document.getElementById('purchase-unit-cost').value);
+    const inputDateStr = document.getElementById('purchase-date').value;
+    
+    const amountPaidInput = document.getElementById('purchase-amount-paid');
+    const amountPaid = amountPaidInput ? (parseFloat(amountPaidInput.value) || 0) : 0;
+
+    if(isNaN(qty) || qty <= 0 || isNaN(unitCost) || unitCost <= 0 || isNaN(amountPaid) || amountPaid < 0 || !inputDateStr) {
+        alert("Ensure clean valid numerical parameters are applied to purchase lines.");
+        return;
+    }
+
+    const matchedProduct = products.find(p => p.id === productId);
+    if(!matchedProduct) return;
+
+    const totalCost = qty * unitCost;
+    const supplierDebt = Math.max(0, totalCost - amountPaid);
+
+    matchedProduct.stock += qty;
+    matchedProduct.dateModified = new Date().toLocaleDateString();
+
+    purchaseLedgerHistory.push({
+        id: "PUR-" + Date.now(),
+        productId: productId,
+        productName: matchedProduct.name,
+        qty: qty,
+        unitCost: unitCost,
+        totalCost: totalCost,
+        amountPaid: amountPaid,
+        supplierDebt: supplierDebt,
+        rawTimestamp: new Date(inputDateStr)
+    });
+
+    alert(`Successfully processed supply purchase invoice for: ${matchedProduct.name}. Inventory augmented.`);
+    
+    document.getElementById('purchase-qty').value = "10";
+    if (amountPaidInput) amountPaidInput.value = "";
+    
+    if(typeof renderPurchaseLedgerGrid === 'function') {
+        renderPurchaseLedgerGrid();
+    }
+    syncMarketDisplayGrid();
+}
+
+function renderPurchaseLedgerGrid() {
+    const tableBody = document.getElementById('purchases-table-body');
+    if (!tableBody) return;
+
+    tableBody.innerHTML = "";
+    let aggregateSum = 0;
+
+    const filterSelect = document.getElementById('purchase-filter-select');
+    const activeFilter = filterSelect ? filterSelect.value : 'all';
+
+    const now = new Date();
+
+    purchaseLedgerHistory.forEach(purchase => {
+        const purchaseDate = new Date(purchase.rawTimestamp);
+        
+        let matchesFilter = true;
+        if (activeFilter === 'daily') {
+            matchesFilter = purchaseDate.toDateString() === now.toDateString();
+        } else if (activeFilter === 'weekly') {
+            const oneWeekAgo = new Date();
+            oneWeekAgo.setDate(now.getDate() - 7);
+            matchesFilter = purchaseDate >= oneWeekAgo;
+        } else if (activeFilter === 'monthly') {
+            matchesFilter = purchaseDate.getMonth() === now.getMonth() && purchaseDate.getFullYear() === now.getFullYear();
+        } else if (activeFilter === 'yearly') {
+            matchesFilter = purchaseDate.getFullYear() === now.getFullYear();
+        }
+
+        if (!matchesFilter) return;
+
+        const currentQty = purchase.qty !== undefined ? purchase.qty : (purchase.quantity || 0);
+        const currentUnitCost = purchase.unitCost !== undefined ? purchase.unitCost : (purchase.unitPrice || 0);
+
+        const totalCost = purchase.totalCost || (currentQty * currentUnitCost);
+        const amountPaid = purchase.amountPaid !== undefined ? purchase.amountPaid : totalCost;
+        const supplierDebt = purchase.supplierDebt !== undefined ? purchase.supplierDebt : (totalCost - amountPaid);
+
+        aggregateSum += totalCost;
+
+        let actionButtonHTML = '';
+        if (supplierDebt > 0) {
+            actionButtonHTML = `<button class="btn" style="background:#2563eb; color:white; padding:2px 8px; border:none; border-radius:4px; cursor:pointer; margin-right:5px;" onclick="settlePurchaseDebt('${purchase.id}')">Pay</button>`;
+        }
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${purchaseDate.toLocaleDateString()}</td>
+            <td>${purchase.productName}</td>
+            <td>${currentQty}</td>
+            <td>${parseFloat(currentUnitCost).toFixed(2)}</td>
+            <td>${parseFloat(totalCost).toFixed(2)}</td>
+            <td style="color: #16a34a; font-weight: 500;">${parseFloat(amountPaid).toFixed(2)}</td>
+            <td style="color: #dc2626; font-weight: 500;">${parseFloat(supplierDebt).toFixed(2)}</td>
+            <td>
+                ${actionButtonHTML}
+                <button class="btn" style="background:#ef4444; color:white; padding:2px 8px; border:none; border-radius:4px; cursor:pointer;" onclick="deletePurchaseRecord('${purchase.id}')">Delete</button>
+            </td>
+        `;
+        tableBody.appendChild(row);
+    });
+
+    const aggregateValueLabel = document.getElementById('purchase-aggregate-sum');
+    if (aggregateValueLabel) {
+        aggregateValueLabel.innerText = aggregateSum.toFixed(2);
+    }
+}
+
+function submitNewExpense() {
+    const desc = document.getElementById('exp-desc').value.trim();
+    const val = parseFloat(document.getElementById('exp-amount').value);
+
+    if(!desc || isNaN(val) || val <= 0) {
+        alert("Please map out a valid description string and a positive structural expense value.");
+        return;
+    }
+
+    expenseLedgerHistory.push({
+        id: "EXP-" + Date.now(),
+        description: desc,
+        amount: val,
+        timeString: new Date().toLocaleString(),
+        rawTimestamp: new Date()
+    });
+
+    document.getElementById('exp-desc').value = "";
+    document.getElementById('exp-amount').value = "0";
+
+    syncMarketDisplayGrid();
+}
+
+function calculateItemMetrics(productId){
+    const filter = document.getElementById('inventory-period-filter').value;
+    const now = new Date();
+    let qtySold = 0;
+    let totalSales = 0;
+    let totalProfit = 0;
+
+    salesLedgerHistory.forEach(sale=>{
+        const saleDate = new Date(sale.rawTimestamp);
+        let allow = false;
+
+        if(filter === "daily"){
+            allow = saleDate.toDateString() === now.toDateString();
+        }
+        else if(filter === "weekly"){
+            const diff = (now - saleDate)/(1000*60*60*24);
+            allow = diff <= 7;
+        }
+        else{
+            allow = saleDate.getMonth() === now.getMonth() && saleDate.getFullYear() === now.getFullYear();
+        }
+
+        if(!allow) return;
+
+        sale.items.forEach(item=>{
+            if(item.id === productId){
+                qtySold += item.qty;
+                totalSales += item.qty * item.price;
+                totalProfit += item.qty * (item.price - item.cost);
             }
+        });
+    });
 
-            const freeGames = predictions.filter(item => (!item.tier || item.tier === 'free'));
+    return { qtySold, totalSales, totalProfit };
+}
 
-            if (freeGames.length === 0) {
-                alert("There are no free tips available to compile.");
-                return;
-            }
+function syncMarketDisplayGrid() {
+    const catFilter = document.getElementById('global-category-filter');
+    const pCatSelect = document.getElementById('p-category');
+    const purchaseProdSelect = document.getElementById('purchase-product-select');
+    
+    const selectedCat = catFilter.value;
+    
+    catFilter.innerHTML = '<option value="ALL">Show All Categories</option>';
+    pCatSelect.innerHTML = '';
+    purchaseProdSelect.innerHTML = '';
 
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            
-            const width = 800;
-            const headerHeight = 150;
-            const itemHeight = 75;
-            const footerHeight = 130;
-            const totalHeight = headerHeight + (freeGames.length * itemHeight) + footerHeight;
+    categories.forEach(c => {
+        catFilter.innerHTML += `<option value="${c}" ${selectedCat === c ? 'selected':''}>${c}</option>`;
+        pCatSelect.innerHTML += `<option value="${c}">${c}</option>`;
+    });
 
-            canvas.width = width;
-            canvas.height = totalHeight;
+    products.forEach(p => {
+        purchaseProdSelect.innerHTML += `<option value="${p.id}">${p.name} (Current Stock: ${p.stock})</option>`;
+    });
 
-            // Background Fill (Main Dark)
-            ctx.fillStyle = '#070a14';
-            ctx.fillRect(0, 0, width, totalHeight);
+    const prodContainer = document.getElementById('product-container');
+    prodContainer.innerHTML = '';
 
-            // Header Banner Container Background
-            ctx.fillStyle = '#0f172a';
-            ctx.fillRect(0, 0, width, headerHeight);
+    products.forEach(p => {
+        if (selectedCat !== 'ALL' && p.category !== selectedCat) return;
 
-            // Header Accent Line on Top
-            ctx.fillStyle = '#10b981';
-            ctx.fillRect(0, 0, width, 5);
+        let trackingStyle = "badge-ok";
+        let statusTxt = "In Stock";
+        if(p.stock <= 0) { trackingStyle="badge-alert"; statusTxt="Out of Stock"; }
+        else if(p.stock <= p.reorderLevel) { trackingStyle="badge-warn"; statusTxt="Low Stock Warning"; }
 
-            // Title
-            ctx.fillStyle = '#10b981';
-            ctx.font = 'bold 26px Inter, sans-serif';
-            ctx.fillText('APEXPREDICT', 40, 48);
+        prodContainer.innerHTML += `
+            <div class="product-card">
+                <div>
+                    <span class="badge ${trackingStyle}">${statusTxt}</span>
+                    <h4 style="margin:10px 0 5px 0;">${p.name}</h4>
+                    <small style="color:#6b7280; display:block; margin-bottom:8px;">Dept: ${p.category}</small>
+                    <strong style="color:var(--primary); font-size:16px;">KES ${p.price.toFixed(2)}</strong>
+                </div>
+                <div>
+                    <div style="margin-top:12px; display:flex; gap:5px;">
+                        <input type="number" id="pos-qty-${p.id}" value="1" min="1" class="mini-stock-input" style="margin:0; width:60px;">
+                        <button class="btn btn-mini" onclick="addBasketItem(${p.id})" style="flex-grow:1;">+ Add To Basket</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
 
-            ctx.fillStyle = '#f8fafc';
-            ctx.font = 'bold 22px Inter, sans-serif';
-            ctx.fillText('Today All-in-One Free Tips Batch', 40, 85);
+    renderCartViewEngine();
+    renderInventoryLedgerTable();
+    renderPurchaseLedgerGrid();
+    renderDebtRegistryTable();
+    renderExpenseLedgerTable();
+    updateCorporateLedgerStats();
+}
 
-            ctx.fillStyle = '#94a3b8';
-            ctx.font = '14px Inter, sans-serif';
-            ctx.fillText('Generated Date: ' + new Date().toLocaleDateString() + ' | Total Games: ' + freeGames.length, 40, 115);
+function addBasketItem(productId) {
+    const inputQty = parseInt(document.getElementById(`pos-qty-${productId}`).value);
+    if(isNaN(inputQty) || inputQty <= 0) {
+        alert("Enter a clean quantitative value.");
+        return;
+    }
 
-            // Draw Each Free Game Item in a Single Master Image
-            let currentY = headerHeight + 20;
-            freeGames.forEach((game, index) => {
-                // Card Box Background
-                ctx.fillStyle = '#0f172a';
-                if (ctx.roundRect) {
-                    ctx.beginPath();
-                    ctx.roundRect(40, currentY, width - 80, 60, 8);
-                    ctx.fill();
-                } else {
-                    ctx.fillRect(40, currentY, width - 80, 60);
-                }
+    const matchedProd = products.find(p => p.id === productId);
+    if(!matchedProd) return;
 
-                ctx.strokeStyle = '#1e293b';
-                ctx.lineWidth = 1;
-                if (ctx.roundRect) {
-                    ctx.beginPath();
-                    ctx.roundRect(40, currentY, width - 80, 60, 8);
-                    ctx.stroke();
-                } else {
-                    ctx.strokeRect(40, currentY, width - 80, 60);
-                }
+    if(matchedProd.stock < inputQty) {
+        alert(`Insufficient structural warehouse availability. Only ${matchedProd.stock} items remaining.`);
+        return;
+    }
 
-                // League & Time
-                ctx.fillStyle = '#f59e0b';
-                ctx.font = 'bold 12px Inter, sans-serif';
-                ctx.fillText((game.league || 'League').toUpperCase() + ' • ' + (game.time || ''), 55, currentY + 22);
+    if(cart[productId]) {
+        cart[productId] += inputQty;
+    } else {
+        cart[productId] = inputQty;
+    }
 
-                // Match Teams
-                ctx.fillStyle = '#f8fafc';
-                ctx.font = 'bold 14px Inter, sans-serif';
-                ctx.fillText(game.match || '', 55, currentY + 45);
+    renderCartViewEngine();
+}
 
-                // Prediction Tip
-                ctx.fillStyle = '#10b981';
-                ctx.font = 'bold 13px Inter, sans-serif';
-                ctx.fillText('Tip: ' + (game.tip || ''), 340, currentY + 36);
+function modifyCartQty(productId, delta) {
+    if(!cart[productId]) return;
+    cart[productId] += delta;
+    if(cart[productId] <= 0) {
+        delete cart[productId];
+    } else {
+        const matchedProd = products.find(p => p.id === productId);
+        if(matchedProd && matchedProd.stock < cart[productId]) {
+            alert("Requested total count exceeds warehouse capacity limits.");
+            cart[productId] -= delta;
+        }
+    }
+    renderCartViewEngine();
+}
 
-                // Odds
-                ctx.fillStyle = '#f59e0b';
-                ctx.font = 'bold 14px Inter, sans-serif';
-                ctx.fillText('Odds: ' + (game.odds || ''), 520, currentY + 36);
+function renderCartViewEngine() {
+    const listNode = document.getElementById('cart-list');
+    listNode.innerHTML = '';
+    let rollingSum = 0;
 
-                // Status (WON / LOST / Pending) with dynamic color coding
-                const statusText = (game.status || 'Pending').toUpperCase();
-                if (statusText === 'WON') {
-                    ctx.fillStyle = '#10b981'; // Green for Won
-                } else if (statusText === 'LOST') {
-                    ctx.fillStyle = '#ef4444'; // Red for Lost
-                } else {
-                    ctx.fillStyle = '#f59e0b'; // Gold for Pending
-                }
-                ctx.font = 'bold 13px Inter, sans-serif';
-                ctx.fillText(statusText, 640, currentY + 36);
+    Object.keys(cart).forEach(id => {
+        const prod = products.find(p => p.id === parseInt(id));
+        if(!prod) return;
 
-                currentY += itemHeight;
-            });
+        const lineCost = prod.price * cart[id];
+        rollingSum += lineCost;
 
-            // Footer Branding / Promotion Section on the Image
-            ctx.fillStyle = '#0f172a';
-            ctx.fillRect(0, totalHeight - footerHeight, width, footerHeight);
+        listNode.innerHTML += `
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #f3f4f6;">
+                <div style="max-width:140px;">
+                    <span style="font-size:13px; font-weight:600; display:block;">${prod.name}</span>
+                    <small style="color:#6b7280;">${cart[id]} × KES ${prod.price}</small>
+                </div>
+                <div style="display:flex; gap:4px; align-items:center;">
+                    <button class="btn btn-mini" onclick="modifyCartQty(${prod.id}, -1)" style="padding:2px 8px; background:#ef4444;">-</button>
+                    <span style="font-size:13px; font-weight:bold; width:20px; text-align:center;">${cart[id]}</span>
+                    <button class="btn btn-mini" onclick="modifyCartQty(${prod.id}, 1)" style="padding:2px 8px; background:#16a34a;">+</button>
+                </div>
+            </div>
+        `;
+    });
 
-            ctx.fillStyle = '#f59e0b';
-            ctx.font = 'bold 13px Inter, sans-serif';
-            ctx.fillText('UPGRADE TO VIP ROOMS FOR 100% VERIFIED HIGH-ODDS DAILY SLIPS', 40, totalHeight - 80);
+    if(Object.keys(cart).length === 0) {
+        listNode.innerHTML = '<p style="color:#888; font-size:13px; text-align:center; padding:15px 0;">Basket workspace is currently empty.</p>';
+    }
 
-            ctx.fillStyle = '#94a3b8';
-            ctx.font = '12px Inter, sans-serif';
-            ctx.fillText('M-Pesa: 0704556502 (KES) | PayPal ($) | Telegram: t.me/uUQQwk3DUm81ZDdk', 40, totalHeight - 48);
+    document.getElementById('subtotal-val').innerText = rollingSum.toFixed(2);
+    calculateLiveCashChange();
+}
 
-            // Trigger Image Download
-            const imageURI = canvas.toDataURL('image/png');
-            const a = document.createElement('a');
-            a.href = imageURI;
-            a.download = `ApexPredict_All_Free_Tips_${new Date().toISOString().slice(0,10)}.png`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+function renderInventoryLedgerTable() {
+    const tBody = document.getElementById('inventory-table-body');
+    tBody.innerHTML = '';
+
+    products.forEach(p => {
+        const metrics = calculateItemMetrics(p.id);
+        let statusBadge = `<span class="badge badge-ok">Good Standing</span>`;
+        let contextualRowStyle = "row-normal";
+
+        if(p.stock <= 0) {
+            statusBadge = `<span class="badge badge-alert">Stock Depleted</span>`;
+            contextualRowStyle = "row-out";
+        } else if(p.stock <= p.reorderLevel) {
+            statusBadge = `<span class="badge badge-warn">Reorder Alert</span>`;
+            contextualRowStyle = "row-reorder";
         }
 
-        // STRICT PAYMENT VALIDATION & CURRENCY EQUIVALENCE ENGINE
-        window.verifyReceiptCode = function() {
-            const plan = document.getElementById('verify-plan-select').value;
-            const codeInput = document.getElementById('receipt-code-input').value.trim();
+        tBody.innerHTML += `
+            <tr class="${contextualRowStyle}">
+                <td>${p.dateModified}</td>
+                <td><strong>${p.name}</strong></td>
+                <td>${p.category}</td>
+                <td class="profit-sensitive ${activeSessionUser && activeSessionUser.role === 'admin' ? '':'hidden'}">KES ${p.costPrice.toFixed(2)}</td>
+                <td>KES ${p.price.toFixed(2)}</td>
+                <td>
+                    <div style="display:flex; align-items:center; gap:5px;">
+                        <input type="number" id="inline-stock-input-${p.id}" value="${p.stock}" class="mini-stock-input" style="margin:0;">
+                        <button class="btn btn-mini" onclick="updateStockDirectly(${p.id})" style="padding:5px 8px;">Fix</button>
+                    </div>
+                </td>
+                <td>${metrics.qtySold}</td>
+                <td>KES ${metrics.totalSales.toFixed(2)}</td>
+                <td class="profit-sensitive ${activeSessionUser && activeSessionUser.role === 'admin' ? '':'hidden'}" style="color:var(--primary); font-weight:bold;">KES ${metrics.totalProfit.toFixed(2)}</td>
+                <td>${p.reorderLevel}</td>
+                <td>${statusBadge}</td>
+            </tr>
+        `;
+    });
+}
 
-            if (!codeInput || codeInput.length < 5) {
-                alert("Validation Error: Please enter a valid M-Pesa transaction code or PayPal ID.");
-                return;
-            }
+function updateStockDirectly(productId) {
+    const inputField = document.getElementById(`inline-stock-input-${productId}`);
+    if(!inputField) return;
 
-            const planRules = {
-                daily: { usd: 5, kes: 650, name: "Daily VIP Pass ($5 / KES 650)" },
-                weekly: { usd: 15, kes: 1950, name: "Weekly Access ($15 / KES 1,950)" },
-                monthly: { usd: 45, kes: 5850, name: "Monthly VIP Pass ($45 / KES 5,850)" },
-                season: { usd: 120, kes: 15600, name: "Season VIP Pass ($120 / KES 15,600)" }
-            };
+    const newStockVal = parseInt(inputField.value);
+    if(isNaN(newStockVal) || newStockVal < 0) {
+        alert("Please provide a clean, positive stock count value.");
+        return;
+    }
 
-            const selectedPlan = planRules[plan];
-            const upperCode = codeInput.toUpperCase();
+    const prod = products.find(p => p.id === productId);
+    if(prod) {
+        prod.stock = newStockVal;
+        prod.dateModified = new Date().toLocaleDateString();
+        syncMarketDisplayGrid();
+    }
+}
 
-            let isValidFormat = false;
-            let detectedMethod = "";
+function settlePurchaseDebt(purchaseId) {
+    const purchase = purchaseLedgerHistory.find(p => p.id === purchaseId);
+    if (!purchase) return;
 
-            if (upperCode.startsWith("PAYID") || upperCode.startsWith("PP-") || upperCode.includes("USD") || upperCode.length >= 15) {
-                detectedMethod = `PayPal ID ($${selectedPlan.usd})`;
-                isValidFormat = true;
-            } else if (/^[A-Z0-9]{8,12}$/.test(upperCode) || upperCode.includes("KES") || upperCode.length >= 8) {
-                detectedMethod = `M-Pesa Transaction Code (KES ${selectedPlan.kes})`;
-                isValidFormat = true;
-            }
+    const currentQty = purchase.qty !== undefined ? purchase.qty : (purchase.quantity || 0);
+    const currentUnitCost = purchase.unitCost !== undefined ? purchase.unitCost : (purchase.unitPrice || 0);
+    const totalCost = purchase.totalCost || (currentQty * currentUnitCost);
+    const currentAmountPaid = purchase.amountPaid !== undefined ? purchase.amountPaid : totalCost;
+    const currentDebt = purchase.supplierDebt !== undefined ? purchase.supplierDebt : (totalCost - currentAmountPaid);
 
-            if (!isValidFormat) {
-                alert("Payment Rejected: Format is invalid. Must match exact required currency amount and format for the " + selectedPlan.name);
-                return;
-            }
+    const paymentInput = prompt(`Outstanding Balance Owed: KES ${currentDebt.toFixed(2)}\nEnter amount to pay now:`);
+    if (paymentInput === null) return;
 
-            if (upperCode.includes("MISMATCH") || upperCode === "INVALID" || upperCode === "WRONG" || upperCode === "ERROR") {
-                alert("Payment Rejected: Amount mismatch! Payment must match exact KES equivalent for M-Pesa or exact USD for PayPal.");
-                return;
-            }
+    const amountToPay = parseFloat(paymentInput);
+    if (isNaN(amountToPay) || amountToPay <= 0 || amountToPay > currentDebt) {
+        alert("Please enter a valid payment amount not exceeding the current balance owed.");
+        return;
+    }
 
-            let durationMs = 0;
-            if (plan === 'daily') durationMs = 24 * 60 * 60 * 1000;
-            else if (plan === 'weekly') durationMs = 7 * 24 * 60 * 60 * 1000;
-            else if (plan === 'monthly') durationMs = 30 * 24 * 60 * 60 * 1000;
-            else if (plan === 'season') durationMs = 90 * 24 * 60 * 60 * 1000;
+    purchase.amountPaid = currentAmountPaid + amountToPay;
+    purchase.supplierDebt = totalCost - purchase.amountPaid;
 
-            const expirationTime = new Date().getTime() + durationMs;
+    localStorage.setItem('mm_purchaseLedgerHistory', JSON.stringify(purchaseLedgerHistory));
+    
+    alert(`Successfully registered payment of KES ${amountToPay.toFixed(2)} to supplier.`);
 
-            localStorage.setItem(`apex_expiry_${plan}`, expirationTime);
-            alert(`Success! ${detectedMethod} successfully verified and matched for ${selectedPlan.name}. Room unlocked!`);
-            document.getElementById('receipt-code-input').value = '';
-            refreshRoomVisibility();
+    renderPurchaseLedgerGrid();
+    if (typeof updateCorporateLedgerStats === 'function') updateCorporateLedgerStats();
+    if (typeof syncMarketDisplayGrid === 'function') syncMarketDisplayGrid();
+}
+
+function renderDebtRegistryTable() {
+    const tableBody = document.getElementById('debts-table-body');
+    tableBody.innerHTML = '';
+    const exactNow = new Date();
+
+    debtBookRegistry.forEach(debt => {
+        const entryDate = new Date(debt.issuedTimestamp);
+        const targetDueDate = new Date(debt.dueTimestamp);
+        
+        const isOverdue = exactNow > targetDueDate && debt.remainingBalance > 0;
+        
+        let complianceBadge = `<span class="badge badge-ok">Active Base Standing</span>`;
+        let alertRowStyle = "";
+        
+        if(debt.remainingBalance <= 0) {
+            complianceBadge = `<span class="badge badge-ok" style="background:#e0f2fe; color:#0369a1;">Settled Clear</span>`;
+        } else if(isOverdue) {
+            complianceBadge = `<span class="badge badge-alert">OVERDUE OUTSTANDING</span>`;
+            alertRowStyle = "background:#fef2f2;";
         }
 
-        window.refreshRoomVisibility = function() {
-            const rooms = ['daily', 'weekly', 'monthly', 'season'];
-            const now = new Date().getTime();
+        const alertMessage = `Mega Mart Notification: Hello ${debt.customerName}, your store debt balance of KES ${debt.remainingBalance.toFixed(2)} issued on ${entryDate.toLocaleDateString()} has breached its monthly due deadline of ${targetDueDate.toLocaleDateString()}. Please settle this immediately.`;
+        const encodedText = encodeURIComponent(alertMessage);
+        const whatsAppLink = `https://wa.me/${debt.contactPhone}?text=${encodedText}`;
 
-            rooms.forEach(room => {
-                const expiryTime = localStorage.getItem(`apex_expiry_${room}`);
-                const roomEl = document.getElementById(`room-${room}`);
-                const timerEl = document.getElementById(`timer-${room}`);
+        tableBody.innerHTML += `
+            <tr style="${alertRowStyle}">
+                <td><strong>${debt.customerName}</strong></td>
+                <td>${entryDate.toLocaleDateString()}</td>
+                <td><span style="${isOverdue ? 'color:#ef4444; font-weight:bold;':''}">${targetDueDate.toLocaleDateString()}</span></td>
+                <td><a href="tel:${debt.contactPhone}" style="color:inherit; text-decoration:none;">📱 ${debt.contactPhone}</a></td>
+                <td style="font-weight:bold; color:#b91c1c;">KES ${debt.remainingBalance.toFixed(2)}</td>
+                <td>${complianceBadge}</td>
+                <td>
+                    <div style="display:flex; gap:5px;">
+                        ${debt.remainingBalance > 0 ? `<button class="btn btn-mini" onclick="initiateDebtPaymentModal(${debt.id})" style="background:#b91c1c;">Remit Cash</button>` : ''}
+                        ${isOverdue && debt.remainingBalance > 0 ? `<a href="${whatsAppLink}" target="_blank" class="btn btn-mini btn-share" style="text-decoration:none; padding:4px 8px; font-size:12px; display:inline-block; text-align:center;">Notify via WhatsApp</a>` : ''}
+                    </div>
+                </td>
+            </tr>
+        `;
+    });
 
-                if (isAdminLoggedIn) {
-                    roomEl.style.display = 'block';
-                    if(timerEl) timerEl.textContent = "(Admin View Mode)";
-                    return;
-                }
+    if(debtBookRegistry.length === 0) {
+        tableBody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:#888;">No outstanding credit lines registered inside active ledger database.</td></tr>`;
+    }
+}
 
-                if (expiryTime && now < parseInt(expiryTime)) {
-                    roomEl.style.display = 'block';
-                    const timeLeft = parseInt(expiryTime) - now;
-                    const hoursLeft = Math.floor(timeLeft / (1000 * 60 * 60));
-                    const minsLeft = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                    if(timerEl) timerEl.textContent = `Access expires in: ${hoursLeft}h ${minsLeft}m`;
-                } else {
-                    if (expiryTime) {
-                        localStorage.removeItem(`apex_expiry_${room}`);
-                    }
-                    roomEl.style.display = 'none';
-                }
-            });
+function initiateDebtPaymentModal(debtId) {
+    const debtFile = debtBookRegistry.find(d => d.id === debtId);
+    if(!debtFile) return;
+
+    document.getElementById('modal-debtor-id').value = debtFile.id;
+    document.getElementById('modal-debtor-name').innerText = debtFile.customerName;
+    document.getElementById('modal-debtor-balance').innerText = debtFile.remainingBalance.toFixed(2);
+    document.getElementById('debt-payment-amount').value = debtFile.remainingBalance;
+    
+    document.getElementById('debt-payment-modal').classList.remove('hidden');
+    window.scrollTo({ top: document.getElementById('debt-payment-modal').offsetTop, behavior: 'smooth' });
+}
+
+function executeDebtPayment() {
+    const id = parseInt(document.getElementById('modal-debtor-id').value);
+    const amountPaid = parseFloat(document.getElementById('debt-payment-amount').value);
+
+    if(isNaN(amountPaid) || amountPaid <= 0) {
+        alert("Provide clean structural validation values for incoming transaction data.");
+        return;
+    }
+
+    const record = debtBookRegistry.find(d => d.id === id);
+    if(!record) return;
+
+    if(amountPaid > record.remainingBalance) {
+        alert("Remittance entry overshoots remaining value of open balance record.");
+        return;
+    }
+
+    record.remainingBalance -= amountPaid;
+    
+    salesLedgerHistory.push({
+        orderId: "DBP-" + Date.now(),
+        customer: `${record.customerName} (Debt Settlement)`,
+        items: [],
+        grossTotal: amountPaid,
+        profitMargin: amountPaid,
+        paymentMethod: "Debt Collection Handover",
+        rawTimestamp: new Date()
+    });
+
+    alert("Transaction safely recorded against open debt profile block.");
+    document.getElementById('debt-payment-modal').classList.add('hidden');
+    syncMarketDisplayGrid();
+}
+
+function renderExpenseLedgerTable() {
+    const tbody = document.getElementById('expenses-table-body');
+    tbody.innerHTML = '';
+    expenseLedgerHistory.forEach(exp => {
+        tbody.innerHTML += `
+            <tr>
+                <td>${exp.timeString}</td>
+                <td>${exp.description}</td>
+                <td style="color:#ef4444; font-weight:bold;">KES ${exp.amount.toFixed(2)}</td>
+            </tr>
+        `;
+    });
+    if(expenseLedgerHistory.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="3" style="text-align:center; color:#888;">No tracked expenditure records loaded yet.</td></tr>`;
+    }
+}
+
+function executeCheckoutPipeline() {
+    if(Object.keys(cart).length === 0) {
+        alert("Your transaction basket is currently empty.");
+        return;
+    }
+
+    const cName = document.getElementById('customer-name-input').value.trim() || "Valued General Customer";
+    const paymentMode = document.getElementById('payment-mode-select').value;
+    const mpesaNo = document.getElementById('mpesa-phone').value.trim();
+    const whatsappNo = document.getElementById('debt-customer-phone').value.trim();
+    const cashTenderedVal = document.getElementById('cash-tendered-input').value;
+
+    let totalCheckoutVolume = 0;
+    let baselineCostStructure = 0;
+    let packagedItemsCollection = [];
+
+    for(let id in cart) {
+        const p = products.find(prod => prod.id === parseInt(id));
+        if(!p) continue;
+        if(p.stock < cart[id]) {
+            alert(`Execution halted. Product out-of-bounds metrics observed on line: ${p.name}`);
+            return;
         }
+        totalCheckoutVolume += p.price * cart[id];
+        baselineCostStructure += p.costPrice * cart[id];
+        packagedItemsCollection.push({
+            id: p.id,
+            name: p.name,
+            qty: cart[id],
+            price: p.price,
+            cost: p.costPrice
+        });
+    }
 
-        window.lockRoom = function(room) {
-            localStorage.removeItem(`apex_expiry_${room}`);
-            refreshRoomVisibility();
+    let changeCalculated = 0;
+    if (paymentMode === "Cash") {
+        if (!cashTenderedVal || isNaN(cashTenderedVal) || parseFloat(cashTenderedVal) < totalCheckoutVolume) {
+            alert("Checkout Denied: The tendered cash amount is less than the active subtotal balance.");
+            return;
         }
+        changeCalculated = parseFloat(cashTenderedVal) - totalCheckoutVolume;
+    }
 
-        setInterval(refreshRoomVisibility, 60000);
+    if(paymentMode === "Debt" && !whatsappNo) {
+        alert("Debts mandate a valid customer mobile destination phone number to handle automated updates.");
+        return;
+    }
 
-        window.toggleAdminPrompt = function() {
-            if (isAdminLoggedIn) {
-                logoutAdmin();
-                return;
-            }
-            const pwd = prompt("Enter Admin Password (Default: admin):");
-            if (pwd === "admin") {
-                isAdminLoggedIn = true;
-                document.getElementById('admin-panel').style.display = 'block';
-                document.getElementById('admin-col-header').style.display = 'table-cell';
-                document.getElementById('admin-download-container').style.display = 'block';
-                document.querySelectorAll('.admin-ctrl-col').forEach(el => el.style.display = 'table-cell');
-                renderPredictions();
-            } else if (pwd !== null) {
-                alert("Incorrect password!");
-            }
+    packagedItemsCollection.forEach(item => {
+        const originalObject = products.find(p => p.id === item.id);
+        if(originalObject) {
+            originalObject.stock -= item.qty;
+            originalObject.dateModified = new Date().toLocaleDateString();
         }
+    });
 
-        window.logoutAdmin = function() {
-            isAdminLoggedIn = false;
-            document.getElementById('admin-panel').style.display = 'none';
-            document.getElementById('admin-col-header').style.display = 'none';
-            document.getElementById('admin-download-container').style.display = 'none';
-            document.querySelectorAll('.admin-ctrl-col').forEach(el => el.style.display = 'none');
-            renderPredictions();
+    const standardOrderID = "TXN-" + Date.now();
+    const profitDelta = totalCheckoutVolume - baselineCostStructure;
+
+    if(paymentMode === "Debt") {
+        const baseTimestamp = new Date();
+        const structuralDueDate = new Date();
+        structuralDueDate.setDate(baseTimestamp.getDate() + 30);
+
+        debtBookRegistry.push({
+            id: Date.now(),
+            customerName: cName,
+            contactPhone: whatsappNo,
+            totalPrincipal: totalCheckoutVolume,
+            remainingBalance: totalCheckoutVolume,
+            issuedTimestamp: baseTimestamp,
+            dueTimestamp: structuralDueDate
+        });
+        
+        salesLedgerHistory.push({
+            orderId: standardOrderID,
+            customer: cName,
+            items: packagedItemsCollection,
+            grossTotal: 0, 
+            profitMargin: 0,
+            paymentMethod: "Debt (Unpaid Accounts Receivable)",
+            rawTimestamp: new Date()
+        });
+    } else {
+        salesLedgerHistory.push({
+            orderId: standardOrderID,
+            customer: cName,
+            items: packagedItemsCollection,
+            grossTotal: totalCheckoutVolume,
+            profitMargin: profitDelta,
+            paymentMethod: paymentMode === "M-Pesa" ? `M-Pesa Line (${mpesaNo})` : "Cash Outright",
+            rawTimestamp: new Date()
+        });
+    }
+
+    generateInvoiceReceiptPrintout(standardOrderID, cName, paymentMode, totalCheckoutVolume, packagedItemsCollection, parseFloat(cashTenderedVal), changeCalculated);
+    
+    cart = {};
+    document.getElementById('customer-name-input').value = "";
+    document.getElementById('mpesa-phone').value = "";
+    document.getElementById('debt-customer-phone').value = "";
+    document.getElementById('cash-tendered-input').value = "";
+    document.getElementById('change-display-val').innerText = "KES 0.00";
+    
+    syncMarketDisplayGrid();
+    alert("Transaction completed and registered to core ledgers successfully.");
+}
+
+function generateInvoiceReceiptPrintout(orderId, customer, method, total, lines, tendered, change) {
+    const container = document.getElementById('receipt-container');
+    container.innerHTML = '';
+
+    let itemsHtml = '';
+    lines.forEach(l => {
+        itemsHtml += `
+            <tr>
+                <td>${l.name}</td>
+                <td>${l.qty}</td>
+                <td style="text-align:right;">${(l.qty * l.price).toFixed(2)}</td>
+            </tr>
+        `;
+    });
+
+    let extraCashLines = '';
+    if (method === "Cash") {
+        extraCashLines = `
+            <div class="receipt-line"><span>TENDERED CASH:</span><span>KES ${tendered.toFixed(2)}</span></div>
+            <div class="receipt-line" style="color: #2563eb; font-weight: bold;"><span>CHANGE RETURNED:</span><span>KES ${change.toFixed(2)}</span></div>
+        `;
+    }
+
+    container.innerHTML = `
+        <div class="receipt-wrapper">
+            <div class="receipt-sheet" id="print-sheet-${orderId}">
+                <div class="receipt-brand-header">
+                    <h3 style="margin:0; font-size:16px;">🛒 MEGA MART OUTLET</h3>
+                    <small>High Performance Enterprise System Terminal</small>
+                </div>
+                <div class="receipt-line"><span>Invoice Ref:</span><span>${orderId}</span></div>
+                <div class="receipt-line"><span>Timestamp:</span><span>${new Date().toLocaleString()}</span></div>
+                <div class="receipt-line"><span>Customer:</span><span>${customer}</span></div>
+                <div class="receipt-line"><span>Payment Gateway:</span><span>${method}</span></div>
+                
+                <table class="receipt-table">
+                    <thead>
+                        <tr><th>Item Desc</th><th>Qty</th><th style="text-align:right;">Sum</th></tr>
+                    </thead>
+                    <tbody>${itemsHtml}</tbody>
+                </table>
+
+                <div class="receipt-line" style="font-size:15px; font-weight:bold; margin-bottom: 8px;">
+                    <span>TOTAL VAL:</span><span>KES ${total.toFixed(2)}</span>
+                </div>
+                ${extraCashLines}
+                
+                <div style="text-align:center; margin-top:15px; border-top:1px dashed #9ca3af; padding-top:10px; font-size:11px;">
+                    Thank you for partnering with Mega Mart.
+                </div>
+            </div>
+            <div class="receipt-actions">
+                <button class="btn btn-mini btn-download" onclick="triggerReceiptImageDownload('${orderId}')">Save Image Receipt</button>
+            </div>
+        </div>
+    `;
+}
+
+function triggerReceiptImageDownload(orderId) {
+    const targetedNode = document.getElementById(`print-sheet-${orderId}`);
+    if(!targetedNode) return;
+    html2canvas(targetedNode).then(canvas => {
+        const hyperLinkElement = document.createElement('a');
+        hyperLinkElement.download = `MegaMart_Invoice_${orderId}.png`;
+        hyperLinkElement.href = canvas.toDataURL();
+        hyperLinkElement.click();
+    });
+}
+
+function updateCorporateLedgerStats() {
+    if (!activeSessionUser || activeSessionUser.role !== 'admin') return;
+
+    const now = new Date();
+    let stats = {
+        day: { rev: 0, prof: 0, exp: 0, pur: 0 },
+        month: { rev: 0, prof: 0, exp: 0, pur: 0 },
+        year: { rev: 0, prof: 0, exp: 0, pur: 0 }
+    };
+
+    salesLedgerHistory.forEach(sale => {
+        const saleDate = new Date(sale.rawTimestamp);
+        
+        if(saleDate.toDateString() === now.toDateString()) {
+            stats.day.rev += sale.grossTotal;
+            stats.day.prof += sale.profitMargin;
         }
-
-        window.addPrediction = function(e) {
-            e.preventDefault();
-            const newGame = {
-                league: document.getElementById('input-league').value,
-                time: document.getElementById('input-time').value,
-                match: document.getElementById('input-match').value,
-                tip: document.getElementById('input-tip').value,
-                odds: document.getElementById('input-odds').value,
-                tier: document.getElementById('input-tier').value,
-                status: document.getElementById('input-status').value
-            };
-
-            push(predictionsRef, newGame).then(() => {
-                e.target.reset();
-                alert("Match entry successfully published to database!");
-            }).catch((error) => {
-                alert("Error: " + error.message);
-            });
+        if(saleDate.getMonth() === now.getMonth() && saleDate.getFullYear() === now.getFullYear()) {
+            stats.month.rev += sale.grossTotal;
+            stats.month.prof += sale.profitMargin;
         }
-
-        window.updateStatus = function(id, newStatus) {
-            update(ref(db, 'predictions/' + id), { status: newStatus });
+        if(saleDate.getFullYear() === now.getFullYear()) {
+            stats.year.rev += sale.grossTotal;
+            stats.year.prof += sale.profitMargin;
         }
+    });
 
-        window.deleteGame = function(id) {
-            if (confirm("Delete this match?")) {
-                remove(ref(db, 'predictions/' + id));
-            }
+    expenseLedgerHistory.forEach(exp => {
+        const expDate = new Date(exp.rawTimestamp);
+
+        if(expDate.toDateString() === now.toDateString()) {
+            stats.day.exp += exp.amount;
         }
-    </script>
+        if(expDate.getMonth() === now.getMonth() && expDate.getFullYear() === now.getFullYear()) {
+            stats.month.exp += exp.amount;
+        }
+        if(expDate.getFullYear() === now.getFullYear()) {
+            stats.year.exp += exp.amount;
+        }
+    });
+
+    purchaseLedgerHistory.forEach(pur => {
+        const purDate = new Date(pur.rawTimestamp);
+        const currentQty = pur.qty !== undefined ? pur.qty : (pur.quantity || 0);
+        const currentUnitCost = pur.unitCost !== undefined ? pur.unitCost : (pur.unitPrice || 0);
+        const totalCost = pur.totalCost || (currentQty * currentUnitCost);
+        const cashOutflowValue = pur.amountPaid !== undefined ? pur.amountPaid : totalCost;
+
+        if(purDate.toDateString() === now.toDateString()) {
+            stats.day.pur += cashOutflowValue;
+        }
+        if(purDate.getMonth() === now.getMonth() && purDate.getFullYear() === now.getFullYear()) {
+            stats.month.pur += cashOutflowValue;
+        }
+        if(purDate.getFullYear() === now.getFullYear()) {
+            stats.year.pur += cashOutflowValue;
+        }
+    });
+
+    document.getElementById('day-rev').innerText = stats.day.rev.toFixed(2);
+    document.getElementById('day-exp').innerText = stats.day.exp.toFixed(2);
+    document.getElementById('day-pur').innerText = stats.day.pur.toFixed(2);
+    document.getElementById('day-prof').innerText = (stats.day.prof - stats.day.exp - stats.day.pur).toFixed(2);
+
+    document.getElementById('month-rev').innerText = stats.month.rev.toFixed(2);
+    document.getElementById('month-exp').innerText = stats.month.exp.toFixed(2);
+    document.getElementById('month-pur').innerText = stats.month.pur.toFixed(2);
+    document.getElementById('month-prof').innerText = (stats.month.prof - stats.month.exp - stats.month.pur).toFixed(2);
+
+    document.getElementById('year-rev').innerText = stats.year.rev.toFixed(2);
+    document.getElementById('year-exp').innerText = stats.year.exp.toFixed(2);
+    document.getElementById('year-pur').innerText = stats.year.pur.toFixed(2);
+    document.getElementById('year-prof').innerText = (stats.year.prof - stats.year.exp - stats.year.pur).toFixed(2);
+
+    let totalStockCostValue = 0;
+    let totalStockSellingValue = 0;
+
+    products.forEach(p => {
+        if(p.stock > 0) {
+            totalStockCostValue += (p.costPrice * p.stock);
+            totalStockSellingValue += (p.price * p.stock);
+        }
+    });
+
+    let projectedValuationProfit = totalStockSellingValue - totalStockCostValue;
+
+    document.getElementById('total-stock-cost').innerText = totalStockCostValue.toFixed(2);
+    document.getElementById('total-stock-selling').innerText = totalStockSellingValue.toFixed(2);
+    document.getElementById('total-stock-projected-profit').innerText = projectedValuationProfit.toFixed(2);
+
+    const salesTableBody = document.getElementById('sales-table-body');
+    if (salesTableBody) {
+        salesTableBody.innerHTML = '';
+        salesLedgerHistory.forEach(sale => {
+            salesTableBody.innerHTML += `
+                <tr>
+                    <td>${sale.orderId}</td>
+                    <td>${new Date(sale.rawTimestamp).toLocaleDateString()}</td>
+                    <td>${sale.customer}</td>
+                    <td>${sale.items.length > 0 ? sale.items.map(i => `${i.name} (${i.qty})`).join(", ") : 'Liquid Cash Remittance Balance'}</td>
+                    <td><strong>KES ${sale.grossTotal.toFixed(2)}</strong></td>
+                    <td><span class="badge" style="background:#e5e7eb; color:#374151;">${sale.paymentMethod}</span></td>
+                    <td class="profit-sensitive ${activeSessionUser && activeSessionUser.role === 'admin' ? '':'hidden'}" style="color:var(--primary); font-weight:bold;">KES ${sale.profitMargin.toFixed(2)}</td>
+                </tr>
+            `;
+        });
+        if(salesLedgerHistory.length === 0) {
+            salesTableBody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:#888;">No sales records available.</td></tr>`;
+        }
+    }
+}
+
+syncMarketDisplayGrid();
+
+window.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('mm_categories')) {
+        categories = JSON.parse(localStorage.getItem('mm_categories'));
+    }
+    if (localStorage.getItem('mm_products')) {
+        products = JSON.parse(localStorage.getItem('mm_products'));
+    }
+    if (localStorage.getItem('mm_salesLedgerHistory')) {
+        salesLedgerHistory = JSON.parse(localStorage.getItem('mm_salesLedgerHistory'));
+    }
+    if (localStorage.getItem('mm_expenseLedgerHistory')) {
+        expenseLedgerHistory = JSON.parse(localStorage.getItem('mm_expenseLedgerHistory'));
+    }
+    if (localStorage.getItem('mm_purchaseLedgerHistory')) {
+        purchaseLedgerHistory = JSON.parse(localStorage.getItem('mm_purchaseLedgerHistory'));
+    }
+    if (localStorage.getItem('mm_debtBookRegistry')) {
+        debtBookRegistry = JSON.parse(localStorage.getItem('mm_debtBookRegistry'));
+    }
+    
+    if (typeof syncMarketDisplayGrid === 'function') syncMarketDisplayGrid();
+    if (typeof renderPurchaseLedgerGrid === 'function') renderPurchaseLedgerGrid();
+    if (typeof updateCorporateLedgerStats === 'function') updateCorporateLedgerStats();
+});
+
+function commitSystemDataOfflineBridge() {
+    localStorage.setItem('mm_categories', JSON.stringify(categories));
+    localStorage.setItem('mm_products', JSON.stringify(products));
+    localStorage.setItem('mm_salesLedgerHistory', JSON.stringify(salesLedgerHistory));
+    localStorage.setItem('mm_expenseLedgerHistory', JSON.stringify(expenseLedgerHistory));
+    localStorage.setItem('mm_purchaseLedgerHistory', JSON.stringify(purchaseLedgerHistory));
+    localStorage.setItem('mm_debtBookRegistry', JSON.stringify(debtBookRegistry));
+}
+
+const originalSubmitNewProduct = window.submitNewProduct;
+window.submitNewProduct = function(...args) {
+    if(typeof originalSubmitNewProduct === 'function') originalSubmitNewProduct(...args);
+    commitSystemDataOfflineBridge();
+};
+
+const originalSubmitNewCategory = window.submitNewCategory;
+window.submitNewCategory = function(...args) {
+    if(typeof originalSubmitNewCategory === 'function') originalSubmitNewCategory(...args);
+    commitSystemDataOfflineBridge();
+};
+
+const originalExecuteCheckoutPipeline = window.executeCheckoutPipeline;
+window.executeCheckoutPipeline = function(...args) {
+    if(typeof originalExecuteCheckoutPipeline === 'function') originalExecuteCheckoutPipeline(...args);
+    commitSystemDataOfflineBridge();
+};
+
+const originalSubmitNewStockPurchase = window.submitNewStockPurchase;
+window.submitNewStockPurchase = function(...args) {
+    if(typeof originalSubmitNewStockPurchase === 'function') originalSubmitNewStockPurchase(...args);
+    commitSystemDataOfflineBridge();
+};
+
+const originalExecuteDebtPayment = window.executeDebtPayment;
+window.executeDebtPayment = function(...args) {
+    if(typeof originalExecuteDebtPayment === 'function') originalExecuteDebtPayment(...args);
+    commitSystemDataOfflineBridge();
+};
+
+const originalSubmitNewExpense = window.submitNewExpense;
+window.submitNewExpense = function(...args) {
+    if(typeof originalSubmitNewExpense === 'function') originalSubmitNewExpense(...args);
+    commitSystemDataOfflineBridge();
+};
+
+function generateClientKey() {
+    const reqIdInput = document.getElementById("admin-input-req-id").value.trim();
+    const outputWrapper = document.getElementById("admin-key-output-wrapper");
+    const outputDisplay = document.getElementById("admin-key-output-display");
+    
+    if (!reqIdInput) {
+        alert("Please enter a valid Device Request ID first.");
+        return;
+    }
+    
+    let checksum = 0;
+    for (let i = 0; i < reqIdInput.length; i++) {
+        checksum += reqIdInput.charCodeAt(i) * (i + 1);
+    }
+    
+    const finalKey = "MM-KEY-" + (checksum * 7);
+    
+    outputDisplay.innerText = finalKey;
+    outputWrapper.classList.remove("hidden");
+}
+</script>
+
 </body>
 </html>
